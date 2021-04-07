@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>...on your own on Nginx Experience</title>
+    <link>/010_intro/selfpaced/</link>
+    <description>Recent content in ...on your own on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
+    
+	<atom:link href="/010_intro/selfpaced/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cloud Formation</title>
+      <link>/010_intro/selfpaced/020_cloudformation_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/selfpaced/020_cloudformation_1/</guid>
+      <description>Click the bellow button and deploy the template:  
+ Click Next and enter a unique &amp;ldquo;Stack name&amp;rdquo;
+  Click Next 2 times accepting all the defaults, but make sure the following is selected on the last screen:
+  Click Create stack.  Wait until the stack Status is CREATE_COMPLETE.</description>
+    </item>
+    
+    <item>
+      <title>IAM Role</title>
+      <link>/010_intro/selfpaced/030_iam_role_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/selfpaced/030_iam_role_1/</guid>
+      <description>  Follow this deep link to find your Cloud9 EC2 instance
+  Select the instance, then choose Actions / Instance Settings / Attach/Replace IAM Role
+  Choose eksworkshop-admin from the IAM Role drop down, and select Apply  </description>
+    </item>
+    
+  </channel>
+</rss>

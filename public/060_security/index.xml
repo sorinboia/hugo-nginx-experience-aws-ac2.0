@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Nginx Experience</title>
+    <link>/060_security/</link>
+    <description>Recent content in Security on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
+    
+	<atom:link href="/060_security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Waf deployment</title>
+      <link>/060_security/010_waf_deployment/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/060_security/010_waf_deployment/</guid>
+      <description>Create the Nginx WAF config, which can be found in the &amp;ldquo;files/7waf/waf-config.yaml&amp;rdquo; file.  kubectl apply -f files/7waf/waf-config.yamlThe WAF policy is json based and from the example bellow, you can observe how all the configuration can be changed based on the application needs:
+{&amp;quot;name&amp;quot;: &amp;quot;nginx-policy&amp;quot;,&amp;quot;template&amp;quot;: { &amp;quot;name&amp;quot;: &amp;quot;POLICY_TEMPLATE_NGINX_BASE&amp;quot; },&amp;quot;applicationLanguage&amp;quot;: &amp;quot;utf-8&amp;quot;,&amp;quot;enforcementMode&amp;quot;: &amp;quot;blocking&amp;quot;,&amp;quot;signature-sets&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;All Signatures&amp;quot;,&amp;quot;block&amp;quot;: false,&amp;quot;alarm&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;High Accuracy Signatures&amp;quot;,&amp;quot;block&amp;quot;: true,&amp;quot;alarm&amp;quot;: true}],&amp;quot;blocking-settings&amp;quot;: {&amp;quot;violations&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;VIOL_RATING_NEED_EXAMINATION&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;VIOL_HTTP_PROTOCOL&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: true,&amp;quot;learn&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;VIOL_FILETYPE&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: true,&amp;quot;learn&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;VIOL_COOKIE_MALFORMED&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: false,&amp;quot;learn&amp;quot;: false}],&amp;quot;http-protocols&amp;quot;: [{&amp;quot;description&amp;quot;: &amp;quot;Body in GET or HEAD requests&amp;quot;,&amp;quot;enabled&amp;quot;: true,&amp;quot;learn&amp;quot;: true,&amp;quot;maxHeaders&amp;quot;: 20,&amp;quot;maxParams&amp;quot;: 500}],&amp;quot;filetypes&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;*&amp;quot;,&amp;quot;type&amp;quot;: &amp;quot;wildcard&amp;quot;,&amp;quot;allowed&amp;quot;: true,&amp;quot;responseCheck&amp;quot;: true}],&amp;quot;data-guard&amp;quot;: {&amp;quot;enabled&amp;quot;: true,&amp;quot;maskData&amp;quot;: true,&amp;quot;creditCardNumbers&amp;quot;: true,&amp;quot;usSocialSecurityNumbers&amp;quot;: true},&amp;quot;cookies&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;*&amp;quot;,&amp;quot;type&amp;quot;: &amp;quot;wildcard&amp;quot;,&amp;quot;accessibleOnlyThroughTheHttpProtocol&amp;quot;: true,&amp;quot;attackSignaturesCheck&amp;quot;: true,&amp;quot;insertSameSiteAttribute&amp;quot;: &amp;quot;strict&amp;quot;}],&amp;quot;evasions&amp;quot;: [{&amp;quot;description&amp;quot;: &amp;quot;%u decoding&amp;quot;,&amp;quot;enabled&amp;quot;: true,&amp;quot;learn&amp;quot;: false,&amp;quot;maxDecodingPasses&amp;quot;: 2}]}}Deploy ELK in order to be able to visualize and analyze the traffic going through the Nginx WAF  kubectl apply -f files/7waf/elk.</description>
+    </item>
+    
+    <item>
+      <title>Testing the Waf</title>
+      <link>/060_security/020_testing/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/060_security/020_testing/</guid>
+      <description>Browse again to the Arcadia web app and verify that it is still working.
+  Let&amp;rsquo;s simulate a Cross Site Scripting (XSS) attack, and make sure it&amp;rsquo;s blocked:
+  https://&amp;lt;INGRESS-EXTERNAL-IP&amp;gt;/trading/index.php?a=%3Cscript%3Ealert(%27xss%27)%3C/script%3E
+Each of the blocked requests will generate a support ID, save it for later.
+Browse to the ELK as before and click the &amp;ldquo;Discover&amp;rdquo; button:  Here, you&amp;rsquo;ll see all the request logs, allowed and blocked, sent by the Nginx WAF to ELK.</description>
+    </item>
+    
+  </channel>
+</rss>

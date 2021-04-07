@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx Experience</title>
+    <link>/</link>
+    <description>Recent content on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS Workshop environment</title>
+      <link>/010_intro/005_workshop_path/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/005_workshop_path/</guid>
+      <description>There are two ways of doing the workshop, as part of an AWS event or on your own. Please click the relevant path.
+ AWS Workshop On your own  </description>
+    </item>
+    
+    <item>
+      <title>Accessing the Nginx Controller</title>
+      <link>/050_controller/010_accessing_controller/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/010_accessing_controller/</guid>
+      <description>The Nginx Controller has already been deployed with the terraform declaration, we need to find the public IP address.  cd terraformexport controller_ip=$(terraform state show &amp;quot;aws_instance.controller&amp;quot; | grep &amp;quot;public_ip&amp;quot; | grep -v &amp;quot;associate_public_ip_address&amp;quot; | cut -d&#39;&amp;quot;&#39; -f2)curl -k -c cookie.txt -X POST --url &amp;quot;https://$controller_ip/api/v1/platform/login&amp;quot; --header &#39;Content-Type: application/json&#39; --data &#39;{&amp;quot;credentials&amp;quot;: {&amp;quot;type&amp;quot;: &amp;quot;BASIC&amp;quot;,&amp;quot;username&amp;quot;: &amp;quot;nginx@f5.com&amp;quot;,&amp;quot;password&amp;quot;: &amp;quot;Admin2020&amp;quot;}}&#39;export controller_apikey=$(curl -k -sb cookie.txt -c cookie.txt https://$controller_ip/api/v1/platform/global | jq .currentStatus.agentSettings.apiKey | tr -d &#39;&amp;quot;&#39;)terraform state show &amp;quot;aws_instance.</description>
+    </item>
+    
+    <item>
+      <title>App deployment</title>
+      <link>/030_unit/010_app_deployment_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/030_unit/010_app_deployment_1/</guid>
+      <description>Deploy the app  kubectl apply -f files/5ingress/1arcadia.yamlOutput
+deployment.apps/arcadia-main created deployment.apps/arcadia-backend created deployment.apps/arcadia-app2 created deployment.apps/arcadia-app3 created service/arcadia-main created service/arcadia-backend created service/arcadia-app2 created service/arcadia-app3 created  Check that all is deployed and working as expected:  kubectl get podsOutput
+NAME READY STATUS RESTARTS AGE arcadia-app2-64ccdcdc97-2vn6w 1/1 Running 0 38s arcadia-app3-5d76bf776b-sj446 1/1 Running 0 38s arcadia-backend-bc96d5754-grwfn 1/1 Running 0 38s arcadia-main-5d9bc94d55-cc597 1/1 Running 0 39s  kubectl get svc -owideOutput</description>
+    </item>
+    
+    <item>
+      <title>AWS Workshop Portal</title>
+      <link>/010_intro/aws_event/010_aws_wokshop_portal_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/aws_event/010_aws_wokshop_portal_1/</guid>
+      <description>This workshop creates an AWS account and a Cloud9 environment. You will need the Participant Hash provided upon entry, and your email address to track your unique session.
+ Connect to the portal by clicking the button or browsing to https://dashboard.eventengine.run/. The following screen shows up.  Enter the provided hash in the text box. The button on the bottom right corner changes to Accept Terms &amp;amp; Login. Click on that button to continue.</description>
+    </item>
+    
+    <item>
+      <title>Nginx Kubernetes Ingress Installation</title>
+      <link>/040_ingress/010_ingress_install_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/040_ingress/010_ingress_install_1/</guid>
+      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared the installation in a single yaml file.
+ Run the command bellow:  kubectl apply -f files/5ingress/nginx-ingress-install.yamlOutput
+namespace/nginx-ingress createdserviceaccount/nginx-ingress createdclusterrole.rbac.authorization.k8s.io/nginx-ingress createdclusterrolebinding.rbac.authorization.k8s.io/nginx-ingress createdsecret/default-server-secret createdconfigmap/nginx-config createddeployment.apps/nginx-ingress createdservice/nginx-ingress created Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.</description>
+    </item>
+    
+    <item>
+      <title>Remove configuration</title>
+      <link>/070_cleanup/010_cleanup/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_cleanup/010_cleanup/</guid>
+      <description> In order to delete the resources created during this workshop, run the commands below:  kubectl delete --all svc --namespace=nginx-ingresskubectl delete --all svc --namespace=defaultcd terraformterraform destroy --auto-approve Finally, delete the previously created Cloud9 stack in the CloudFormation console.  Please note: This will also delete the Cloud9 IDE instance.
+</description>
+    </item>
+    
+    <item>
+      <title>Terraform Apply</title>
+      <link>/020_terraform/010_terraform_apply_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/020_terraform/010_terraform_apply_1/</guid>
+      <description>Go to the &amp;ldquo;terraform&amp;rdquo; directory where we can find the terraform plan.  cd terraform Run the following commands, terraform plan will show us what it is going to be deployed in AWS by Terraform:  terraform init terraform plan Now let&amp;rsquo;s deploy the environment  terraform apply --auto-approve It will take around 10 minutes for Terraform and AWS to finish the initial deployment.
+Please continue to the next page to learn about Kubernetes and Amazon EKS basics.</description>
+    </item>
+    
+    <item>
+      <title>Waf deployment</title>
+      <link>/060_security/010_waf_deployment/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/060_security/010_waf_deployment/</guid>
+      <description>Create the Nginx WAF config, which can be found in the &amp;ldquo;files/7waf/waf-config.yaml&amp;rdquo; file.  kubectl apply -f files/7waf/waf-config.yamlThe WAF policy is json based and from the example bellow, you can observe how all the configuration can be changed based on the application needs:
+{&amp;quot;name&amp;quot;: &amp;quot;nginx-policy&amp;quot;,&amp;quot;template&amp;quot;: { &amp;quot;name&amp;quot;: &amp;quot;POLICY_TEMPLATE_NGINX_BASE&amp;quot; },&amp;quot;applicationLanguage&amp;quot;: &amp;quot;utf-8&amp;quot;,&amp;quot;enforcementMode&amp;quot;: &amp;quot;blocking&amp;quot;,&amp;quot;signature-sets&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;All Signatures&amp;quot;,&amp;quot;block&amp;quot;: false,&amp;quot;alarm&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;High Accuracy Signatures&amp;quot;,&amp;quot;block&amp;quot;: true,&amp;quot;alarm&amp;quot;: true}],&amp;quot;blocking-settings&amp;quot;: {&amp;quot;violations&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;VIOL_RATING_NEED_EXAMINATION&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;VIOL_HTTP_PROTOCOL&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: true,&amp;quot;learn&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;VIOL_FILETYPE&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: true,&amp;quot;learn&amp;quot;: true},{&amp;quot;name&amp;quot;: &amp;quot;VIOL_COOKIE_MALFORMED&amp;quot;,&amp;quot;alarm&amp;quot;: true,&amp;quot;block&amp;quot;: false,&amp;quot;learn&amp;quot;: false}],&amp;quot;http-protocols&amp;quot;: [{&amp;quot;description&amp;quot;: &amp;quot;Body in GET or HEAD requests&amp;quot;,&amp;quot;enabled&amp;quot;: true,&amp;quot;learn&amp;quot;: true,&amp;quot;maxHeaders&amp;quot;: 20,&amp;quot;maxParams&amp;quot;: 500}],&amp;quot;filetypes&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;*&amp;quot;,&amp;quot;type&amp;quot;: &amp;quot;wildcard&amp;quot;,&amp;quot;allowed&amp;quot;: true,&amp;quot;responseCheck&amp;quot;: true}],&amp;quot;data-guard&amp;quot;: {&amp;quot;enabled&amp;quot;: true,&amp;quot;maskData&amp;quot;: true,&amp;quot;creditCardNumbers&amp;quot;: true,&amp;quot;usSocialSecurityNumbers&amp;quot;: true},&amp;quot;cookies&amp;quot;: [{&amp;quot;name&amp;quot;: &amp;quot;*&amp;quot;,&amp;quot;type&amp;quot;: &amp;quot;wildcard&amp;quot;,&amp;quot;accessibleOnlyThroughTheHttpProtocol&amp;quot;: true,&amp;quot;attackSignaturesCheck&amp;quot;: true,&amp;quot;insertSameSiteAttribute&amp;quot;: &amp;quot;strict&amp;quot;}],&amp;quot;evasions&amp;quot;: [{&amp;quot;description&amp;quot;: &amp;quot;%u decoding&amp;quot;,&amp;quot;enabled&amp;quot;: true,&amp;quot;learn&amp;quot;: false,&amp;quot;maxDecodingPasses&amp;quot;: 2}]}}Deploy ELK in order to be able to visualize and analyze the traffic going through the Nginx WAF  kubectl apply -f files/7waf/elk.</description>
+    </item>
+    
+    <item>
+      <title>AWS EKS</title>
+      <link>/020_terraform/020_eks_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/020_terraform/020_eks_1/</guid>
+      <description>While you wait, you can review the Introduction section of the AWS EKS Workshop to learn about Kubernetes and Amazon EKS basics.
+Managed control plane Amazon EKS provides a scalable and highly-available control plane that runs across multiple AWS availability zones. The Amazon EKS service automatically manages the availability and scalability of the Kubernetes API servers and the etcd persistence layer for each cluster. Amazon EKS runs the Kubernetes control plane across three Availability Zones in order to ensure high availability, and it automatically detects and replaces unhealthy masters.</description>
+    </item>
+    
+    <item>
+      <title>Cloud Formation</title>
+      <link>/010_intro/selfpaced/020_cloudformation_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/selfpaced/020_cloudformation_1/</guid>
+      <description>Click the bellow button and deploy the template:  
+ Click Next and enter a unique &amp;ldquo;Stack name&amp;rdquo;
+  Click Next 2 times accepting all the defaults, but make sure the following is selected on the last screen:
+  Click Create stack.  Wait until the stack Status is CREATE_COMPLETE.</description>
+    </item>
+    
+    <item>
+      <title>Microgateway deployment</title>
+      <link>/050_controller/020_microgateway/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/020_microgateway/</guid>
+      <description>Deploy the microgateway with the following configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: microgatewayspec:replicas: 1selector:matchLabels:app: microgatewaytemplate:metadata:labels:app: microgatewayspec:containers:- name: microgateway1image: sorinboia/ngtest:3.4imagePullPolicy: Alwaysenv:- name: API_KEYvalue: $controller_apikey- name: CTRL_HOSTvalue: $controller_ip- name: HOSTNAMEvalue: microgateway1 ports:- containerPort: 80readinessProbe:exec:command:- curl- 127.</description>
+    </item>
+    
+    <item>
+      <title>Nginx Unit</title>
+      <link>/030_unit/020_nginx_unit/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/030_unit/020_nginx_unit/</guid>
+      <description>All of our pods are created based on the Nginx Unit application server. NGINX Unit is a dynamic application server, capable of running beside NGINX Plus and NGINX Open Source or standalone. Unit supports a RESTful JSON API, deploys configuration changes without service disruptions, and runs apps built with multiple languages and frameworks. Designed from scratch around the needs of your distributed applications, it lays the foundation for your service mesh.</description>
+    </item>
+    
+    <item>
+      <title>Publish the app</title>
+      <link>/040_ingress/020_ingress_01/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/040_ingress/020_ingress_01/</guid>
+      <description>Expose all the application services and route traffic based on the HTTP path. We will start with a basic configuration.
+ Expose Arcadia to the world.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: extensions/v1beta1kind: Ingressmetadata:name: arcadia spec:rules:- host: $nginx_ingresshttp:paths:- path: /backend:serviceName: arcadia-mainservicePort: 80- path: /api/backend:serviceName: arcadia-app2servicePort: 80- path: /app3/backend:serviceName: arcadia-app3servicePort: 80EOFNote how the various HTTP paths (/, /api/, /app3/) are routed by Ingress to the relevant K8s services.</description>
+    </item>
+    
+    <item>
+      <title>Testing the Waf</title>
+      <link>/060_security/020_testing/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/060_security/020_testing/</guid>
+      <description>Browse again to the Arcadia web app and verify that it is still working.
+  Let&amp;rsquo;s simulate a Cross Site Scripting (XSS) attack, and make sure it&amp;rsquo;s blocked:
+  https://&amp;lt;INGRESS-EXTERNAL-IP&amp;gt;/trading/index.php?a=%3Cscript%3Ealert(%27xss%27)%3C/script%3E
+Each of the blocked requests will generate a support ID, save it for later.
+Browse to the ELK as before and click the &amp;ldquo;Discover&amp;rdquo; button:  Here, you&amp;rsquo;ll see all the request logs, allowed and blocked, sent by the Nginx WAF to ELK.</description>
+    </item>
+    
+    <item>
+      <title>Build the configuration</title>
+      <link>/050_controller/030_configuration/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/030_configuration/</guid>
+      <description>Create an environment  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;Environments&amp;rdquo; -&amp;gt; &amp;ldquo;Create Environment&amp;rdquo; In all the fields, enter the following value: prod.
+Click on &amp;ldquo;View API Request&amp;rdquo;.
+All the configuration on the Nginx Controller can be easlly automated with external orchestration systems, this view can help you in understanding how to generate the configuration API calls.
+The output will look like this: Output
+{&amp;#34;metadata&amp;#34;: {&amp;#34;name&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;displayName&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;description&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;tags&amp;#34;: [&amp;#34;prod&amp;#34;]},&amp;#34;desiredState&amp;#34;: {}}</description>
+    </item>
+    
+    <item>
+      <title>EKS Verification</title>
+      <link>/020_terraform/030_eks_verification_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/020_terraform/030_eks_verification_1/</guid>
+      <description>Wait for Terraform to finish and verify the deployment is working as expected and we are able to control the Kubernetes environment.
+ We need to save the remote access config for the Kubernetes cluster locally:  mkdir ~/.kube/ terraform output &amp;gt; ~/.kube/configCheck and see that our cluster is up an running.
+Below we should see our two K8s worker nodes:  kubectl get nodesOutput
+NAME STATUS ROLES AGE VERSION ip-10-0-2-32.</description>
+    </item>
+    
+    <item>
+      <title>Enable https and monitoring</title>
+      <link>/040_ingress/030_health_https_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/040_ingress/030_health_https_1/</guid>
+      <description>In our next step we will finish this part of the configuration, we will implement the following:
+ Enable health checks Enable https for the application and redirect http requests to https   Apply the configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Secretmetadata:name: arcadia-tlsnamespace: defaultdata:tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZWRENDQkR5Z0F3SUJBZ0lTQTZmZXlEYXhUUFc4eFdlLys2K1h0eUhOTUEwR0NTcUdTSWIzRFFFQkN3VUEKTUVveEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1TTXdJUVlEVlFRRApFeHBNWlhRbmN5QkZibU55ZVhCMElFRjFkR2h2Y21sMGVTQllNekFlRncweU1EQTBNVGd4TURJNU1qUmFGdzB5Ck1EQTNNVGN4TURJNU1qUmFNQmt4RnpBVkJnTlZCQU1NRGlvdWMyOXlhVzVpTG1Oc2IzVmtNSUlCSWpBTkJna3EKaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFtLzI0WDZpb0gybWhWUjJSQlhCQXd1KzlFMkxTZldMRwpldEtJbU1RdTN2Mzh5NDZJbnZubmpDNis1VDFqdk1INEVIY1Bmcy9qUS8zbDRjUWtiRWhQYUEwVXluRmEwbEUvClNidmJmbVdsOUlBZmc0eXc0cWxmTW5GNFdXVEFWQlhwVDhpZFZnc2tQaDVuMVdQUDdBSVJxNXFhUkR3YWVZMUEKOE5VREY1T3RsYXNvYitxdTBOTnJnSUZvQ0ZVODQ4cUJEWllLODhXalYyQStxVG5xSko0U3ZoMFNOUDBYWmRoQgo2TkRKT3RBWDlYbWdybTlxWFBFMXE0QU0yazNTNFllb1ZvRWNnQnRMdTRocWRxMlhhQWhOc1RHcVYzaXgvNkhFCjRFMU5iMElEdmxGdHlhVFl6ZXhTRHRKOGx4OEIwa0Jwa2xoaG93MjBQS3R2NjhkOUE0TGc5UUlEQVFBQm80SUMKWXpDQ0FsOHdEZ1lEVlIwUEFRSC9CQVFEQWdXZ01CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRgpCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjBHQTFVZERnUVdCQlFaS3M4Q1FJRmd6NWFQQXJKWE13aDVhNW4yCkR6QWZCZ05WSFNNRUdEQVdnQlNvU21wakJIM2R1dWJST2JlbVJXWHY4Nmpzb1RCdkJnZ3JCZ0VGQlFjQkFRUmoKTUdFd0xnWUlLd1lCQlFVSE1BR0dJbWgwZEhBNkx5OXZZM053TG1sdWRDMTRNeTVzWlhSelpXNWpjbmx3ZEM1dgpjbWN3THdZSUt3WUJCUVVITUFLR0kyaDBkSEE2THk5alpYSjBMbWx1ZEMxNE15NXNaWFJ6Wlc1amNubHdkQzV2CmNtY3ZNQmtHQTFVZEVRUVNNQkNDRGlvdWMyOXlhVzVpTG1Oc2IzVmtNRXdHQTFVZElBUkZNRU13Q0FZR1o0RU0KQVFJQk1EY0dDeXNHQVFRQmd0OFRBUUVCTUNnd0pnWUlLd1lCQlFVSEFnRVdHbWgwZEhBNkx5OWpjSE11YkdWMApjMlZ1WTNKNWNIUXViM0puTUlJQkJBWUtLd1lCQkFIV2VRSUVBZ1NCOVFTQjhnRHdBSFlBc2g0RnpJdWl6WW9nClRvZG0rU3U1aWlVZ1oydmErbkRuc2tsVExlK0xrRjRBQUFGeGpRemx3UUFBQkFNQVJ6QkZBaUFLdDdienBvcEcKUjd6MFNFajdES0xxUjFoTFhMVElrZWJkNEFqaE04dHg4UUloQUxXNTFJVFd2WFMyV09DZkRUcEF2WWFZaEMyVApyWlM5K1ZtTzBLL0dsMnBuQUhZQWIxTjJyREh3TVJuWW1RQ2tVUlgvZHhVY0Vka0N3UUFwQm8yeUNKbzMyUk1BCkFBRnhqUXptaWdBQUJBTUFSekJGQWlCejZxbWF4UDNlWTVNOHh4S0hsL25nTlhsNU40SlhHdXhZNGFEY1BqNW4KZVFJaEFJNzMwd2oxS3BwbXRTOXhkb3JOdTdTaGJROGVFZFhXZXF2SnRrWVMvVlgyTUEwR0NTcUdTSWIzRFFFQgpDd1VBQTRJQkFRQTZiQkR4ZUVyaXJ3NmNTK2RwVGV5dVo4bTZsbWUyMmxrN3dMaENtUlJWL25LMURVVGJVdlFWCitEK290ZjlNTEU0TjZMUll5RTlVeHZrTTc2SkVpMHpLVjdEKzhuaUI5SkV1ZTFqL1dwcTJSdXZwRnVmYTVUZVgKL01pVXJNU2tXc0Q3dkx4MWNqdHhoa2FCZk1GUUd6ek9ma0FialBRdTRQTk1tNW03bWdHV1pTT0VxQTNQVE5XSwpuUzZSTEtTSjlIWUZuZ3MzTFhleERzTTNNd1d3TmJyMktJNUFPU3oyellYbzN2Uzh5Y25rWDU2QzJTOEYvaGRSCjVmVUsxZXdHN1RHTk9rRmhKckQwTUhYbzR4c28rVXRCY0k1Z3lHVFcwM3dwMmNTVHcraFhrczQyVUJVS3BIQkgKSjlHQkY5SDRJUXV3aHAyalZzR1pXRVBYelg2R2lVYzAKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2d0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktrd2dnU2xBZ0VBQW9JQkFRQ2IvYmhmcUtnZmFhRlYKSFpFRmNFREM3NzBUWXRKOVlzWjYwb2lZeEM3ZS9mekxqb2llK2VlTUxyN2xQV084d2ZnUWR3OSt6K05EL2VYaAp4Q1JzU0U5b0RSVEtjVnJTVVQ5SnU5dCtaYVgwZ0IrRGpMRGlxVjh5Y1hoWlpNQlVGZWxQeUoxV0N5UStIbWZWClk4L3NBaEdybXBwRVBCcDVqVUR3MVFNWGs2MlZxeWh2NnE3UTAydUFnV2dJVlR6anlvRU5sZ3J6eGFOWFlENnAKT2Vva25oSytIUkkwL1JkbDJFSG8wTWs2MEJmMWVhQ3ViMnBjOFRXcmdBemFUZExoaDZoV2dSeUFHMHU3aUdwMgpyWmRvQ0UyeE1hcFhlTEgvb2NUZ1RVMXZRZ08rVVczSnBOak43RklPMG55WEh3SFNRR21TV0dHakRiUThxMi9yCngzMERndUQxQWdNQkFBRUNnZ0VBQnFJMGpBVGRHWERoaG9BYVliUFRYVGJhd0k5TVNqN0FHQXNKK2cwbHZSL3AKOXpJWmgwRXpZcGUrVUh0YTJYVWFPb0VGckt2a2kwaXAxUDhGV1lGOXR2d1BiVWlDeHp6alJ4eHhDaUFDZmJKUgpKTVAvNWJPME02MzFveitRbWtMUVNDOU0yWkxodUs2TVZkdkh4TTZWdDhsOFUvaUdXN0x4Rnd6SDgrRzQyUXQ4ClRCeDUzUWdDZGgxcDVFNC9sSFNzUmdIRlRRbUZXWmE0M3NkVlA1VUs4VHhtcElpdXBid0JrUG1TQ2JDUXoxM0YKTlRGQSs2aXIrQjdETzJUaGxJMytXNEdoYVdPaXBUYk5xTGFMR2xXOEhrZFhzRFlDRXRHRFRnWEtVSDBBUFZzTgpUTnYxYkhTS0hhc1UwejlaNk5IdmU1THdPK214K1RYUE42bXRURURnUlFLQmdRRE96R1B1TGd4a1dwYWxHNDRHClJhcHhqa1pUMnNRbjdWa1IzMXQveElOZGNIV3JZMG8xaWxpYVdBdDA5NDhmUGJKT3JCOFNSdDVkTGN3MlBzMUwKR2UyQTUxUFlpeTRGVkR6S3laSmNqMFczMEVZMG5kSWM5UHh3ME1oMUtqZndJTEJJTlFaSDBJQWtiWC9GU0EyYQpOaWVXRDNiL000NklGUTl5eFlIY1JLeGEvd0tCZ1FEQkdzWnBEU2hCMVFFVTRxbEhkRTdXOGFxM0hZWG15RnRGCm9xREhQNmNiUEtFVEpTcEc4NWkwRHo0ZUMxbTUvTFZiR3lvR1FGdlFEem03Q1ZtdGxYMExSOTBzNWpuSmZwWGEKc1FtY1VPdmc3RVI0YmhUM1FDUzRVUy9CamsrTFJTVnpIVWFpbG94ZDdVVGtlS21BbEI2dFdEaVNsTXZod3NXKwpYbjg1Z2IwSUN3S0JnUUNzYTNtK01xS2VZWEZOQkNac1VGV0dER3ZTcW9uMkNFekZQQWRjQmdySk0yVElteVphCmNaamlSeHAyVVpvQklEMjBub25oZ1RrUlU0ZjZpbTQ4ZWNldVBER0tVTEQwUElIYlNpbEFCeXpIejExWnJXUnMKUkU3ZCtSWEpxb090TUhRS0lEdTJVTDhtb0MxeDNWdUtBakVMU3FXYXJlL2V3a0I1SHZmaElWamJIUUtCZ1FDcgovdkk4ZllpZTRsODlRQW53NkFxVTd0blVrZ3BESGJBV0hSMUJlMU9YTWZCeVFnY2UvVGZGSVZKOXBqUjhNVGRECmQ3VjlyZk5aSlVhUmJtbWU3K2habE4vT2J4MkhlQ1YzalhwMjdhaTdSUlpUZ2hGUWpLUm9PMy9pMGFQTjgzL0EKd1pHNW5ZaFczTkFoQTh4T0J5QXYyOFUvNGlLYTZrWUJJdUFFMDZjUU13S0JnUUNMYTBSaHV5MEl1T2k5djBacgpwTjdWd1FaK2JwVWhBQmtXaEg5SGJWTndpclYvaTZBWElTT2JFbjRZdU1zN2w2ZkhCdDJDSlVicENlM2JCUS9nCjdCMG9VR0xMMVdOOG0xVHlKaWhXaC9WZk5sMUlNTTJEZkc3L1FpaFNKZWUxaW04RnlVZUx4TGVjYnllUmZHRDMKUXlTMlVIL2orYnZOYStMekF3SmJTNmN0UkE9PQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==type: kubernetes.io/tls---apiVersion: extensions/v1beta1kind: Ingressmetadata:name: arcadiaannotations:nginx.</description>
+    </item>
+    
+    <item>
+      <title>IAM Role</title>
+      <link>/010_intro/selfpaced/030_iam_role_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/selfpaced/030_iam_role_1/</guid>
+      <description>  Follow this deep link to find your Cloud9 EC2 instance
+  Select the instance, then choose Actions / Instance Settings / Attach/Replace IAM Role
+  Choose eksworkshop-admin from the IAM Role drop down, and select Apply  </description>
+    </item>
+    
+    <item>
+      <title>Speed up application performance and enable caching</title>
+      <link>/040_ingress/040_application_performance_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/040_ingress/040_application_performance_1/</guid>
+      <description>Apply the bellow configuration. We are telling Nginx to create a caching entity that will be used by our Ingress.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -kind: ConfigMapapiVersion: v1metadata:name: nginx-confignamespace: nginx-ingressdata:proxy-protocol: &amp;quot;True&amp;quot;real-ip-header: &amp;quot;proxy_protocol&amp;quot;set-real-ip-from: &amp;quot;0.0.0.0/0&amp;quot;http-snippets : |proxy_cache_path /var/tmp/a levels=1:2 keys_zone=my_cache:10m max_size=100m inactive=60m use_temp_path=off;EOFConfigure the Nginx Ingress to start using it and start caching.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: extensions/v1beta1kind: Ingressmetadata:name: arcadiaannotations:nginx.</description>
+    </item>
+    
+    <item>
+      <title>Cloud 9</title>
+      <link>/010_intro/040_cloud9_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/040_cloud9_1/</guid>
+      <description>Open the Cloud9 console, and click on Open IDE. This will open a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and a terminal. We will be using it for the rest of the workshop.  Ad blockers, javascript disablers, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted.</description>
+    </item>
+    
+    <item>
+      <title>Import the OpenApi definition</title>
+      <link>/050_controller/040_apis/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/040_apis/</guid>
+      <description>Next we are going to publish the application APIs to the world.
+There are two ways of creating this configuration, the first one is manual similar to the way we performed the configuration until this point and the second one is described bellow.
+As part of their development cycle, the developers of the Arcadia application are generating an OpenApi specification to describe their APIs.
+We are going to use this API specification in order to publish the services to the world.</description>
+    </item>
+    
+    <item>
+      <title>What is open tracing</title>
+      <link>/040_ingress/050_open_tracing_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/040_ingress/050_open_tracing_1/</guid>
+      <description>So, what is OpenTracing? It’s a vendor-agnostic API to help developers easily instrument tracing into their code base. It’s open because no one company owns it. In fact, many tracing tooling companies are getting behind OpenTracing as a standardized way to instrument distributed tracing.
+OpenTracing wants to form a common language around what a trace is and how to instrument them in our applications. In OpenTracing, a trace is a directed acyclic graph of Spans with References that may look like this :</description>
+    </item>
+    
+    <item>
+      <title>Mutual TLS</title>
+      <link>/040_ingress/060_mtls_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/040_ingress/060_mtls_1/</guid>
+      <description>Enabling MTLS on our Nginx Ingress Controller is quite simple, we are going to add two lines to the existing config.
+ We are going to add the bellow directives to our Ingress configuration, This will enable MTLS while using the pre uploaded ca.pem certificate.  ssl_client_certificate /etc/ssl/mycerts/ca.pem;
+ssl_verify_client on;
+Apply the new configuration:
+cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: extensions/v1beta1kind: Ingressmetadata:name: arcadiaannotations:nginx.</description>
+    </item>
+    
+    <item>
+      <title>Publish the external APIs</title>
+      <link>/050_controller/050_publish_apis/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/050_publish_apis/</guid>
+      <description>We are now going to publish the previously imported OpenApi definition.
+ Publish the APIs:  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;APIs&amp;rdquo; -&amp;gt; Click &amp;ldquo;arcadia-api&amp;rdquo; -&amp;gt; Click &amp;ldquo;Add Published API&amp;rdquo; Fill in the data as described bellow   Name: arcadia-published-api
+Click Next
+  Environment: prod
+App: arcadia-api
+Gateways: api.arcadia.aws.cloud
+Click Next
+ We will now add the components that represent the workload for the main app that traffic will be sent to.</description>
+    </item>
+    
+    <item>
+      <title>Add authentication to the API</title>
+      <link>/050_controller/060_add_auth/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/060_add_auth/</guid>
+      <description>Our APIs are published and now we will want to add authentication based on API Keys
+ Create an Identity Provider:  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;Identity Provider&amp;rdquo; -&amp;gt; &amp;ldquo;Create an Identity Provider&amp;rdquo;  Name: api-protect
+Environment: prod
+Type: API Key
+ Under &amp;ldquo;API Clients&amp;rdquo;
+ Name: test-client
+Key: 1234567890
+Click Submit
+ Go the the edit mode of APIs we have previously published  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;APIs&amp;rdquo; -&amp;gt; Click &amp;ldquo;arcadia-api&amp;rdquo; -&amp;gt; Click the edit icon Attach the new Identity Provider to the APIs   Click &amp;ldquo;Routing&amp;rdquo;</description>
+    </item>
+    
+    <item>
+      <title>Summary</title>
+      <link>/050_controller/070_summary/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/070_summary/</guid>
+      <description>All of our microgateway API configuration is complete. We have published external APIs and are able to route, authenticate and view statistics for traffic coming from API clients. We have achieved the bellow architecture:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>...at an AWS event on Nginx Experience</title>
+    <link>/010_intro/aws_event/</link>
+    <description>Recent content in ...at an AWS event on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
+    
+	<atom:link href="/010_intro/aws_event/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS Workshop Portal</title>
+      <link>/010_intro/aws_event/010_aws_wokshop_portal_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/010_intro/aws_event/010_aws_wokshop_portal_1/</guid>
+      <description>This workshop creates an AWS account and a Cloud9 environment. You will need the Participant Hash provided upon entry, and your email address to track your unique session.
+ Connect to the portal by clicking the button or browsing to https://dashboard.eventengine.run/. The following screen shows up.  Enter the provided hash in the text box. The button on the bottom right corner changes to Accept Terms &amp;amp; Login. Click on that button to continue.</description>
+    </item>
+    
+  </channel>
+</rss>

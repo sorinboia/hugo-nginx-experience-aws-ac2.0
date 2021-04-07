@@ -1,0 +1,27 @@
+languageCode = "en-us"
+title = "Nginx Experience"
+sectionPagesMenu = "main"
+relativeURLs = true
+googleAnalytics = "UA-177908951-1"
+theme = "learn"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[params]
+themeVariant = "green"
+author = "Sorin Boiangiu"
+description = "Nginx experience on AWS"
+
+[deployment]
+# By default, files are uploaded in an arbitrary order.
+# Files that match the regular expressions in the "Order" list
+# will be uploaded first, in the listed order.
+order = [".jpg$", ".gif$"]
+
+
+[[deployment.targets]]
+
+name = "AWS_S3_deployment"
+
+URL = "s3://aws.nginx-experience.com?region=eu-central-1"

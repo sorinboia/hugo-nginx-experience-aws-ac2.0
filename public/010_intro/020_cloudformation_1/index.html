@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.73.0" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Cloud Formation :: Nginx Experience</title>
+
+    
+    <link href="/css/nucleus.css?1598087688" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1598087688" rel="stylesheet">
+    <link href="/css/hybrid.css?1598087688" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1598087688" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1598087688" rel="stylesheet">
+    <link href="/css/auto-complete.css?1598087688" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1598087688" rel="stylesheet">
+    <link href="/css/theme.css?1598087688" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1598087688" rel="stylesheet">
+    
+    <link href="/css/theme-green.css?1598087688" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1598087688"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/010_intro/020_cloudformation_1/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <h4>NGINX Experience</h4>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1598087688"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1598087688"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/example.org\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1598087688"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/010_intro/" title="Intro to the workshop" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/010_intro/">
+          <b>1. </b>Intro to the workshop
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/010_intro/010_aws_wokshop_portal_1/" title="AWS Workshop Portal" class="dd-item ">
+        <a href="/010_intro/010_aws_wokshop_portal_1/">
+        AWS Workshop Portal
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/010_intro/020_cloudformation_1/" title="Cloud Formation" class="dd-item active">
+        <a href="/010_intro/020_cloudformation_1/">
+        Cloud Formation
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/010_intro/030_iam_role_1/" title="IAM Role" class="dd-item ">
+        <a href="/010_intro/030_iam_role_1/">
+        IAM Role
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/010_intro/040_cloud9_1/" title="Cloud 9" class="dd-item ">
+        <a href="/010_intro/040_cloud9_1/">
+        Cloud 9
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/020_terraform/" title="Deploy NGINX infrastructure using Terraform" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/020_terraform/">
+          <b>2. </b>Nginx with Terraform
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/020_terraform/010_terraform_apply_1/" title="Terraform Apply" class="dd-item ">
+        <a href="/020_terraform/010_terraform_apply_1/">
+        Terraform Apply
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/020_terraform/020_eks_1/" title="AWS EKS" class="dd-item ">
+        <a href="/020_terraform/020_eks_1/">
+        AWS EKS
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/020_terraform/030_eks_verification_1/" title="EKS Verification" class="dd-item ">
+        <a href="/020_terraform/030_eks_verification_1/">
+        EKS Verification
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/030_unit/" title="Deploy your application with NGINX Unit Application Server" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/030_unit/">
+          <b>3. </b>Nginx Unit
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/030_unit/010_app_deployment_1/" title="App deployment" class="dd-item ">
+        <a href="/030_unit/010_app_deployment_1/">
+        App deployment
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/030_unit/020_nginx_unit/" title="Nginx Unit" class="dd-item ">
+        <a href="/030_unit/020_nginx_unit/">
+        Nginx Unit
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/040_ingress/" title="Increase availability, security and application performance with Kubernetes Nginx Ingress" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/040_ingress/">
+          <b>4. </b>Nginx K8s Ingress
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/040_ingress/010_ingress_install_1/" title="Nginx Kubernetes Ingress Installation" class="dd-item ">
+        <a href="/040_ingress/010_ingress_install_1/">
+        Nginx K8s Ingress Installation
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/040_ingress/020_ingress_01/" title="Publish the app" class="dd-item ">
+        <a href="/040_ingress/020_ingress_01/">
+        Publish the app
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/040_ingress/030_health_https_1/" title="Enable https and monitoring" class="dd-item ">
+        <a href="/040_ingress/030_health_https_1/">
+        Enable https and monitoring
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/040_ingress/040_application_performance_1/" title="Speed up application performance and enable caching" class="dd-item ">
+        <a href="/040_ingress/040_application_performance_1/">
+        Application performance
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/040_ingress/050_open_tracing_1/" title="What is open tracing" class="dd-item ">
+        <a href="/040_ingress/050_open_tracing_1/">
+        What is open tracing
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/040_ingress/060_mtls_1/" title="Mutual TLS" class="dd-item ">
+        <a href="/040_ingress/060_mtls_1/">
+        Mutual TLS
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/050_controller/" title="Nginx Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/050_controller/">
+          <b>5. </b>Nginx Controller
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/010_accessing_controller/" title="Accessing the Nginx Controller" class="dd-item ">
+        <a href="/050_controller/010_accessing_controller/">
+        Nginx Controller Access
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/020_microgateway/" title="Microgateway deployment" class="dd-item ">
+        <a href="/050_controller/020_microgateway/">
+        Microgateway deployment
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/030_configuration/" title="Build the configuration" class="dd-item ">
+        <a href="/050_controller/030_configuration/">
+        Build the configuration
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/040_apis/" title="Import the OpenApi definition" class="dd-item ">
+        <a href="/050_controller/040_apis/">
+        Import the OpenApi definition
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/050_publish_apis/" title="Publish the external APIs" class="dd-item ">
+        <a href="/050_controller/050_publish_apis/">
+        Publish the external APIs
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/060_add_auth/" title="Add authentication to the API" class="dd-item ">
+        <a href="/050_controller/060_add_auth/">
+        Add authentication to the API
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/050_controller/070_summary/" title="Summary" class="dd-item ">
+        <a href="/050_controller/070_summary/">
+        Summary
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/060_security/" title="Security" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/060_security/">
+          <b>6. </b>Security
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/060_security/010_waf_deployment/" title="Waf deployment" class="dd-item ">
+        <a href="/060_security/010_waf_deployment/">
+        Waf deployment
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/060_security/020_testing/" title="Testing the Waf" class="dd-item ">
+        <a href="/060_security/020_testing/">
+        Testing the Waf
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/070_cleanup/" title="Cleanup" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/070_cleanup/">
+          <b>7. </b>Cleanup
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/070_cleanup/010_cleanup/" title="Remove configuration" class="dd-item ">
+        <a href="/070_cleanup/010_cleanup/">
+        Remove configuration
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/080_feedback/" title="Feedback" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/080_feedback/">
+          <b>8. </b>Feedback
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Nginx Experience</a> > <a href='/010_intro/'>Intro to the workshop</a> > Cloud Formation
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Cloud Formation
+            </h1>
+          
+
+        
+
+
+<ol>
+<li>Click the bellow button and deploy the template:</li>
+</ol>
+<p><a href="https://console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/new?stackName=NGINX-EKS&amp;templateURL=https://artl-cfn-templates.s3.eu-central-1.amazonaws.com/nginx.yaml"><img src="/images/cfls.svg" alt="Launch Stack"></a></p>
+<ol start="2">
+<li>Click <strong>Next</strong> 3 times accepting all the defaults, but make sure the following is selected on the last screen:</li>
+</ol>
+<p><img src="/images/iam-ack.png" alt="CFN IAM Ack"></p>
+<ol start="3">
+<li>Click <strong>Create stack</strong>.</li>
+</ol>
+<p>Wait until the <strong>NGINX-EKS</strong> stack Status is <strong>CREATE_COMPLETE</strong>.</p>
+
+
+<footer class="footline">
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/010_intro/010_aws_wokshop_portal_1/" title="AWS Workshop Portal"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/010_intro/030_iam_role_1/" title="IAM Role" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1598087688"></script>
+    <script src="/js/perfect-scrollbar.min.js?1598087688"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1598087688"></script>
+    <script src="/js/jquery.sticky.js?1598087688"></script>
+    <script src="/js/featherlight.min.js?1598087688"></script>
+    <script src="/js/highlight.pack.js?1598087688"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1598087688"></script>
+    <script src="/js/learn.js?1598087688"></script>
+    <script src="/js/hugo-learn.js?1598087688"></script>
+
+    <link href="/mermaid/mermaid.css?1598087688" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1598087688"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

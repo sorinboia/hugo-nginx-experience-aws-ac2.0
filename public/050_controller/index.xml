@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx Controller on Nginx Experience</title>
+    <link>/050_controller/</link>
+    <description>Recent content in Nginx Controller on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
+    
+	<atom:link href="/050_controller/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accessing the Nginx Controller</title>
+      <link>/050_controller/010_accessing_controller/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/010_accessing_controller/</guid>
+      <description>The Nginx Controller has already been deployed with the terraform declaration, we need to find the public IP address.  cd terraformexport controller_ip=$(terraform state show &amp;quot;aws_instance.controller&amp;quot; | grep &amp;quot;public_ip&amp;quot; | grep -v &amp;quot;associate_public_ip_address&amp;quot; | cut -d&#39;&amp;quot;&#39; -f2)curl -k -c cookie.txt -X POST --url &amp;quot;https://$controller_ip/api/v1/platform/login&amp;quot; --header &#39;Content-Type: application/json&#39; --data &#39;{&amp;quot;credentials&amp;quot;: {&amp;quot;type&amp;quot;: &amp;quot;BASIC&amp;quot;,&amp;quot;username&amp;quot;: &amp;quot;nginx@f5.com&amp;quot;,&amp;quot;password&amp;quot;: &amp;quot;Admin2020&amp;quot;}}&#39;export controller_apikey=$(curl -k -sb cookie.txt -c cookie.txt https://$controller_ip/api/v1/platform/global | jq .currentStatus.agentSettings.apiKey | tr -d &#39;&amp;quot;&#39;)terraform state show &amp;quot;aws_instance.</description>
+    </item>
+    
+    <item>
+      <title>Microgateway deployment</title>
+      <link>/050_controller/020_microgateway/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/020_microgateway/</guid>
+      <description>Deploy the microgateway with the following configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: microgatewayspec:replicas: 1selector:matchLabels:app: microgatewaytemplate:metadata:labels:app: microgatewayspec:containers:- name: microgateway1image: sorinboia/ngtest:3.4imagePullPolicy: Alwaysenv:- name: API_KEYvalue: $controller_apikey- name: CTRL_HOSTvalue: $controller_ip- name: HOSTNAMEvalue: microgateway1 ports:- containerPort: 80readinessProbe:exec:command:- curl- 127.</description>
+    </item>
+    
+    <item>
+      <title>Build the configuration</title>
+      <link>/050_controller/030_configuration/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/030_configuration/</guid>
+      <description>Create an environment  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;Environments&amp;rdquo; -&amp;gt; &amp;ldquo;Create Environment&amp;rdquo; In all the fields, enter the following value: prod.
+Click on &amp;ldquo;View API Request&amp;rdquo;.
+All the configuration on the Nginx Controller can be easlly automated with external orchestration systems, this view can help you in understanding how to generate the configuration API calls.
+The output will look like this: Output
+{&amp;#34;metadata&amp;#34;: {&amp;#34;name&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;displayName&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;description&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;tags&amp;#34;: [&amp;#34;prod&amp;#34;]},&amp;#34;desiredState&amp;#34;: {}}</description>
+    </item>
+    
+    <item>
+      <title>Import the OpenApi definition</title>
+      <link>/050_controller/040_apis/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/040_apis/</guid>
+      <description>Next we are going to publish the application APIs to the world.
+There are two ways of creating this configuration, the first one is manual similar to the way we performed the configuration until this point and the second one is described bellow.
+As part of their development cycle, the developers of the Arcadia application are generating an OpenApi specification to describe their APIs.
+We are going to use this API specification in order to publish the services to the world.</description>
+    </item>
+    
+    <item>
+      <title>Publish the external APIs</title>
+      <link>/050_controller/050_publish_apis/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/050_publish_apis/</guid>
+      <description>We are now going to publish the previously imported OpenApi definition.
+ Publish the APIs:  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;APIs&amp;rdquo; -&amp;gt; Click &amp;ldquo;arcadia-api&amp;rdquo; -&amp;gt; Click &amp;ldquo;Add Published API&amp;rdquo; Fill in the data as described bellow   Name: arcadia-published-api
+Click Next
+  Environment: prod
+App: arcadia-api
+Gateways: api.arcadia.aws.cloud
+Click Next
+ We will now add the components that represent the workload for the main app that traffic will be sent to.</description>
+    </item>
+    
+    <item>
+      <title>Add authentication to the API</title>
+      <link>/050_controller/060_add_auth/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/060_add_auth/</guid>
+      <description>Our APIs are published and now we will want to add authentication based on API Keys
+ Create an Identity Provider:  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;Identity Provider&amp;rdquo; -&amp;gt; &amp;ldquo;Create an Identity Provider&amp;rdquo;  Name: api-protect
+Environment: prod
+Type: API Key
+ Under &amp;ldquo;API Clients&amp;rdquo;
+ Name: test-client
+Key: 1234567890
+Click Submit
+ Go the the edit mode of APIs we have previously published  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;APIs&amp;rdquo; -&amp;gt; Click &amp;ldquo;arcadia-api&amp;rdquo; -&amp;gt; Click the edit icon Attach the new Identity Provider to the APIs   Click &amp;ldquo;Routing&amp;rdquo;</description>
+    </item>
+    
+    <item>
+      <title>Summary</title>
+      <link>/050_controller/070_summary/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/050_controller/070_summary/</guid>
+      <description>All of our microgateway API configuration is complete. We have published external APIs and are able to route, authenticate and view statistics for traffic coming from API clients. We have achieved the bellow architecture:</description>
+    </item>
+    
+  </channel>
+</rss>
