@@ -10,17 +10,59 @@ For simplicity - we have already prepared the installation in a single yaml file
 1. Run the command bellow:  
 
 ```
-kubectl apply -f files/5ingress/nginx-ingress-install.yaml
+./files/5ingress/ingress_install.sh
 ```
 {{< output >}}
+Starting Nginx Ingress Install
+Cloning into 'kubernetes-ingress'...
+remote: Enumerating objects: 1270, done.
+remote: Counting objects: 100% (1270/1270), done.
+remote: Compressing objects: 100% (799/799), done.
+remote: Total 34666 (delta 552), reused 1008 (delta 422), pack-reused 33396
+Receiving objects: 100% (34666/34666), 46.90 MiB | 9.88 MiB/s, done.
+Resolving deltas: 100% (18747/18747), done.
+Updating files: 100% (782/782), done.
+Updating files: 100% (3425/3425), done.
+Note: switching to 'v1.10.1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at ba03a73d Release 1.10.1 (#1461)
 namespace/nginx-ingress created
 serviceaccount/nginx-ingress created
 clusterrole.rbac.authorization.k8s.io/nginx-ingress created
 clusterrolebinding.rbac.authorization.k8s.io/nginx-ingress created
+clusterrole.rbac.authorization.k8s.io/nginx-ingress-app-protect created
+clusterrolebinding.rbac.authorization.k8s.io/nginx-ingress-app-protect created
 secret/default-server-secret created
 configmap/nginx-config created
-deployment.apps/nginx-ingress created
+ingressclass.networking.k8s.io/nginx created
+customresourcedefinition.apiextensions.k8s.io/virtualservers.k8s.nginx.org created
+customresourcedefinition.apiextensions.k8s.io/virtualserverroutes.k8s.nginx.org created
+customresourcedefinition.apiextensions.k8s.io/transportservers.k8s.nginx.org created
+customresourcedefinition.apiextensions.k8s.io/policies.k8s.nginx.org created
+customresourcedefinition.apiextensions.k8s.io/globalconfigurations.k8s.nginx.org created
+globalconfiguration.k8s.nginx.org/nginx-configuration created
+customresourcedefinition.apiextensions.k8s.io/aplogconfs.appprotect.f5.com created
+customresourcedefinition.apiextensions.k8s.io/appolicies.appprotect.f5.com created
+customresourcedefinition.apiextensions.k8s.io/apusersigs.appprotect.f5.com created
 service/nginx-ingress created
+deployment.apps/nginx-ingress created
+configmap/nginx-config configured
+Install finished
 {{< /output >}}
   
 2. Expose the Nginx Ingress Dashboard.
@@ -32,7 +74,8 @@ metadata:
   name: dashboard-nginx-ingress
   namespace: nginx-ingress
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"    
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   type: LoadBalancer
   ports:

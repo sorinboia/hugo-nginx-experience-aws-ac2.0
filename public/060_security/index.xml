@@ -34,5 +34,15 @@ Each of the blocked requests will generate a support ID, save it for later.
 Browse to the ELK as before and click the &amp;ldquo;Discover&amp;rdquo; button:  Here, you&amp;rsquo;ll see all the request logs, allowed and blocked, sent by the Nginx WAF to ELK.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>/060_security/tmp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/060_security/tmp/</guid>
+      <description>cat &amp;laquo; EOF | kubectl apply -f - apiVersion: appprotect.f5.com/v1beta1 kind: APPolicy metadata: name: attacksigs spec: policy: name: attacksigs template: name: POLICY_TEMPLATE_NGINX_BASE applicationLanguage: utf-8 enforcementMode: blocking signature-sets: - name: All Signatures block: true alarm: true
+ apiVersion: appprotect.f5.com/v1beta1 kind: APLogConf metadata: name: logconf spec: content: format: default max_message_size: 64k max_request_size: any filter: request_type: all apiVersion: k8s.nginx.org/v1 kind: Policy metadata: name: waf-policy spec: waf: enable: true apPolicy: &amp;ldquo;default/attacksigs&amp;rdquo; securityLog: enable: true apLogConf: &amp;ldquo;default/logconf&amp;rdquo; logDest: &amp;ldquo;syslog:server=127.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -11,27 +11,44 @@ We will start with a basic configuration.
   
 ```
 cat << EOF | kubectl apply -f -
-apiVersion: extensions/v1beta1
-kind: Ingress
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
 metadata:
-  name: arcadia  
+  name: arcadia
 spec:
-  rules:
-  - host: $nginx_ingress
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: arcadia-main
-          servicePort: 80
-      - path: /api/
-        backend:
-          serviceName: arcadia-app2
-          servicePort: 80
-      - path: /app3/
-        backend:
-          serviceName: arcadia-app3
-          servicePort: 80
+  host: $nginx_ingress  
+  upstreams:
+    - name: arcadia-users
+      service: arcadia-users
+      port: 80
+    - name: arcadia-login
+      service: arcadia-login
+      port: 80
+    - name: arcadia-stocks
+      service: arcadia-stocks
+      port: 80
+    - name: arcadia-stock-transaction
+      service: arcadia-stock-transaction
+      port: 80
+    - name: arcadia-frontend
+      service: arcadia-frontend
+      port: 80
+  routes:
+    - path: /v1/user      
+      action:
+        pass: arcadia-users
+    - path: /v1/login      
+      action:
+        pass: arcadia-login
+    - path: /v1/stock      
+      action:
+        pass: arcadia-stocks
+    - path: /v1/stockt      
+      action:
+        pass: arcadia-stock-transaction
+    - path: /      
+      action:
+        pass: arcadia-frontend
 EOF
 ```
 
@@ -43,8 +60,8 @@ At this stage the basic install is finished and all that's left is to check the 
 4. Login to the application using the following credentials:
 
 {{% notice %}}
-Username: admin  
-Password: iloveblue
+Username: trader@gmail.com  
+Password: 123456
 {{% /notice %}}
 
 At the moment we still have two key features missing:
@@ -56,7 +73,7 @@ At the moment we still have two key features missing:
 
 9. Apply this new configuration.
 ```
-kubectl apply -f files/5ingress/2arcadia.yaml
+kubectl apply -f files/5ingress/1arcadia_increase.yaml
 ```
 
 10. Look at the Nginx dashboard and click on "HTTP Upstreams", you can see that right now that two HTTP upstreams have 2 members but no health checks are being done.

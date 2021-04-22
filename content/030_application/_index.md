@@ -1,6 +1,6 @@
 +++
-title = "Deploy your application with NGINX Unit Application Server"
-menuTitle = "Nginx Unit"
+title = "Deploy The Arcadia Crypto application"
+menuTitle = "Arcadia deployment"
 date = 2020-07-08T14:37:59+03:00
 weight = 30
 chapter = true

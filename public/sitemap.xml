@@ -23,12 +23,12 @@
   </url>
   
   <url>
-    <loc>/050_controller/010_accessing_controller/</loc>
+    <loc>/060_controller/010_accessing_controller/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/030_unit/010_app_deployment_1/</loc>
+    <loc>/030_application/010_app_deployment_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -44,6 +44,11 @@
   
   <url>
     <loc>/070_cleanup/010_cleanup/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/050_service_mesh/010_mesh_explanation_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -78,12 +83,12 @@
   </url>
   
   <url>
-    <loc>/050_controller/020_microgateway/</loc>
+    <loc>/060_controller/020_microgateway/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/030_unit/020_nginx_unit/</loc>
+    <loc>/050_service_mesh/020_nsm_deploy/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -98,12 +103,12 @@
   </url>
   
   <url>
-    <loc>/050_controller/030_configuration/</loc>
+    <loc>/060_controller/030_configuration/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/030_unit/</loc>
+    <loc>/030_application/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -123,7 +128,12 @@
   </url>
   
   <url>
-    <loc>/040_ingress/040_application_performance_1/</loc>
+    <loc>/050_service_mesh/030_side_car_injection/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/040_ingress/040_oidc_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -133,7 +143,7 @@
   </url>
   
   <url>
-    <loc>/050_controller/040_apis/</loc>
+    <loc>/060_controller/040_apis/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -143,7 +153,12 @@
   </url>
   
   <url>
-    <loc>/040_ingress/050_open_tracing_1/</loc>
+    <loc>/050_service_mesh/040_opentracing/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/050_service_mesh/050_mesh_acl/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -153,17 +168,22 @@
   </url>
   
   <url>
-    <loc>/050_controller/</loc>
+    <loc>/050_service_mesh/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/050_controller/050_publish_apis/</loc>
+    <loc>/060_controller/050_publish_apis/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/050_controller/060_add_auth/</loc>
+    <loc>/060_controller/060_add_auth/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/060_controller/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -183,8 +203,16 @@
   </url>
   
   <url>
-    <loc>/050_controller/070_summary/</loc>
+    <loc>/060_controller/070_summary/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/050_service_mesh/060_external_acl/</loc>
+  </url>
+  
+  <url>
+    <loc>/060_security/tmp/</loc>
   </url>
   
   <url>
