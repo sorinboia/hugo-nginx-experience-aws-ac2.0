@@ -23,7 +23,7 @@
   </url>
   
   <url>
-    <loc>/060_controller/010_accessing_controller/</loc>
+    <loc>/070_controller/010_accessing_controller/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -38,12 +38,17 @@
   </url>
   
   <url>
+    <loc>/060_security/010_elk_deployment/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/040_ingress/010_ingress_install_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/070_cleanup/010_cleanup/</loc>
+    <loc>/080_cleanup/010_cleanup/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -54,11 +59,6 @@
   
   <url>
     <loc>/020_terraform/010_terraform_apply_1/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/060_security/010_waf_deployment/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -83,7 +83,12 @@
   </url>
   
   <url>
-    <loc>/060_controller/020_microgateway/</loc>
+    <loc>/070_controller/020_microgateway/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/060_security/020_nap_deployment/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -98,12 +103,12 @@
   </url>
   
   <url>
-    <loc>/060_security/020_testing/</loc>
+    <loc>/060_security/030_bot_protection/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/060_controller/030_configuration/</loc>
+    <loc>/070_controller/030_configuration/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -143,7 +148,7 @@
   </url>
   
   <url>
-    <loc>/060_controller/040_apis/</loc>
+    <loc>/070_controller/040_apis/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -173,17 +178,12 @@
   </url>
   
   <url>
-    <loc>/060_controller/050_publish_apis/</loc>
+    <loc>/070_controller/050_publish_apis/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/060_controller/060_add_auth/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/060_controller/</loc>
+    <loc>/070_controller/060_add_auth/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -193,17 +193,22 @@
   </url>
   
   <url>
-    <loc>/070_cleanup/</loc>
+    <loc>/070_controller/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/080_feedback/</loc>
+    <loc>/070_controller/070_summary/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/060_controller/070_summary/</loc>
+    <loc>/080_cleanup/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/090_feedback/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   

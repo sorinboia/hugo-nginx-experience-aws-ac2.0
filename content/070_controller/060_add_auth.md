@@ -57,7 +57,7 @@ curl -k --location --request POST https://$microhost/api/rest/execute_money_tran
 6. Try again but this time including the API key and the test-client value
 
 ```
-curl -k --location --request POST https://$microhost/api/rest/execute_money_transfer.php --header "apikey: 1234567890" --header 'Content-Type: application/json' --data-raw '{"amount":"77","account":"2075894","currency":"EUR","friend":"Alfredo"}'
+curl -k  https://$microhost/v1/stock/ticker/all --header "apikey: 0123456789"
 ```
 
 {{< output >}}

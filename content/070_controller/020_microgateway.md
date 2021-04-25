@@ -25,35 +25,22 @@ spec:
         app: microgateway
     spec:
       containers:
-        - name: microgateway1
-          image: sorinboia/ngtest:3.4
+        - name: microgateway
+          image: sorinboia/arcadia-microgateway:v1
           imagePullPolicy: Always
           env:
-            - name: API_KEY
+            - name: ENV_CONTROLLER_API_URL
+              value: https://$controller_ip:8443/1.4
+            - name: ENV_CONTROLLER_API_KEY
               value: $controller_apikey
-            - name: CTRL_HOST
-              value: $controller_ip
-            - name: HOSTNAME
-              value: microgateway1            
           ports:
             - containerPort: 80
-          readinessProbe:
-            exec:
-              command:
-                - curl
-                - 127.0.0.1:49151/api
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            
+            - containerPort: 443
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: microgateway
-  annotations: 
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
 spec:
   selector:
     app: microgateway
@@ -63,7 +50,8 @@ spec:
       name: http
     - port: 443
       targetPort: 443
-      name: https  
+      name: https
+  externalTrafficPolicy: Local
   type: LoadBalancer
 EOF
 ```
