@@ -17,8 +17,8 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/040_ingress/010_ingress_install_1/</guid>
-      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared the installation in a single yaml file.
- Run the command bellow:  ./files/5ingress/ingress_install.shOutput
+      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared an installation script.
+ Run the command bellow:  ./files/4ingress/ingress_install.shOutput
 Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;...remote: Enumerating objects: 1270, done.remote: Counting objects: 100% (1270/1270), done.remote: Compressing objects: 100% (799/799), done.remote: Total 34666 (delta 552), reused 1008 (delta 422), pack-reused 33396Receiving objects: 100% (34666/34666), 46.</description>
     </item>
     
@@ -29,7 +29,7 @@ Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;
       
       <guid>/040_ingress/020_ingress_01/</guid>
       <description>Expose all the application services and route traffic based on the HTTP path. We will start with a basic configuration.
- Expose Arcadia to the world.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: k8s.nginx.org/v1kind: VirtualServermetadata:name: arcadiaspec:host: $nginx_ingress upstreams:- name: arcadia-usersservice: arcadia-usersport: 80- name: arcadia-loginservice: arcadia-loginport: 80- name: arcadia-stocksservice: arcadia-stocksport: 80- name: arcadia-stock-transactionservice: arcadia-stock-transactionport: 80- name: arcadia-frontendservice: arcadia-frontendport: 80routes:- path: /v1/user action:pass: arcadia-users- path: /v1/login action:pass: arcadia-login- path: /v1/stock action:pass: arcadia-stocks- path: /v1/stockt action:pass: arcadia-stock-transaction- path: / action:pass: arcadia-frontendEOFNote how the various HTTP paths (/, /api/, /app3/) are routed by Ingress to the relevant K8s services.</description>
+ Expose Arcadia to the world.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: k8s.nginx.org/v1kind: VirtualServermetadata:name: arcadiaspec:host: $nginx_ingress upstreams:- name: arcadia-usersservice: arcadia-usersport: 80- name: arcadia-loginservice: arcadia-loginport: 80- name: arcadia-stocksservice: arcadia-stocksport: 80- name: arcadia-stock-transactionservice: arcadia-stock-transactionport: 80- name: arcadia-frontendservice: arcadia-frontendport: 80routes:- path: /v1/user action:pass: arcadia-users- path: /v1/login action:pass: arcadia-login- path: /v1/stock action:pass: arcadia-stocks- path: /v1/stockt action:pass: arcadia-stock-transaction- path: / action:pass: arcadia-frontendEOFNote how the various HTTP paths (/v1/user, /v1/login, /v1/stockt) are routed by Ingress to the relevant K8s services.</description>
     </item>
     
     <item>
@@ -48,7 +48,8 @@ Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/040_ingress/040_oidc_1/</guid>
-      <description>Redeploy the front and microservice to a new version in order to use Openid.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: arcadia-frontendspec:replicas: 2selector:matchLabels:app: arcadia-frontendtemplate:metadata:labels:app: arcadia-frontendspec:containers:- name: arcadia-frontendimage: sorinboia/arcadia-frontend:oktav0.1imagePullPolicy: Alwaysports:- containerPort: 80EOFNext we need to configure our Ingress controller to validate each request based on the JWT token and if valid add a custom header which indicates to the application the user.</description>
+      <description>Due to unsecure credentials storage of the application it has been decided to migrate to Okta which will provide user management and authentication without the need to store localy personal information.
+ Redeploy the front and microservice to a new version in order to use Openid.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: arcadia-frontendspec:replicas: 2selector:matchLabels:app: arcadia-frontendtemplate:metadata:labels:app: arcadia-frontendspec:containers:- name: arcadia-frontendimage: sorinboia/arcadia-frontend:oktav0.</description>
     </item>
     
     <item>

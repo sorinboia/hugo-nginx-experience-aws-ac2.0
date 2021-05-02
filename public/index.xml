@@ -36,7 +36,7 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/030_application/010_app_deployment_1/</guid>
-      <description>Deploy the app  kubectl apply -f files/5ingress/1arcadia_delpoy.yamlOutput
+      <description>Deploy the app  kubectl apply -f files/4ingress/1arcadia_delpoy.yamlOutput
 deployment.apps/arcadia-db createdservice/arcadia-db createddeployment.apps/arcadia-frontend createdservice/arcadia-frontend createddeployment.apps/arcadia-login createdservice/arcadia-login createddeployment.apps/arcadia-stock-transaction createdservice/arcadia-stock-transaction createddeployment.apps/arcadia-stocks createdservice/arcadia-stocks createddeployment.apps/arcadia-users createdservice/arcadia-users created Check that all is deployed and working as expected:  kubectl get podsOutput
 NAME READY STATUS RESTARTS AGEarcadia-db-696f979799-sdzb6 1/1 Running 0 36sarcadia-frontend-57ff4f888-v4ggh 1/1 Running 0 36sarcadia-login-c995f8dcc-7gvvp 1/1 Running 0 35sarcadia-stock-transaction-b996cddb9-xzckf 1/1 Running 0 34sarcadia-stocks-dd58548f7-k7tg7 1/1 Running 0 34sarcadia-users-768dddd844-8s75q 1/1 Running 0 33s kubectl get svc -owideOutput</description>
     </item>
@@ -67,8 +67,8 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEelk-web LoadBalancer 172.20.179.34 
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/040_ingress/010_ingress_install_1/</guid>
-      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared the installation in a single yaml file.
- Run the command bellow:  ./files/5ingress/ingress_install.shOutput
+      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared an installation script.
+ Run the command bellow:  ./files/4ingress/ingress_install.shOutput
 Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;...remote: Enumerating objects: 1270, done.remote: Counting objects: 100% (1270/1270), done.remote: Compressing objects: 100% (799/799), done.remote: Total 34666 (delta 552), reused 1008 (delta 422), pack-reused 33396Receiving objects: 100% (34666/34666), 46.</description>
     </item>
     
@@ -80,15 +80,6 @@ Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;
       <guid>/080_cleanup/010_cleanup/</guid>
       <description> In order to delete the resources created during this workshop, run the commands below:  kubectl delete --all svc --namespace=nginx-ingresskubectl delete --all svc --namespace=defaultcd terraformterraform destroy --auto-approve Finally, delete the previously created Cloud9 stack in the CloudFormation console.  Please note: This will also delete the Cloud9 IDE instance.
 </description>
-    </item>
-    
-    <item>
-      <title>Service Mesh Overview</title>
-      <link>/050_service_mesh/010_mesh_explanation_1/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/050_service_mesh/010_mesh_explanation_1/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -138,7 +129,7 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/060_security/020_nap_deployment/</guid>
-      <description>Prepare the Nap config  export elk_log=$(kubectl get svc elk-log | tr -s &amp;quot; &amp;quot; | cut -d&#39; &#39; -f3 | grep -v &amp;quot;CLUSTER-IP&amp;quot;)cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: appprotect.f5.com/v1beta1kind: APPolicymetadata: name: attacksigsspec:policy:name: attacksigstemplate:name: POLICY_TEMPLATE_NGINX_BASEapplicationLanguage: utf-8enforcementMode: blockingsignature-sets:- name: All Signaturesblock: truealarm: true---apiVersion: appprotect.f5.com/v1beta1kind: APLogConfmetadata:name: logconfspec:content:format: defaultmax_message_size: 64kmax_request_size: anyfilter:request_type: all---apiVersion: k8s.</description>
+      <description>Prepare the Nginx App Protect config  export elk_log=$(kubectl get svc elk-log | tr -s &amp;quot; &amp;quot; | cut -d&#39; &#39; -f3 | grep -v &amp;quot;CLUSTER-IP&amp;quot;)cat &amp;lt;&amp;lt; EOF | kubectl apply -f -# APPolicy is the policy configuration. Here we are enabling signature check of known attacksapiVersion: appprotect.f5.com/v1beta1kind: APPolicymetadata: name: attacksigsspec:policy:name: attacksigstemplate:name: POLICY_TEMPLATE_NGINX_BASEapplicationLanguage: utf-8enforcementMode: blockingsignature-sets:- name: All Signaturesblock: truealarm: true---# We are going to log to ELK all requests not only the blocked onesapiVersion: appprotect.</description>
     </item>
     
     <item>
@@ -158,16 +149,7 @@ Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;
       
       <guid>/040_ingress/020_ingress_01/</guid>
       <description>Expose all the application services and route traffic based on the HTTP path. We will start with a basic configuration.
- Expose Arcadia to the world.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: k8s.nginx.org/v1kind: VirtualServermetadata:name: arcadiaspec:host: $nginx_ingress upstreams:- name: arcadia-usersservice: arcadia-usersport: 80- name: arcadia-loginservice: arcadia-loginport: 80- name: arcadia-stocksservice: arcadia-stocksport: 80- name: arcadia-stock-transactionservice: arcadia-stock-transactionport: 80- name: arcadia-frontendservice: arcadia-frontendport: 80routes:- path: /v1/user action:pass: arcadia-users- path: /v1/login action:pass: arcadia-login- path: /v1/stock action:pass: arcadia-stocks- path: /v1/stockt action:pass: arcadia-stock-transaction- path: / action:pass: arcadia-frontendEOFNote how the various HTTP paths (/, /api/, /app3/) are routed by Ingress to the relevant K8s services.</description>
-    </item>
-    
-    <item>
-      <title>Bot Protection</title>
-      <link>/060_security/030_bot_protection/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/060_security/030_bot_protection/</guid>
-      <description> Apply the bot config  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: appprotect.f5.com/v1beta1kind: APPolicymetadata: name: attacksigsspec:policy:name: attacksigstemplate:name: POLICY_TEMPLATE_NGINX_BASEapplicationLanguage: utf-8enforcementMode: blockingsignature-sets:- name: All Signaturesblock: truealarm: true# The bellow config is in charge of defining what bot to block and whom to allow bot-defense:settings:isEnabled: truemitigations:classes:- name: trusted-botaction: alarm- name: untrusted-botaction: block- name: malicious-botaction: blockEOF</description>
+ Expose Arcadia to the world.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: k8s.nginx.org/v1kind: VirtualServermetadata:name: arcadiaspec:host: $nginx_ingress upstreams:- name: arcadia-usersservice: arcadia-usersport: 80- name: arcadia-loginservice: arcadia-loginport: 80- name: arcadia-stocksservice: arcadia-stocksport: 80- name: arcadia-stock-transactionservice: arcadia-stock-transactionport: 80- name: arcadia-frontendservice: arcadia-frontendport: 80routes:- path: /v1/user action:pass: arcadia-users- path: /v1/login action:pass: arcadia-login- path: /v1/stock action:pass: arcadia-stocks- path: /v1/stockt action:pass: arcadia-stock-transaction- path: / action:pass: arcadia-frontendEOFNote how the various HTTP paths (/v1/user, /v1/login, /v1/stockt) are routed by Ingress to the relevant K8s services.</description>
     </item>
     
     <item>
@@ -192,7 +174,7 @@ The output will look like this: Output
       <description>Wait for Terraform to finish and verify the deployment is working as expected and we are able to control the Kubernetes environment.
  We need to save the remote access config for the Kubernetes cluster locally:  mkdir ~/.kube/ terraform output &amp;gt; ~/.kube/configCheck and see that our cluster is up an running.
 Below we should see our two K8s worker nodes:  kubectl get nodesOutput
-NAME STATUS ROLES AGE VERSION ip-10-0-2-32.</description>
+NAME STATUS ROLES AGE VERSIONip-10-0-3-204.</description>
     </item>
     
     <item>
@@ -217,12 +199,25 @@ NAME STATUS ROLES AGE VERSION ip-10-0-2-32.</description>
     </item>
     
     <item>
+      <title>Nginx App Protect testing</title>
+      <link>/060_security/030_nap_test/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/060_security/030_nap_test/</guid>
+      <description>Browse again to the Arcadia web app and verify that it is still working.
+  Let&amp;rsquo;s simulate a Cross Site Scripting (XSS) attack, and make sure it&amp;rsquo;s blocked:
+  https://&amp;lt;INGRESS-EXTERNAL-IP&amp;gt;/?a=%3Cscript%3Ealert(%27xss%27)%3C/script%3E
+Each of the blocked requests will generate a support ID, save it for later.
+Browse to the ELK as before and click the &amp;ldquo;Discover&amp;rdquo; button:  Here, you&amp;rsquo;ll see all the request logs, allowed and blocked, sent by the Nginx WAF to ELK.</description>
+    </item>
+    
+    <item>
       <title>Side Car Injection</title>
       <link>/050_service_mesh/030_side_car_injection/</link>
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/050_service_mesh/030_side_car_injection/</guid>
-      <description> Inject the sidecar into the application pods  kubectl get deployment arcadia-frontend -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-login -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-stock-transaction -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-stocks -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-users -oyaml | nsm inject | kubectl apply -f -</description>
+      <description>Inject the sidecar into the application pods  kubectl get deployment arcadia-frontend -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-login -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-stock-transaction -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-stocks -oyaml | nsm inject | kubectl apply -f -kubectl get deployment arcadia-users -oyaml | nsm inject | kubectl apply -f -Wait for the sidecar to be injected in all pods and verify that the pods have 2 containers  kubectl get podsOutput</description>
     </item>
     
     <item>
@@ -231,7 +226,21 @@ NAME STATUS ROLES AGE VERSION ip-10-0-2-32.</description>
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/040_ingress/040_oidc_1/</guid>
-      <description>Redeploy the front and microservice to a new version in order to use Openid.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: arcadia-frontendspec:replicas: 2selector:matchLabels:app: arcadia-frontendtemplate:metadata:labels:app: arcadia-frontendspec:containers:- name: arcadia-frontendimage: sorinboia/arcadia-frontend:oktav0.1imagePullPolicy: Alwaysports:- containerPort: 80EOFNext we need to configure our Ingress controller to validate each request based on the JWT token and if valid add a custom header which indicates to the application the user.</description>
+      <description>Due to unsecure credentials storage of the application it has been decided to migrate to Okta which will provide user management and authentication without the need to store localy personal information.
+ Redeploy the front and microservice to a new version in order to use Openid.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: arcadia-frontendspec:replicas: 2selector:matchLabels:app: arcadia-frontendtemplate:metadata:labels:app: arcadia-frontendspec:containers:- name: arcadia-frontendimage: sorinboia/arcadia-frontend:oktav0.</description>
+    </item>
+    
+    <item>
+      <title>Bot Protection</title>
+      <link>/060_security/040_bot_protection/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/060_security/040_bot_protection/</guid>
+      <description>Our application APIs at the moment are published only for consumption by browsers.
+Therefor we don&amp;rsquo;t want to allow any kind of automated tool to access these endpoints.
+We are going to block not only malicious bots but also tools like curl.
+ Try and access the stock microservice and get data with curl.  curl -k https://$nginx_ingress/v1/stock/ticker/allThe request will succeed.
+Apply the bot config  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: appprotect.</description>
     </item>
     
     <item>
@@ -327,25 +336,6 @@ Click Submit
       
       <guid>/070_controller/070_summary/</guid>
       <description>All of our microgateway API configuration is complete. We have published external APIs and are able to route, authenticate and view statistics for traffic coming from API clients. We have achieved the bellow architecture:</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/050_service_mesh/060_external_acl/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/050_service_mesh/060_external_acl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/060_security/tmp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/060_security/tmp/</guid>
-      <description>cat &amp;laquo; EOF | kubectl apply -f - apiVersion: appprotect.f5.com/v1beta1 kind: APPolicy metadata: name: attacksigs spec: policy: name: attacksigs template: name: POLICY_TEMPLATE_NGINX_BASE applicationLanguage: utf-8 enforcementMode: blocking signature-sets: - name: All Signatures block: true alarm: true
- apiVersion: appprotect.f5.com/v1beta1 kind: APLogConf metadata: name: logconf spec: content: format: default max_message_size: 64k max_request_size: any filter: request_type: all apiVersion: k8s.nginx.org/v1 kind: Policy metadata: name: waf-policy spec: waf: enable: true apPolicy: &amp;ldquo;default/attacksigs&amp;rdquo; securityLog: enable: true apLogConf: &amp;ldquo;default/logconf&amp;rdquo; logDest: &amp;ldquo;syslog:server=127.</description>
     </item>
     
   </channel>

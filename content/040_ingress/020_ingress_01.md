@@ -52,7 +52,7 @@ spec:
 EOF
 ```
 
-Note how the various HTTP paths (`/, /api/, /app3/`) are routed by Ingress to the relevant K8s services.  
+Note how the various HTTP paths (`/v1/user, /v1/login, /v1/stockt`) are routed by Ingress to the relevant K8s services.  
 At this stage the basic install is finished and all that's left is to check the connectivity to the Arcadia web application. Get the public hostname of the exposed `nginx-ingress` service.  
 
 3. Browse to the following location and verify that you can access the site: `http://<INGRESS-EXTERNAL-IP>/`  
@@ -60,8 +60,8 @@ At this stage the basic install is finished and all that's left is to check the 
 4. Login to the application using the following credentials:
 
 {{% notice %}}
-Username: trader@gmail.com  
-Password: 123456
+Username: satoshi@bitcoin.com  
+Password: bitcoin
 {{% /notice %}}
 
 At the moment we still have two key features missing:
@@ -69,11 +69,11 @@ At the moment we still have two key features missing:
 - We are not actively monitoring the health of the pods through the data path
 
 
-8. Take a look at the `files/5ingress/2arcadia.yaml` file. It increases the number of pods for our services to two - and also defines how the http health checks will looks like.  
+8. Take a look at the `files/4ingress/1arcadia_increase.yaml` file. It increases the number of pods for our services to two - and also defines how the http health checks will looks like.  
 
 9. Apply this new configuration.
 ```
-kubectl apply -f files/5ingress/1arcadia_increase.yaml
+kubectl apply -f files/4ingress/1arcadia_increase.yaml
 ```
 
 10. Look at the Nginx dashboard and click on "HTTP Upstreams", you can see that right now that two HTTP upstreams have 2 members but no health checks are being done.

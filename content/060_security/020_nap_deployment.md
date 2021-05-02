@@ -5,11 +5,12 @@ weight = 20
 +++
 
 
-1. Prepare the Nap config
+1. Prepare the Nginx App Protect config
 
 ```
 export elk_log=$(kubectl get svc elk-log | tr -s " " | cut -d' ' -f3 | grep -v "CLUSTER-IP")
 cat << EOF | kubectl apply -f -
+# APPolicy is the policy configuration. Here we are enabling signature check of known attacks
 apiVersion: appprotect.f5.com/v1beta1
 kind: APPolicy
 metadata: 
@@ -27,6 +28,7 @@ spec:
       alarm: true
 
 ---
+# We are going to log to ELK all requests not only the blocked ones
 apiVersion: appprotect.f5.com/v1beta1
 kind: APLogConf
 metadata:
@@ -39,6 +41,7 @@ spec:
   filter:
     request_type: all
 ---
+# Creating a generic policy and gluing things together
 apiVersion: k8s.nginx.org/v1
 kind: Policy
 metadata:
@@ -54,7 +57,7 @@ spec:
 EOF
 ```
 
-2. Enable Nap on the VS
+2. Enable Nginx App Protect on the VS
 
 ```
 cat << EOF | kubectl apply -f -
@@ -68,7 +71,8 @@ spec:
     secret: arcadia-wildcard # Represents the server certificate
     redirect:
       enable: true # Always redirect to https if incoming request is http
-  policies:
+  # The bellow waf policy is attachment config
+  policies: 
     - name: waf-policy
   upstreams:
     - name: arcadia-users
@@ -103,7 +107,9 @@ spec:
         path: /healthz
   routes:
     - path: /v1/user      
-# These directives attach the JWT policy to the route that needs authentication extract the username/email address and add it as a header 
+      location-snippets: |
+        opentracing_propagate_context;
+        opentracing_operation_name "nginx-ingress";       
       policies:
       - name: jwt-policy
       action:
@@ -113,13 +119,22 @@ spec:
             set:
             - name: okta-user
               value: \${jwt_claim_email}
-    - path: /v1/login      
+    - path: /v1/login
+      location-snippets: |
+        opentracing_propagate_context;
+        opentracing_operation_name "nginx-ingress";      
       action:
         pass: arcadia-login
-    - path: /v1/stock      
+    - path: /v1/stock
+      location-snippets: |
+        opentracing_propagate_context;
+        opentracing_operation_name "nginx-ingress";      
       action:
         pass: arcadia-stocks
-    - path: /v1/stockt      
+    - path: /v1/stockt
+      location-snippets: |
+        opentracing_propagate_context;
+        opentracing_operation_name "nginx-ingress";      
       policies:
       - name: jwt-policy
       action:
@@ -129,7 +144,10 @@ spec:
             set:
             - name: okta-user
               value: \${jwt_claim_email}
-    - path: /      
+    - path: / 
+      location-snippets: |
+        opentracing_propagate_context;
+        opentracing_operation_name "nginx-ingress";      
       action:
         pass: arcadia-frontend
 EOF

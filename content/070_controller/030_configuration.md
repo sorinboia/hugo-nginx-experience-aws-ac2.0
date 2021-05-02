@@ -34,8 +34,8 @@ Click "Submit".
 > Name: ```server-cert```   
 > Environment: ```prod ```  
 > Chose "Copy and paste PEM text"  
-> Private Key: Browse to https://raw.githubusercontent.com/sorinboia/nginx-experience-aws/master/certs_for_mtls/ca.key copy and paste.  
-> Public Cert: Browse to https://raw.githubusercontent.com/sorinboia/nginx-experience-aws/master/certs_for_mtls/ca.pem copy and paste.  
+> Private Key: Browse to https://raw.githubusercontent.com/sorinboia/nginx-experience-aws-ac2.0/main/files/7controller/ca.key copy and paste.  
+> Public Cert: Browse to https://raw.githubusercontent.com/sorinboia/nginx-experience-aws-ac2.0/main/files/7controller/ca.pem copy and paste.  
 > Submit
 
 3. Create the Gateway:  

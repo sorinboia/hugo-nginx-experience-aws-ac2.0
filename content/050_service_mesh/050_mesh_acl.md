@@ -14,7 +14,7 @@ Lets see what security implications this has:
 
 ```
 export arcadia_stocks_pod=$(kubectl get pods --selector=app=arcadia-stocks | grep arcadia-stocks -m 1 |  cut -d' ' -f1)
-winpty  kubectl exec -it $arcadia_stocks_pod  -- bash
+kubectl exec -it $arcadia_stocks_pod  -- bash
 ```
 
 {{< output >}}
@@ -24,9 +24,8 @@ root@arcadia-stocks-7bd6ff78c8-pb6bn:/usr/src/app#
 {{< /output >}}
 
 
-
 2. You are now in the `arcadia-stocks` container, the bellow command will access the `arcadia-users` internal API and get specific user information.  
-This should not be allowed. This call must be allowed only from the `arcadia-login` pods.
+This should not be allowed. This call must be allowed only from the `arcadia-login` pods. 
 
 ```
 curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
@@ -35,6 +34,8 @@ curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
 {{< output >}}
 {"_id":"6072b09ce6915d87d36e66af","accountId":"47808892","name":"Sorin Boiangiu","email":"sorin@nginx.com","cash":121973.826,"password":"nginx","stocks":{"btc":1.1989999999999994,"eth":3.5,"ltc":40.1},"picture":"default"}
 {{< /output >}}
+
+`exit` the container bash.
 
 3. Improve you application security by introducing these checks and allowing access only from the `arcadia-login` pods
 
@@ -90,7 +91,7 @@ kubectl set serviceaccount deployments/arcadia-login arcadia-login-sa
 
 ```
 export arcadia_stocks_pod=$(kubectl get pods --selector=app=arcadia-stocks | grep arcadia-stocks -m 1 |  cut -d' ' -f1)
-winpty  kubectl exec -it $arcadia_stocks_pod  -- bash
+kubectl exec -it $arcadia_stocks_pod  -- bash
 ```
 
 ```
@@ -107,11 +108,13 @@ curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
 </html>
 {{< /output >}}
 
+`exit` the container bash.
+
 6. Access the `arcadia-login` pod and try getting user information from the `arcadia-users` service, only this service should be allowed.
 
 ```
 export arcadia_login_pod=$(kubectl get pods --selector=app=arcadia-login | grep arcadia-login -m 1 |  cut -d' ' -f1)
-winpty  kubectl exec -it $arcadia_login_pod  -- bash
+kubectl exec -it $arcadia_login_pod  -- bash
 ```
 
 ```
@@ -121,3 +124,5 @@ curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
 {{< output >}}
 {"_id":"6072b09ce6915d87d36e66af","accountId":"47808892","name":"Sorin Boiangiu","email":"sorin@nginx.com","cash":121973.826,"password":"nginx","stocks":{"btc":1.1989999999999994,"eth":3.5,"ltc":40.1},"picture":"default"}
 {{< /output >}}
+
+`exit` the container bash.

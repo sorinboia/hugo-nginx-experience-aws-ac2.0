@@ -6,11 +6,11 @@ weight = 10
 +++
 
 We are going to use the Nginx installation manifests based on the [Nginx Ingress Controller installation guide](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/).
-For simplicity - we have already prepared the installation in a single yaml file.  
+For simplicity - we have already prepared an installation script.  
 1. Run the command bellow:  
 
 ```
-./files/5ingress/ingress_install.sh
+./files/4ingress/ingress_install.sh
 ```
 {{< output >}}
 Starting Nginx Ingress Install

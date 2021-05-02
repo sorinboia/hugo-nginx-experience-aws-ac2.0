@@ -35,9 +35,17 @@ You can get a general look for you application status. The Grafana dashboards ca
 
 
 
-4. Browse to the Zipkin dashboard `http://<ZIPKIN-EXTERNAL-IP>:9411`
+5. Browse to the Zipkin dashboard `http://<ZIPKIN-EXTERNAL-IP>:9411`
 Create a filter as in the bellow image.
 Click on the result that looks like the first entry.
 ![](/images/050_040_1.JPG)
 
-5. Explanation of what is going on
+6. When buy or selling crypto the HTTP from the browser is sent to the application.  
+ **1** - First it gets to the Nginx Ingress  
+ **2** - The ingress forwards it to the stock transaction service  
+ **3** - In order to perform the operation the stock transaction service contacts the user service to get the current account id  
+ **4 and 5** - Next will again contact the users service to get the account information ( balance and crypto currencies), the stocks service to get the current buy and sell prices.  
+ Once the operation has been validated and approved it will be recorded in the database and a success response returned to the client.   
+ 
+
+![](/images/nsm_trace.png)

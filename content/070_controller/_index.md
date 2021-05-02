@@ -11,3 +11,5 @@ We will acomplish this using two components:
 
 - Nginx Controller which will be used as an API Management
 - Nginx Container will be the API Microgateway which will reside within the Kubernetes environment
+
+![](/images/Slide5.JPG)

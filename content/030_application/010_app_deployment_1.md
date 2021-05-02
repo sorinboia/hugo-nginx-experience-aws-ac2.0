@@ -6,7 +6,7 @@ weight = 10
 
 1. Deploy the app
 ```
-kubectl apply -f files/5ingress/1arcadia_delpoy.yaml
+kubectl apply -f files/4ingress/1arcadia_delpoy.yaml
 ```
 
 {{< output >}}

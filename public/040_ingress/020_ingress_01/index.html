@@ -12,21 +12,21 @@
     <title>Publish the app :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1619084558" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1619084558" rel="stylesheet">
-    <link href="../../css/hybrid.css?1619084558" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1619084558" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1619084558" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1619084558" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1619084558" rel="stylesheet">
-    <link href="../../css/theme.css?1619084558" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1619084558" rel="stylesheet">
+    <link href="../../css/nucleus.css?1619687175" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1619687175" rel="stylesheet">
+    <link href="../../css/hybrid.css?1619687175" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1619687175" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1619687175" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1619687175" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1619687175" rel="stylesheet">
+    <link href="../../css/theme.css?1619687175" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1619687175" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1619084558" rel="stylesheet">
+    <link href="../../css/theme-green.css?1619687175" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1619084558"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1619687175"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1619084558"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1619084558"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1619687175"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1619687175"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1619084558"></script>
+<script type="text/javascript" src="../../js/search.js?1619687175"></script>
 
     
   </div>
@@ -624,27 +624,6 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/050_service_mesh/010_mesh_explanation_1/" title="Service Mesh Overview" class="dd-item ">
-        <a href="../../050_service_mesh/010_mesh_explanation_1/">
-        Service Mesh Overview
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
       <li data-nav-id="/050_service_mesh/020_nsm_deploy/" title="Nginx Service Mesh deployment" class="dd-item ">
         <a href="../../050_service_mesh/020_nsm_deploy/">
         Nginx Service Mesh deployment
@@ -711,27 +690,6 @@ if (!doNotTrack) {
       <li data-nav-id="/050_service_mesh/050_mesh_acl/" title="Mesh Access List" class="dd-item ">
         <a href="../../050_service_mesh/050_mesh_acl/">
         Mesh Access List
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/060_external_acl/" title="" class="dd-item ">
-        <a href="../../050_service_mesh/060_external_acl/">
-        
         
         </a>
     </li>
@@ -826,9 +784,9 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/060_security/030_bot_protection/" title="Bot Protection" class="dd-item ">
-        <a href="../../060_security/030_bot_protection/">
-        Bot Protection
+      <li data-nav-id="/060_security/030_nap_test/" title="Nginx App Protect testing" class="dd-item ">
+        <a href="../../060_security/030_nap_test/">
+        Nginx App Protect testing
         
         </a>
     </li>
@@ -847,9 +805,9 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/060_security/tmp/" title="" class="dd-item ">
-        <a href="../../060_security/tmp/">
-        
+      <li data-nav-id="/060_security/040_bot_protection/" title="Bot Protection" class="dd-item ">
+        <a href="../../060_security/040_bot_protection/">
+        Bot Protection
         
         </a>
     </li>
@@ -1255,7 +1213,7 @@ spec:
       action:
         pass: arcadia-frontend
 EOF
-</code></pre><p>Note how the various HTTP paths (<code>/, /api/, /app3/</code>) are routed by Ingress to the relevant K8s services.<br>
+</code></pre><p>Note how the various HTTP paths (<code>/v1/user, /v1/login, /v1/stockt</code>) are routed by Ingress to the relevant K8s services.<br>
 At this stage the basic install is finished and all that&rsquo;s left is to check the connectivity to the Arcadia web application. Get the public hostname of the exposed <code>nginx-ingress</code> service.</p>
 <ol start="3">
 <li>
@@ -1266,8 +1224,8 @@ At this stage the basic install is finished and all that&rsquo;s left is to chec
 </li>
 </ol>
 
-<div class="notices " ><p>Username: <a href="mailto:trader@gmail.com">trader@gmail.com</a><br>
-Password: 123456</p>
+<div class="notices " ><p>Username: <a href="mailto:satoshi@bitcoin.com">satoshi@bitcoin.com</a><br>
+Password: bitcoin</p>
 </div>
 
 <p>At the moment we still have two key features missing:</p>
@@ -1277,13 +1235,13 @@ Password: 123456</p>
 </ul>
 <ol start="8">
 <li>
-<p>Take a look at the <code>files/5ingress/2arcadia.yaml</code> file. It increases the number of pods for our services to two - and also defines how the http health checks will looks like.</p>
+<p>Take a look at the <code>files/4ingress/1arcadia_increase.yaml</code> file. It increases the number of pods for our services to two - and also defines how the http health checks will looks like.</p>
 </li>
 <li>
 <p>Apply this new configuration.</p>
 </li>
 </ol>
-<pre><code>kubectl apply -f files/5ingress/1arcadia_increase.yaml
+<pre><code>kubectl apply -f files/4ingress/1arcadia_increase.yaml
 </code></pre><ol start="10">
 <li>Look at the Nginx dashboard and click on &ldquo;HTTP Upstreams&rdquo;, you can see that right now that two HTTP upstreams have 2 members but no health checks are being done.</li>
 </ol>
@@ -1729,38 +1687,6 @@ Password: 123456</p>
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -2044,19 +1970,19 @@ Password: 123456</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1619084558"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1619084558"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1619084558"></script>
-    <script src="../../js/jquery.sticky.js?1619084558"></script>
-    <script src="../../js/featherlight.min.js?1619084558"></script>
-    <script src="../../js/highlight.pack.js?1619084558"></script>
+    <script src="../../js/clipboard.min.js?1619687175"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1619687175"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1619687175"></script>
+    <script src="../../js/jquery.sticky.js?1619687175"></script>
+    <script src="../../js/featherlight.min.js?1619687175"></script>
+    <script src="../../js/highlight.pack.js?1619687175"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1619084558"></script>
-    <script src="../../js/learn.js?1619084558"></script>
-    <script src="../../js/hugo-learn.js?1619084558"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1619687175"></script>
+    <script src="../../js/learn.js?1619687175"></script>
+    <script src="../../js/hugo-learn.js?1619687175"></script>
 
-    <link href="../../mermaid/mermaid.css?1619084558" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1619084558"></script>
+    <link href="../../mermaid/mermaid.css?1619687175" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1619687175"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

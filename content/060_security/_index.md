@@ -6,10 +6,10 @@ chapter = true
 pre = "<b>6. </b>"
 +++
 
-In our final part of the workshop, we will implement a per-pod Web Application Firewall.  
-The Nginx WAF will allow to improve the application security posture, especially against [OWASP Top 10 attacks](https://owasp.org/www-project-top-ten/).  
 
-In our scenario, since we decided our Nginx WAF to be enabled on a per-pod basis, we will be able to protect all the traffic coming into the pod regardless of where it is originating from (external or internal to the Kubernetes cluster).  
+The Nginx App Protect will allow to improve the application security posture, especially against [OWASP Top 10 attacks](https://owasp.org/www-project-top-ten/).  
+The Nginx App Protect is deployed in the ingress resource therefor is able to see all traffic coming to our application from the outside world.  
+We'll be able to bring security closer to the application and the development cycle and integrate it into CI/CD pipelines.
+This will allow to minimize false positives, since the web application firewall policy becomes a part of the application and is always tested as such.
 
-We'll be able to bring security closer to the application and the development cycle and integrate it into CI/CD pipelines.  
-This will allow to minimize false positives, since the WAF policy becomes a part of the application and is always tested as such.
+![](/images/Slide4.JPG)

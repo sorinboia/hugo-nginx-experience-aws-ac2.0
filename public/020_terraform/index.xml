@@ -40,7 +40,7 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
       <description>Wait for Terraform to finish and verify the deployment is working as expected and we are able to control the Kubernetes environment.
  We need to save the remote access config for the Kubernetes cluster locally:  mkdir ~/.kube/ terraform output &amp;gt; ~/.kube/configCheck and see that our cluster is up an running.
 Below we should see our two K8s worker nodes:  kubectl get nodesOutput
-NAME STATUS ROLES AGE VERSION ip-10-0-2-32.</description>
+NAME STATUS ROLES AGE VERSIONip-10-0-3-204.</description>
     </item>
     
   </channel>
