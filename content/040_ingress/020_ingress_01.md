@@ -69,11 +69,11 @@ At the moment we still have two key features missing:
 - We are not actively monitoring the health of the pods through the data path
 
 
-8. Take a look at the `files/4ingress/1arcadia_increase.yaml` file. It increases the number of pods for our services to two - and also defines how the http health checks will looks like.  
+8. Take a look at the `files/4ingress/1arcadia_increase.yaml` file. It increases the number of pods that our services use.  
 
 9. Apply this new configuration.
 ```
 kubectl apply -f files/4ingress/1arcadia_increase.yaml
 ```
 
-10. Look at the Nginx dashboard and click on "HTTP Upstreams", you can see that right now that two HTTP upstreams have 2 members but no health checks are being done.
+10. Look at the Nginx dashboard and click on "HTTP Upstreams", you can see that right now all services have two members but no health check.

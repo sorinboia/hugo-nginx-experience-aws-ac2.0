@@ -56,5 +56,3 @@ curl -k https://$nginx_ingress/v1/stock/ticker/all
 ```
 
 This time the request has been blocked. Take the Support Id and look for the logs in Kibana
-
-5. Continue and explore the visualization capabilities of Kibana and log information from Nginx App Protect by looking into the next two sections bellow the "Discover" button (Visualize and Dashboard -> Overview).

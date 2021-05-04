@@ -7,6 +7,7 @@ weight = 10
 1. In order to delete the resources created during this workshop, run the commands below:   
 
 ```
+kubectl delete --all svc --namespace=nginx-mesh
 kubectl delete --all svc --namespace=nginx-ingress
 kubectl delete --all svc --namespace=default
 cd terraform

@@ -9,11 +9,11 @@ weight = 30
 1. Inject the sidecar into the application pods
 
 ```
-kubectl get deployment arcadia-frontend -oyaml | nsm inject | kubectl apply -f -
-kubectl get deployment arcadia-login -oyaml | nsm inject | kubectl apply -f -
-kubectl get deployment arcadia-stock-transaction -oyaml | nsm inject | kubectl apply -f -
-kubectl get deployment arcadia-stocks -oyaml | nsm inject | kubectl apply -f -
-kubectl get deployment arcadia-users -oyaml | nsm inject | kubectl apply -f -
+kubectl get deployment arcadia-frontend -oyaml | nginx-meshctl inject | kubectl apply -f -
+kubectl get deployment arcadia-login -oyaml | nginx-meshctl inject | kubectl apply -f -
+kubectl get deployment arcadia-stock-transaction -oyaml | nginx-meshctl inject | kubectl apply -f -
+kubectl get deployment arcadia-stocks -oyaml | nginx-meshctl inject | kubectl apply -f -
+kubectl get deployment arcadia-users -oyaml | nginx-meshctl inject | kubectl apply -f -
 ```
 
 2. Wait for the sidecar to be injected in all pods and verify that the pods have 2 containers

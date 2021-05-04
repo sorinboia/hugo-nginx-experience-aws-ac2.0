@@ -163,6 +163,11 @@
   </url>
   
   <url>
+    <loc>/070_controller/050_explore/</loc>
+    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/050_service_mesh/050_mesh_acl/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
@@ -178,27 +183,17 @@
   </url>
   
   <url>
-    <loc>/070_controller/050_publish_apis/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/070_controller/060_add_auth/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/060_security/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/070_controller/</loc>
+    <loc>/070_controller/060_test/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
   <url>
-    <loc>/070_controller/070_summary/</loc>
+    <loc>/070_controller/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   

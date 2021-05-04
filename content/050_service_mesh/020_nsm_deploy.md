@@ -14,7 +14,9 @@ nginx-meshctl deploy --registry-server "sorinboia" --image-tag 0.9.0 --sample-ra
 {{< output >}}
 Deploying NGINX Service Mesh Control Plane in namespace "nginx-mesh"...
 Created namespace "nginx-mesh".
+W0502 08:20:37.942849    7607 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
 Created SpiffeID CRD.
+W0502 08:20:38.076108    7607 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16+, unavailable in v1.22+; use admissionregistration.k8s.io/v1 ValidatingWebhookConfiguration
 Waiting for SPIRE to be running...done.
 Deployed Spire.
 Deployed NATS server.
