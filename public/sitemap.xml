@@ -3,22 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/010_intro/005_workshop_path/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/010_intro/aws_event/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/010_intro/selfpaced/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -29,11 +14,6 @@
   
   <url>
     <loc>/030_application/010_app_deployment_1/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/010_intro/aws_event/010_aws_wokshop_portal_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -64,11 +44,6 @@
   
   <url>
     <loc>/020_terraform/020_eks_1/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/010_intro/selfpaced/020_cloudformation_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -118,11 +93,6 @@
   </url>
   
   <url>
-    <loc>/010_intro/selfpaced/030_iam_role_1/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/060_security/030_nap_test/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
@@ -139,11 +109,6 @@
   
   <url>
     <loc>/060_security/040_bot_protection/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/010_intro/040_cloud9_1/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   
@@ -199,11 +164,6 @@
   
   <url>
     <loc>/080_cleanup/</loc>
-    <lastmod>2020-07-08T14:37:59+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/090_feedback/</loc>
     <lastmod>2020-07-08T14:37:59+03:00</lastmod>
   </url>
   

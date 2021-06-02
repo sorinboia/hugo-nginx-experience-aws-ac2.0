@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: microgateway
-          image: sorinboia/arcadia-microgateway:v1
+          image: $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/arcadia-microgateway:v1
           imagePullPolicy: Always
           env:
             - name: ENV_CONTROLLER_API_URL

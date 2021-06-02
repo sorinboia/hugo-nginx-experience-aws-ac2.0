@@ -1,31 +1,10 @@
 [
 {
-	"uri": "/010_intro/005_workshop_path/",
-	"title": "AWS Workshop environment",
-	"tags": [],
-	"description": "",
-	"content": "There are two ways of doing the workshop, as part of an AWS event or on your own. Please click the relevant path.\n AWS Workshop On your own  "
-},
-{
 	"uri": "/",
 	"title": "Nginx Experience",
 	"tags": [],
 	"description": "",
 	"content": "Welcome to AWS NGINX Meetup – From Application code to Customer Delivering modern applications has upped the needs to provide agile application services free from infrastructure constrains, while ensuring applications run faster, secured and at scale. Choosing the right architecture for application services allows organizations to innovate faster and role new services on any infrastructure or cloud architecture. From code development to customer consumption, NGINX deployed on AWS is helping millions of organizations deliver application infrastructure and services ensuring their application are fast, secure and run at scale.\nIntro to the workshop In this workshop you will experience how to deploy your application in an agile way, using NGINX utilizing AWS compute, applying all the application services needed, such as service mesh, API management and web application firewall in a fully automated way.\nDeploy NGINX infrastructure using Terraform Start by using automation and use Infrastructure as Code concepts to deploy the environment.\nIncrease availability, security and application performance with Kubernetes Nginx Ingress  Monitor the application performance, discover issues and improve performance Authenticate users with OpenID Connect and offload authentication processes from the application to Nginx Zero Trust - Applying Mutual TLS authentication with NGINX  Serive Mesh  Trace your application functions within the mesh Secure the interservice communication  Security Secure you application with Nginx App Protect Web Application Firewall.\n Protect you application from fraudulent interactions and separate legitimate traffic from unwanted one Block unwanted Bot traffic to your application  The Nginx Controller  Publish the application APIs with NGINX Micro Gateway Deploy and publish your API endpoints with NGINX Micro Gateway within your Kubernetes environment Enhance APIs with JWT or Access Key token authentication Offload API authentication processes to your API gateway and concentrate Apply API rate limit and spike arrest Protect your APIs from abuse and enforce monetization controls Monitor your application performance Discover your application performance, understand and react when application SLAs are impacted  "
-},
-{
-	"uri": "/010_intro/aws_event/",
-	"title": "...at an AWS event",
-	"tags": [],
-	"description": "",
-	"content": "Running the workshop at an AWS Event Only complete this section if you are at an AWS hosted event (such as re:Invent, Kubecon, Immersion Day, or any other event hosted by an AWS employee). If you are running the workshop on your own, go to:\nStart the workshop on your own.\n\r"
-},
-{
-	"uri": "/010_intro/selfpaced/",
-	"title": "...on your own",
-	"tags": [],
-	"description": "",
-	"content": "Running the workshop on your own Only complete this section if you are running the workshop on your own. If you are at an AWS hosted event (such as re:Invent, Kubecon, Immersion Day, etc), go to Start the workshop at an AWS event.\n\r"
 },
 {
 	"uri": "/070_controller/010_accessing_controller/",
@@ -40,13 +19,6 @@
 	"tags": [],
 	"description": "",
 	"content": " Deploy the app  kubectl apply -f files/4ingress/1arcadia_delpoy.yaml\rOutput\ndeployment.apps/arcadia-db created\rservice/arcadia-db created\rdeployment.apps/arcadia-frontend created\rservice/arcadia-frontend created\rdeployment.apps/arcadia-login created\rservice/arcadia-login created\rdeployment.apps/arcadia-stock-transaction created\rservice/arcadia-stock-transaction created\rdeployment.apps/arcadia-stocks created\rservice/arcadia-stocks created\rdeployment.apps/arcadia-users created\rservice/arcadia-users created\r Check that all is deployed and working as expected:  kubectl get pods\rOutput\nNAME READY STATUS RESTARTS AGE\rarcadia-db-696f979799-sdzb6 1/1 Running 0 36s\rarcadia-frontend-57ff4f888-v4ggh 1/1 Running 0 36s\rarcadia-login-c995f8dcc-7gvvp 1/1 Running 0 35s\rarcadia-stock-transaction-b996cddb9-xzckf 1/1 Running 0 34s\rarcadia-stocks-dd58548f7-k7tg7 1/1 Running 0 34s\rarcadia-users-768dddd844-8s75q 1/1 Running 0 33s\r kubectl get svc -owide\rOutput\nNAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE SELECTOR\rarcadia-db ClusterIP 172.20.180.18 \u0026lt;none\u0026gt; 27017/TCP 74s app=arcadia-db\rarcadia-frontend ClusterIP 172.20.11.202 \u0026lt;none\u0026gt; 80/TCP 73s app=arcadia-frontend\rarcadia-login ClusterIP 172.20.247.63 \u0026lt;none\u0026gt; 80/TCP 73s app=arcadia-login\rarcadia-stock-transaction ClusterIP 172.20.155.246 \u0026lt;none\u0026gt; 80/TCP 72s app=arcadia-stock-transaction\rarcadia-stocks ClusterIP 172.20.23.237 \u0026lt;none\u0026gt; 80/TCP 71s app=arcadia-stocks\rarcadia-users ClusterIP 172.20.73.208 \u0026lt;none\u0026gt; 80/TCP 71s app=arcadia-users\rkubernetes ClusterIP 172.20.0.1 \u0026lt;none\u0026gt; 443/TCP 7m2s \u0026lt;none\u0026gt;  The application is not accessible yet. We will deploy the NGINX Ingress in the following sections.\n\r"
-},
-{
-	"uri": "/010_intro/aws_event/010_aws_wokshop_portal_1/",
-	"title": "AWS Workshop Portal",
-	"tags": [],
-	"description": "",
-	"content": "This workshop creates an AWS account and a Cloud9 environment. You will need the Participant Hash provided upon entry, and your email address to track your unique session.\n Connect to the portal by clicking the button or browsing to https://dashboard.eventengine.run/. The following screen shows up.  Enter the provided hash in the text box. The button on the bottom right corner changes to Accept Terms \u0026amp; Login. Click on that button to continue.  Click on AWS Console on dashboard.  Accept the defaults and make sure the region is eu-central-1. Click on Open AWS Console. This will open AWS Console in a new browser tab.  "
 },
 {
 	"uri": "/060_security/010_elk_deployment/",
@@ -74,7 +46,7 @@
 	"title": "Terraform Apply",
 	"tags": [],
 	"description": "",
-	"content": " Go to the \u0026ldquo;terraform\u0026rdquo; directory where we can find the terraform plan.  cd terraform Run the following commands, terraform plan will show us what it is going to be deployed in AWS by Terraform:  terraform init terraform plan Now let\u0026rsquo;s deploy the environment  terraform apply --auto-approve \rIt will take around 10 minutes for Terraform and AWS to finish the initial deployment.\nPlease continue to the next page to learn about Kubernetes and Amazon EKS basics.\n\r"
+	"content": "  All configuration and management of the infrastructure will be done from the Jumphost.\nSSH into the Jumphost.\n  Watch the terraform deployment status.\n  tail -f startup/startup.log\rWhen the the ALL IS DONE message will appear in the logs you can continue.\n"
 },
 {
 	"uri": "/010_intro/",
@@ -91,25 +63,18 @@
 	"content": "While you wait, you can review the Introduction section of the AWS EKS Workshop to learn about Kubernetes and Amazon EKS basics.\nManaged control plane Amazon EKS provides a scalable and highly-available control plane that runs across multiple AWS availability zones. The Amazon EKS service automatically manages the availability and scalability of the Kubernetes API servers and the etcd persistence layer for each cluster. Amazon EKS runs the Kubernetes control plane across three Availability Zones in order to ensure high availability, and it automatically detects and replaces unhealthy masters.\nManaged worker nodes Amazon EKS lets you create, update, or terminate worker nodes for your cluster with a single command. Managed node groups run nodes using the latest EKS-optimized AMIs in your AWS account while updates and terminations gracefully drain nodes to ensure your applications stay available.\n"
 },
 {
-	"uri": "/010_intro/selfpaced/020_cloudformation_1/",
-	"title": "Cloud Formation",
-	"tags": [],
-	"description": "",
-	"content": " Click the bellow button and deploy the template:  \n Click Next and enter a unique \u0026ldquo;Stack name\u0026rdquo;\n  Click Next 2 times accepting all the defaults, but make sure the following is selected on the last screen:\n  Click Create stack.  Wait until the stack Status is CREATE_COMPLETE.\n"
-},
-{
 	"uri": "/020_terraform/",
 	"title": "Deploy NGINX infrastructure using Terraform",
 	"tags": [],
 	"description": "",
-	"content": "Deploy NGINX infrastructure using Terraform\nWe will start by using Terraform to deploy the initial infrastructure which includes the Amazon Elastic Kubernetes Service and the EC2 instance for the Nginx Controller.\n"
+	"content": "In UDF a startup script will automatically deploy the EKS cluster and the Nginx Controller.\n"
 },
 {
 	"uri": "/070_controller/020_microgateway/",
 	"title": "Microgateway deployment",
 	"tags": [],
 	"description": "",
-	"content": " Deploy the microgateway with the following configuration.  cat \u0026lt;\u0026lt; EOF | kubectl apply -f -\rapiVersion: apps/v1\rkind: Deployment\rmetadata:\rname: microgateway\rspec:\rreplicas: 1\rselector:\rmatchLabels:\rapp: microgateway\rtemplate:\rmetadata:\rlabels:\rapp: microgateway\rspec:\rcontainers:\r- name: microgateway\rimage: sorinboia/arcadia-microgateway:v1\rimagePullPolicy: Always\renv:\r- name: ENV_CONTROLLER_API_URL\rvalue: https://$controller_ip:8443/1.4\r- name: ENV_CONTROLLER_API_KEY\rvalue: $controller_apikey\rports:\r- containerPort: 80\r- containerPort: 443\r---\rapiVersion: v1\rkind: Service\rmetadata:\rname: microgateway\rspec:\rselector:\rapp: microgateway\rports:\r- port: 80\rtargetPort: 80\rname: http\r- port: 443\rtargetPort: 443\rname: https\rexternalTrafficPolicy: Local\rtype: LoadBalancer\rEOF\rFrom now on we will only use the Controller GUI do to all of our configuration.\nThe end goal will be to expose and protect our APIs both internally within the cluster and externally to other programmers.\nLogin to the Nginx Controller web UI, click the \u0026ldquo;N\u0026rdquo; button in the upper left corner and go to \u0026ldquo;Infrastructure\u0026rdquo; -\u0026gt; \u0026ldquo;Instances\u0026rdquo;.  You will see the microgateway we just deployed listed. If it is not there wait for about 2 minutes, it might take a little bit of time for the instance to register.\nGet the EXTERNAL-IP of the microgateway service we just published, we will use it later within our config.  export microhost=$(kubectl get svc microgateway | tr -s \u0026quot; \u0026quot; | cut -d' ' -f4 | grep -v \u0026quot;EXTERNAL-IP\u0026quot;) \u0026amp;\u0026amp; echo $microhost\rOutput\naa2ba08e2b4024a85ba93aa32d0bafac-603500592.eu-central-1.elb.amazonaws.com\r "
+	"content": " Deploy the microgateway with the following configuration.  cat \u0026lt;\u0026lt; EOF | kubectl apply -f -\rapiVersion: apps/v1\rkind: Deployment\rmetadata:\rname: microgateway\rspec:\rreplicas: 1\rselector:\rmatchLabels:\rapp: microgateway\rtemplate:\rmetadata:\rlabels:\rapp: microgateway\rspec:\rcontainers:\r- name: microgateway\rimage: $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/arcadia-microgateway:v1\rimagePullPolicy: Always\renv:\r- name: ENV_CONTROLLER_API_URL\rvalue: https://$controller_ip:8443/1.4\r- name: ENV_CONTROLLER_API_KEY\rvalue: $controller_apikey\rports:\r- containerPort: 80\r- containerPort: 443\r---\rapiVersion: v1\rkind: Service\rmetadata:\rname: microgateway\rspec:\rselector:\rapp: microgateway\rports:\r- port: 80\rtargetPort: 80\rname: http\r- port: 443\rtargetPort: 443\rname: https\rexternalTrafficPolicy: Local\rtype: LoadBalancer\rEOF\rFrom now on we will only use the Controller GUI do to all of our configuration.\nThe end goal will be to expose and protect our APIs both internally within the cluster and externally to other programmers.\nLogin to the Nginx Controller web UI, click the \u0026ldquo;N\u0026rdquo; button in the upper left corner and go to \u0026ldquo;Infrastructure\u0026rdquo; -\u0026gt; \u0026ldquo;Instances\u0026rdquo;.  You will see the microgateway we just deployed listed. If it is not there wait for about 2 minutes, it might take a little bit of time for the instance to register.\nGet the EXTERNAL-IP of the microgateway service we just published, we will use it later within our config.  export microhost=$(kubectl get svc microgateway | tr -s \u0026quot; \u0026quot; | cut -d' ' -f4 | grep -v \u0026quot;EXTERNAL-IP\u0026quot;) \u0026amp;\u0026amp; echo $microhost\rOutput\naa2ba08e2b4024a85ba93aa32d0bafac-603500592.eu-central-1.elb.amazonaws.com\r "
 },
 {
 	"uri": "/060_security/020_nap_deployment/",
@@ -151,7 +116,7 @@
 	"title": "EKS Verification",
 	"tags": [],
 	"description": "",
-	"content": "Wait for Terraform to finish and verify the deployment is working as expected and we are able to control the Kubernetes environment.\n We need to save the remote access config for the Kubernetes cluster locally:  mkdir ~/.kube/ terraform output \u0026gt; ~/.kube/config\rCheck and see that our cluster is up an running.\nBelow we should see our two K8s worker nodes:  kubectl get nodes\rOutput\nNAME STATUS ROLES AGE VERSION\rip-10-0-3-204.eu-central-1.compute.internal Ready \u0026lt;none\u0026gt; 100s v1.19.6-eks-49a6c0  Change the directory back to the original repo folder:  cd ..\r"
+	"content": " Check and see that our cluster is up an running.\nBelow we should see our two K8s worker nodes:  kubectl get nodes\rOutput\nNAME STATUS ROLES AGE VERSION\rip-10-0-3-204.eu-central-1.compute.internal Ready \u0026lt;none\u0026gt; 100s v1.19.6-eks-49a6c0  Go to the lab directory  cd lab\r"
 },
 {
 	"uri": "/040_ingress/030_health_https_1/",
@@ -159,13 +124,6 @@
 	"tags": [],
 	"description": "",
 	"content": "In our next step we will finish this part of the configuration, we will implement the following:\n Enable health checks Enable https for the application and redirect http requests to https   Apply the configuration.  cat \u0026lt;\u0026lt; EOF | kubectl apply -f -\rapiVersion: v1\rdata:\rtls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZMRENDQkJTZ0F3SUJBZ0lTQTUrVmpoQmN3NUJKNWk0QXU2VGl0L3h0TUEwR0NTcUdTSWIzRFFFQkN3VUEKTURJeEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1Rc3dDUVlEVlFRRApFd0pTTXpBZUZ3MHlNVEF4TVRjeE1USXpNek5hRncweU1UQTBNVGN4TVRJek16TmFNQjR4SERBYUJnTlZCQU1NCkV5b3VZWEpqWVdScFlXTnllWEIwYnk1dVpYUXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUsKQW9JQkFRRE1LQkNYWHdaL0xQbzNmM2pMR3IvamhNRXNTZmdrT3ErOGtOUEpxVzdPbGtCazRrZWtlaEtFVVVDQwowUHdUazgrbnp0Skg3bzBEOUNaaEZuVW9pSGVnZkRzTURFNWFoVXh4blQ1czlmWHZvRlJqSnlYUUR0VlhvR1VQCk1ubzJlVkdYYi81Qm1LeVNJMDVpQ3B5SCtNVC9YRHFhd3BhV2ZsTDJ5OXpZK1V2NGlkQVhsZFpDUnBVSEhOV1cKZjhPeUMvcFJiZndhYVYzRDJ6RjFaeHJ6Z2JIcWd3WXpkRHNnYXVkdk56N0pocytDaENxL1JQNWhMSGNkNzV5bQo1bmppTFZsVmcvYUZJS09IT2wyZ1RFdnQ4WWdjTXdUSWgwNjRrcWpVS3g5UDBmQkpZSzNwV0ZoelhwaENHaWd1CjdTd3EyYnpGTkZabjY1SEdtSDBJY1RLMVlNSm5BZ01CQUFHamdnSk9NSUlDU2pBT0JnTlZIUThCQWY4RUJBTUMKQmFBd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQXdHQTFVZEV3RUIvd1FDTUFBdwpIUVlEVlIwT0JCWUVGSXhRMk9EMjhFWjVaVkNTRmNBTlVLbEdqcTFVTUI4R0ExVWRJd1FZTUJhQUZCUXVzeGUzCldGYkxybEFKUU9ZZnI1MkxGTUxHTUZVR0NDc0dBUVVGQndFQkJFa3dSekFoQmdnckJnRUZCUWN3QVlZVmFIUjAKY0RvdkwzSXpMbTh1YkdWdVkzSXViM0puTUNJR0NDc0dBUVVGQnpBQ2hoWm9kSFJ3T2k4dmNqTXVhUzVzWlc1agpjaTV2Y21jdk1CNEdBMVVkRVFRWE1CV0NFeW91WVhKallXUnBZV055ZVhCMGJ5NXVaWFF3VEFZRFZSMGdCRVV3ClF6QUlCZ1puZ1F3QkFnRXdOd1lMS3dZQkJBR0MzeE1CQVFFd0tEQW1CZ2dyQmdFRkJRY0NBUllhYUhSMGNEb3YKTDJOd2N5NXNaWFJ6Wlc1amNubHdkQzV2Y21jd2dnRUVCZ29yQmdFRUFkWjVBZ1FDQklIMUJJSHlBUEFBZHdCRQpsR1V1c083T3I4UkFCOWlvL2lqQTJ1YUN2dGpMTWJVLzB6T1d0YmFCcUFBQUFYY1FUTzdSQUFBRUF3QklNRVlDCklRQ3hMK0hhdnVOY1kzRU0yNllwN0JEeTA1TW8yTUxreHYrdE5nMHA0QmRVQlFJaEFOT1dIWmR1Z056UHl4MEkKOU5VWHVOL09JaGlnS2RGMjhlMmM0TWV3dVRmVEFIVUE5bHlVTDlGM01DSVVWQmdJTUpSV2p1Tk5FeGt6djk4TQpMeUFMekU3eFpPTUFBQUYzRUV6d3V3QUFCQU1BUmpCRUFpQWwvNEZaL1ZwR1NRV3pwdUc2Q0ljWUdHOG4wM1ZZCmRTQnFxUlFHbWUxdnVnSWdRMXg3cnRqYXhrcDNRd3FweWhYRXJyWjhPN3lIdTF2di9pdFhWR1haZzBjd0RRWUoKS29aSWh2Y05BUUVMQlFBRGdnRUJBSnh0Zmk1NmxxZ1RFUEJ6NE82R2xZclJYOVlnL3Y5cUMwWE1DazFSWlJWRApuRldQcTBQUFRWeWR3UTRsOVZQMWhlaTZhNUY0R2xQOVFzaFk3TS9CRFA0SmgwR3pOYnBCY2h4Slc2MHBuUXEzCjI4WmovNzVhamVycTFxYnEvbXpIZHhGcGVzTkVON3NYbUpzNGsrM1pOeWs3N1lXRVhsb1BDMk9STGM2MmhWWlAKdk1sYXZycmNmYWFGNTYvZkR3QzdRd2JZa3JHQzEycFZ4STMzNlFQSGJrRVE2SDNhWGUweE9Dem4rUnZxdXRMTwpqNjh2UVExWG5LdktLc0dCTVNGM29QaGYxZHZtbi9pZHBtK1RjdFJ3ZmUzTGtrL2JpZEJ2a2pJam5jb05HR1pTCllLSFVybmRzMWpDclRVTnI0RFgwTlY5bFNVOG5jUzdMMFBFOGxuUXYrWjg9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVaVENDQTAyZ0F3SUJBZ0lRUUFGMUJJTVVwTWdoaklTcERCYk4zekFOQmdrcWhraUc5dzBCQVFzRkFEQS8KTVNRd0lnWURWUVFLRXh0RWFXZHBkR0ZzSUZOcFoyNWhkSFZ5WlNCVWNuVnpkQ0JEYnk0eEZ6QVZCZ05WQkFNVApEa1JUVkNCU2IyOTBJRU5CSUZnek1CNFhEVEl3TVRBd056RTVNakUwTUZvWERUSXhNRGt5T1RFNU1qRTBNRm93Ck1qRUxNQWtHQTFVRUJoTUNWVk14RmpBVUJnTlZCQW9URFV4bGRDZHpJRVZ1WTNKNWNIUXhDekFKQmdOVkJBTVQKQWxJek1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdXdJVktNejJvSlRURHhMcwpqVldTdy9pQzhabW1la0tJcDEwbXFyVXJ1Y1ZNc2ErT2EvbDF5S1BYRDBlVUZGVTFWNHllcUtJNUdmV0NQRUtwClRtNzFPOE11MjQzQXNGenpXVGpuN2M5cDhGb0xHNzdBbENRbGgvbzNjYk1UNXh5czRadnYyK1E3UlZKRmxxbkIKVTg0MHlGTHV0YTd0ajk1Z2NPS2xWS3UyYlE2WHBVQTBheXZUdkdiclpqUjgrbXVMajFjcG1mZ3dGMTI2Y20vNwpnY1d0MG9aWVBSZkg1d203OFN2M2h0ekIybkZkMUVianpLMGx3WWk4WUdkMVpyUHhHUGVpWE9aVC96cUl0a2VsCi94TVk2cGdKZHorZFUvblBBZVgxcG5BWEZLOWpwUCtaczVPZDNGT25CdjVJaFIyaGFhNGxkYnNUekZJRDllMVIKb1l2YkZRSURBUUFCbzRJQmFEQ0NBV1F3RWdZRFZSMFRBUUgvQkFnd0JnRUIvd0lCQURBT0JnTlZIUThCQWY4RQpCQU1DQVlZd1N3WUlLd1lCQlFVSEFRRUVQekE5TURzR0NDc0dBUVVGQnpBQ2hpOW9kSFJ3T2k4dllYQndjeTVwClpHVnVkSEoxYzNRdVkyOXRMM0p2YjNSekwyUnpkSEp2YjNSallYZ3pMbkEzWXpBZkJnTlZIU01FR0RBV2dCVEUKcDdHa2V5eHgrdHZoUzVCMS84UVZZSVdKRURCVUJnTlZIU0FFVFRCTE1BZ0dCbWVCREFFQ0FUQS9CZ3NyQmdFRQpBWUxmRXdFQkFUQXdNQzRHQ0NzR0FRVUZCd0lCRmlKb2RIUndPaTh2WTNCekxuSnZiM1F0ZURFdWJHVjBjMlZ1ClkzSjVjSFF1YjNKbk1Ed0dBMVVkSHdRMU1ETXdNYUF2b0MyR0syaDBkSEE2THk5amNtd3VhV1JsYm5SeWRYTjAKTG1OdmJTOUVVMVJTVDA5VVEwRllNME5TVEM1amNtd3dIUVlEVlIwT0JCWUVGQlF1c3hlM1dGYkxybEFKUU9ZZgpyNTJMRk1MR01CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUc5dzBCCkFRc0ZBQU9DQVFFQTJVemd5ZldFaURjeDI3c1Q0clA4aTJ0aUVteFl0MGwrUEFLM3FCOG9ZZXZPNEM1ejcwa0gKZWpXRUh4MnRhUERZL2xhQkwyMS9XS1p1TlRZUUhIUEQ1YjF0WGdIWGJuTDdLcUM0MDFkazVWdkNhZFRRc3ZkOApTOE1Yam9oeWM5ejkvRzI5NDhrTGptRTZGbGg5ZERZclZZQTl4Mk8raEVQR09hRU9hMWVlUHluQmdQYXl2VWZMCnFqQnN0ekxoV1ZRTEdBa1hYbU5zKzVablBCeHpESk9MeGhGMkpJYmVRQWNINUgwdFpyVWxvNVpZeU9xQTdzOXAKTzViODVvM0FNL09KK0NrdEZCUXRmdkJoY0pWZDl3dmx3UHNrK3V5T3kySEk3bU54S0tnc0JUdDM3NXRlQTJUdwpVZEhraFZOY3NBS1gxSDdHTk5MT0VBRGtzZDg2d3VvWHZnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=\rtls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRE1LQkNYWHdaL0xQbzMKZjNqTEdyL2poTUVzU2Zna09xKzhrTlBKcVc3T2xrQms0a2VrZWhLRVVVQ0MwUHdUazgrbnp0Skg3bzBEOUNaaApGblVvaUhlZ2ZEc01ERTVhaFV4eG5UNXM5Zlh2b0ZSakp5WFFEdFZYb0dVUE1ubzJlVkdYYi81Qm1LeVNJMDVpCkNweUgrTVQvWERxYXdwYVdmbEwyeTl6WStVdjRpZEFYbGRaQ1JwVUhITldXZjhPeUMvcFJiZndhYVYzRDJ6RjEKWnhyemdiSHFnd1l6ZERzZ2F1ZHZOejdKaHMrQ2hDcS9SUDVoTEhjZDc1eW01bmppTFZsVmcvYUZJS09IT2wyZwpURXZ0OFlnY013VEloMDY0a3FqVUt4OVAwZkJKWUszcFdGaHpYcGhDR2lndTdTd3EyYnpGTkZabjY1SEdtSDBJCmNUSzFZTUpuQWdNQkFBRUNnZ0VCQUxlRm1JeUtWb3ZDUWRmYjFoazJIYU1IOXFLNmg3OEJwbkpxK29lQXNPUXkKdXdZMVIxTzZqS1MzYWJkdTUvc3RWM0V4QVdTNk03ZUhKVzBIUkNCQXRORG1mQ256Y2dmN1plR0lDZExuTThMSwpMTEhKUWp1SzZndFFXeWhUSnZ1TENXYUp2VlQ0U3NFL3pibGljcDNrYWlwbm5TTDdvMlQ3ZjlidEljVkdMUjNvCklhNU1SWnZ3ZDRHZzBkakErNUIwNWhXU3lDT3k0OHJFVzVKMUdCdC90eTBlaHhEOVVUVS9nb0ViL1Q1TXY1OVYKMWY2elNjS0lHbTh3emx5UnVZbWZwTkwrYjFkdFVUb1NUdVA5R0loU3FWTFN1NUJpR2RTMk81MFhqOWVUQlFhRgpRZUtrN002dWdjanZtZHdzTW4vdHM1T2pvVjY0bk10QlNWemY1VWhJdm1rQ2dZRUE2aGQwZWFHK3J1TFhKTDQwCncreUVuUDZtTktYQkI3eVNTWkVtck1aOWxGVUFxOVdQUk9pZnQ5Tm1vc1BGWi9QMDNBcWFhb3cxTGJmdjBMMFQKQ0hyNkJZSGhtYkNVTjJ6TExrRjZSVnI4NUhtQUxjdVhyajVEM3pZd3lZVmVJOThzV0RZcGVsaWtnOUFnNUFtagpNc3ZBTnRYRElJQmlXTkFQQzJoWXhORisrTHNDZ1lFQTMwTm15ZDFzSi9UaFJvUFpoK2dMNmZ0S2RySE1EWk1zCjRHZkI5K2FDTDNtR3NwU094MTlHOHJmbG9ZU2xNTE5HdnlZcGo1SGg1aHJnQXc4aGVBS3BFRmxFVTdBcm54dVcKZmwwc2J3RkhwN05pZUZscGFPdzU2Mm9FN3c1M2pPRHBIQ1ZLSFphQ0lHZjVLSS9tQmRuVWZYZ1JzSzExdjZMTwpJaExYMFNSM3FFVUNnWUFscUpaTlJ1NzFGWHNFNXpCMzRHSEpHOUpESC9NNHVtWlNQVzZhVnVnMjU2SFBBdkVrClpjUGovN2RBTWZ4YzU4c1padjlHYXIzWFdBTFZjc1ZRRlBDSjJFWWh3bDFsdVRQS2dqQVlYalhXejVFR1RQMWUKdzVlSm5oOGxIRFp6ME9CQ1pKd3htWGNGMllLaERNZmJVUm5mK0cyR21nQzRSdWhVcm5teFYvNTBKd0tCZ0RmSAo2VWlLTDltVHp5MEZDRFp5ZlhlS04wS01qWVRldnBtYWt0WFRHN2VzejBDUzZWRmF0cWt4MVFlVDBvbm1ZTWlsClNrRDZtOHdYN3R3VXpiSGtTRVV6YUdUWVlTMnhnTm8xZ1VLQ3VWcG04VFZNY1krclpaVXh1ZVhZWVhvclAxS3UKNW1PYUZRenZyVXE3R1NkaEV6djk0YjJZdVJDV0pwWlF5dWNRQzIxWkFvR0FKbnNGeHl4ZmFXajFEVHUxcEttNQpTSHQvL0cyRGZteHhKQ05aTFZMUHJYVDJhWmdrNWQwMW5Zb3dydCtscCtiSXBLc09BS2MxamxtRVNwT2VaTEU1Cmk0UVV0eEs3SnV5dHNNZXdqUCtYdmc3VFNEN3d1bW95Vkh6RS9VOTBYcldPOVJJd1VlZFpmOFg4bjVPNCtaRisKeWpqaWNlcGY1ci9DaFNhZG1jM1RwMFk9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K\rkind: Secret\rmetadata:\rname: arcadia-wildcard\rtype: kubernetes.io/tls\r---\rapiVersion: k8s.nginx.org/v1\rkind: VirtualServer\rmetadata:\rname: arcadia\rspec:\rhost: $nginx_ingress tls:\rsecret: arcadia-wildcard # Represents the server certificate\rredirect:\renable: true # Always redirect to https if incoming request is http\rupstreams:\r- name: arcadia-users\rservice: arcadia-users\rport: 80\rhealthCheck: # This is the most basic healthcheck config for more info follow this link https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream-healthcheck\renable: true\rpath: /healthz\r- name: arcadia-login\rservice: arcadia-login\rport: 80\rhealthCheck:\renable: true\rpath: /healthz\r- name: arcadia-stocks\rservice: arcadia-stocks\rport: 80\rhealthCheck:\renable: true\rpath: /healthz\r- name: arcadia-stock-transaction\rservice: arcadia-stock-transaction\rport: 80\rhealthCheck: enable: true\rpath: /healthz\r- name: arcadia-frontend\rservice: arcadia-frontend\rport: 80\rhealthCheck:\renable: true\rpath: /healthz\rroutes:\r- path: /v1/user action:\rpass: arcadia-users\r- path: /v1/login action:\rpass: arcadia-login\r- path: /v1/stock action:\rpass: arcadia-stocks\r- path: /v1/stockt action:\rpass: arcadia-stock-transaction\r- path: / action:\rpass: arcadia-frontend\rEOF\rBrowse to the Arcadia website with http and you will be automatically redirected to https.\nLook at the Nginx dashboard and observe that Nginx has started monitoring the pods.  "
-},
-{
-	"uri": "/010_intro/selfpaced/030_iam_role_1/",
-	"title": "IAM Role",
-	"tags": [],
-	"description": "",
-	"content": "  Follow this deep link to find your Cloud9 EC2 instance\n  Select the instance, then choose Actions / Instance Settings / Attach/Replace IAM Role\n  Choose eksworkshop-admin from the IAM Role drop down, and select Apply  "
 },
 {
 	"uri": "/060_security/030_nap_test/",
@@ -194,13 +152,6 @@
 	"tags": [],
 	"description": "",
 	"content": "Our application APIs at the moment are published only for consumption by browsers.\nTherefor we don\u0026rsquo;t want to allow any kind of automated tool to access these endpoints.\nWe are going to block not only malicious bots but also tools like curl.\n Try and access the stock microservice and get data with curl.  curl -k https://$nginx_ingress/v1/stock/ticker/all\rThe request will succeed.\nApply the bot config  cat \u0026lt;\u0026lt; EOF | kubectl apply -f -\rapiVersion: appprotect.f5.com/v1beta1\rkind: APPolicy\rmetadata: name: attacksigs\rspec:\rpolicy:\rname: attacksigs\rtemplate:\rname: POLICY_TEMPLATE_NGINX_BASE\rapplicationLanguage: utf-8\renforcementMode: blocking\rsignature-sets:\r- name: All Signatures\rblock: true\ralarm: true\r# The bellow config is in charge of defining what bot to block and whom to allow bot-defense:\rsettings:\risEnabled: true\rmitigations:\rclasses:\r- name: trusted-bot\raction: alarm\r- name: untrusted-bot\raction: block\r- name: malicious-bot\raction: block\rEOF\rTry again in a few seconds to access the stock microservice and get data with curl.  curl -k https://$nginx_ingress/v1/stock/ticker/all\rThis time the request has been blocked. Take the Support Id and look for the logs in Kibana\n"
-},
-{
-	"uri": "/010_intro/040_cloud9_1/",
-	"title": "Cloud 9",
-	"tags": [],
-	"description": "",
-	"content": " Open the Cloud9 console, and click on Open IDE. This will open a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and a terminal. We will be using it for the rest of the workshop.  \rAd blockers, javascript disablers, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted. Cloud9 requires third-party-cookies. You can whitelist the specific domains.\n\rRun the following command to install all the software tools required to run the workshop:  labs/cft/install.sh\rThe output of the script should show: Output\nkubectl in path\rjq in path\renvsubst in path\raws in path\raws-iam-authenticator in path\rterraform in path\rnginx-meshctl in path\r\n Disable temporary credentials:   In the Cloud9 IDE click the gear icon (in top right corner), or click to open a new tab and choose \u0026ldquo;Open Preferences\u0026rdquo; Select AWS SETTINGS Turn off AWS managed temporary credentials Close the Preferences tab    Validate the IAM role:  Use the GetCallerIdentity CLI command to validate that the Cloud9 IDE is using the correct IAM role.\naws sts get-caller-identity --query Arn | grep eksworkshop-admin -q \u0026amp;\u0026amp; echo \u0026quot;IAM role valid\u0026quot; || echo \u0026quot;IAM role NOT valid\u0026quot;\rIf the IAM role is not valid, DO NOT PROCEED. Go back and confirm the steps on this page.\n Clone the Workshop Repo:  git clone https://github.com/sorinboia/nginx-experience-aws-ac2.0.git\rcd nginx-experience-aws-ac2.0/\r "
 },
 {
 	"uri": "/070_controller/040_apis/",
@@ -278,13 +229,6 @@
 	"tags": [],
 	"description": "",
 	"content": "If you have run this workshop on your own environment you might need to delete the created resources. Please follow the steps in the next part.\n"
-},
-{
-	"uri": "/090_feedback/",
-	"title": "Feedback",
-	"tags": [],
-	"description": "",
-	"content": "The code in this repo is under constant development.\nFor any feedback or suggestions, either open an Issue on GitHub, or contact:\nSorin for any NGINX related topics\nArtiom for any AWS related topics\n"
 },
 {
 	"uri": "/categories/",

@@ -12,16 +12,6 @@
     
     
     <item>
-      <title>AWS Workshop environment</title>
-      <link>/010_intro/005_workshop_path/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/010_intro/005_workshop_path/</guid>
-      <description>There are two ways of doing the workshop, as part of an AWS event or on your own. Please click the relevant path.
- AWS Workshop On your own  </description>
-    </item>
-    
-    <item>
       <title>Accessing the Nginx Controller</title>
       <link>/070_controller/010_accessing_controller/</link>
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
@@ -39,16 +29,6 @@
       <description>Deploy the app  kubectl apply -f files/4ingress/1arcadia_delpoy.yamlOutput
 deployment.apps/arcadia-db createdservice/arcadia-db createddeployment.apps/arcadia-frontend createdservice/arcadia-frontend createddeployment.apps/arcadia-login createdservice/arcadia-login createddeployment.apps/arcadia-stock-transaction createdservice/arcadia-stock-transaction createddeployment.apps/arcadia-stocks createdservice/arcadia-stocks createddeployment.apps/arcadia-users createdservice/arcadia-users created Check that all is deployed and working as expected:  kubectl get podsOutput
 NAME READY STATUS RESTARTS AGEarcadia-db-696f979799-sdzb6 1/1 Running 0 36sarcadia-frontend-57ff4f888-v4ggh 1/1 Running 0 36sarcadia-login-c995f8dcc-7gvvp 1/1 Running 0 35sarcadia-stock-transaction-b996cddb9-xzckf 1/1 Running 0 34sarcadia-stocks-dd58548f7-k7tg7 1/1 Running 0 34sarcadia-users-768dddd844-8s75q 1/1 Running 0 33s kubectl get svc -owideOutput</description>
-    </item>
-    
-    <item>
-      <title>AWS Workshop Portal</title>
-      <link>/010_intro/aws_event/010_aws_wokshop_portal_1/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/010_intro/aws_event/010_aws_wokshop_portal_1/</guid>
-      <description>This workshop creates an AWS account and a Cloud9 environment. You will need the Participant Hash provided upon entry, and your email address to track your unique session.
- Connect to the portal by clicking the button or browsing to https://dashboard.eventengine.run/. The following screen shows up.  Enter the provided hash in the text box. The button on the bottom right corner changes to Accept Terms &amp;amp; Login. Click on that button to continue.</description>
     </item>
     
     <item>
@@ -88,8 +68,10 @@ Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/020_terraform/010_terraform_apply_1/</guid>
-      <description>Go to the &amp;ldquo;terraform&amp;rdquo; directory where we can find the terraform plan.  cd terraform Run the following commands, terraform plan will show us what it is going to be deployed in AWS by Terraform:  terraform init terraform plan Now let&amp;rsquo;s deploy the environment  terraform apply --auto-approve It will take around 10 minutes for Terraform and AWS to finish the initial deployment.
-Please continue to the next page to learn about Kubernetes and Amazon EKS basics.</description>
+      <description>All configuration and management of the infrastructure will be done from the Jumphost.
+SSH into the Jumphost.
+  Watch the terraform deployment status.
+  tail -f startup/startup.logWhen the the ALL IS DONE message will appear in the logs you can continue.</description>
     </item>
     
     <item>
@@ -103,24 +85,12 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
     </item>
     
     <item>
-      <title>Cloud Formation</title>
-      <link>/010_intro/selfpaced/020_cloudformation_1/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/010_intro/selfpaced/020_cloudformation_1/</guid>
-      <description>Click the bellow button and deploy the template:  
- Click Next and enter a unique &amp;ldquo;Stack name&amp;rdquo;
-  Click Next 2 times accepting all the defaults, but make sure the following is selected on the last screen:
-  Click Create stack.  Wait until the stack Status is CREATE_COMPLETE.</description>
-    </item>
-    
-    <item>
       <title>Microgateway deployment</title>
       <link>/070_controller/020_microgateway/</link>
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/070_controller/020_microgateway/</guid>
-      <description>Deploy the microgateway with the following configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: microgatewayspec:replicas: 1selector:matchLabels:app: microgatewaytemplate:metadata:labels:app: microgatewayspec:containers:- name: microgatewayimage: sorinboia/arcadia-microgateway:v1imagePullPolicy: Alwaysenv:- name: ENV_CONTROLLER_API_URLvalue: https://$controller_ip:8443/1.4- name: ENV_CONTROLLER_API_KEYvalue: $controller_apikeyports:- containerPort: 80- containerPort: 443---apiVersion: v1kind: Servicemetadata:name: microgatewayspec:selector:app: microgatewayports:- port: 80targetPort: 80name: http- port: 443targetPort: 443name: httpsexternalTrafficPolicy: Localtype: LoadBalancerEOFFrom now on we will only use the Controller GUI do to all of our configuration.</description>
+      <description>Deploy the microgateway with the following configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: microgatewayspec:replicas: 1selector:matchLabels:app: microgatewaytemplate:metadata:labels:app: microgatewayspec:containers:- name: microgatewayimage: $AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/arcadia-microgateway:v1imagePullPolicy: Alwaysenv:- name: ENV_CONTROLLER_API_URLvalue: https://$controller_ip:8443/1.4- name: ENV_CONTROLLER_API_KEYvalue: $controller_apikeyports:- containerPort: 80- containerPort: 443---apiVersion: v1kind: Servicemetadata:name: microgatewayspec:selector:app: microgatewayports:- port: 80targetPort: 80name: http- port: 443targetPort: 443name: httpsexternalTrafficPolicy: Localtype: LoadBalancerEOFFrom now on we will only use the Controller GUI do to all of our configuration.</description>
     </item>
     
     <item>
@@ -171,10 +141,9 @@ The output will look like this: Output
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/020_terraform/030_eks_verification_1/</guid>
-      <description>Wait for Terraform to finish and verify the deployment is working as expected and we are able to control the Kubernetes environment.
- We need to save the remote access config for the Kubernetes cluster locally:  mkdir ~/.kube/ terraform output &amp;gt; ~/.kube/configCheck and see that our cluster is up an running.
+      <description> Check and see that our cluster is up an running.
 Below we should see our two K8s worker nodes:  kubectl get nodesOutput
-NAME STATUS ROLES AGE VERSIONip-10-0-3-204.</description>
+NAME STATUS ROLES AGE VERSIONip-10-0-3-204.eu-central-1.compute.internal Ready &amp;lt;none&amp;gt; 100s v1.19.6-eks-49a6c0  Go to the lab directory  cd lab</description>
     </item>
     
     <item>
@@ -185,17 +154,6 @@ NAME STATUS ROLES AGE VERSIONip-10-0-3-204.</description>
       <guid>/040_ingress/030_health_https_1/</guid>
       <description>In our next step we will finish this part of the configuration, we will implement the following:
  Enable health checks Enable https for the application and redirect http requests to https   Apply the configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1data:tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZMRENDQkJTZ0F3SUJBZ0lTQTUrVmpoQmN3NUJKNWk0QXU2VGl0L3h0TUEwR0NTcUdTSWIzRFFFQkN3VUEKTURJeEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1Rc3dDUVlEVlFRRApFd0pTTXpBZUZ3MHlNVEF4TVRjeE1USXpNek5hRncweU1UQTBNVGN4TVRJek16TmFNQjR4SERBYUJnTlZCQU1NCkV5b3VZWEpqWVdScFlXTnllWEIwYnk1dVpYUXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUsKQW9JQkFRRE1LQkNYWHdaL0xQbzNmM2pMR3IvamhNRXNTZmdrT3ErOGtOUEpxVzdPbGtCazRrZWtlaEtFVVVDQwowUHdUazgrbnp0Skg3bzBEOUNaaEZuVW9pSGVnZkRzTURFNWFoVXh4blQ1czlmWHZvRlJqSnlYUUR0VlhvR1VQCk1ubzJlVkdYYi81Qm1LeVNJMDVpQ3B5SCtNVC9YRHFhd3BhV2ZsTDJ5OXpZK1V2NGlkQVhsZFpDUnBVSEhOV1cKZjhPeUMvcFJiZndhYVYzRDJ6RjFaeHJ6Z2JIcWd3WXpkRHNnYXVkdk56N0pocytDaENxL1JQNWhMSGNkNzV5bQo1bmppTFZsVmcvYUZJS09IT2wyZ1RFdnQ4WWdjTXdUSWgwNjRrcWpVS3g5UDBmQkpZSzNwV0ZoelhwaENHaWd1CjdTd3EyYnpGTkZabjY1SEdtSDBJY1RLMVlNSm5BZ01CQUFHamdnSk9NSUlDU2pBT0JnTlZIUThCQWY4RUJBTUMKQmFBd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQXdHQTFVZEV3RUIvd1FDTUFBdwpIUVlEVlIwT0JCWUVGSXhRMk9EMjhFWjVaVkNTRmNBTlVLbEdqcTFVTUI4R0ExVWRJd1FZTUJhQUZCUXVzeGUzCldGYkxybEFKUU9ZZnI1MkxGTUxHTUZVR0NDc0dBUVVGQndFQkJFa3dSekFoQmdnckJnRUZCUWN3QVlZVmFIUjAKY0RvdkwzSXpMbTh1YkdWdVkzSXViM0puTUNJR0NDc0dBUVVGQnpBQ2hoWm9kSFJ3T2k4dmNqTXVhUzVzWlc1agpjaTV2Y21jdk1CNEdBMVVkRVFRWE1CV0NFeW91WVhKallXUnBZV055ZVhCMGJ5NXVaWFF3VEFZRFZSMGdCRVV3ClF6QUlCZ1puZ1F3QkFnRXdOd1lMS3dZQkJBR0MzeE1CQVFFd0tEQW1CZ2dyQmdFRkJRY0NBUllhYUhSMGNEb3YKTDJOd2N5NXNaWFJ6Wlc1amNubHdkQzV2Y21jd2dnRUVCZ29yQmdFRUFkWjVBZ1FDQklIMUJJSHlBUEFBZHdCRQpsR1V1c083T3I4UkFCOWlvL2lqQTJ1YUN2dGpMTWJVLzB6T1d0YmFCcUFBQUFYY1FUTzdSQUFBRUF3QklNRVlDCklRQ3hMK0hhdnVOY1kzRU0yNllwN0JEeTA1TW8yTUxreHYrdE5nMHA0QmRVQlFJaEFOT1dIWmR1Z056UHl4MEkKOU5VWHVOL09JaGlnS2RGMjhlMmM0TWV3dVRmVEFIVUE5bHlVTDlGM01DSVVWQmdJTUpSV2p1Tk5FeGt6djk4TQpMeUFMekU3eFpPTUFBQUYzRUV6d3V3QUFCQU1BUmpCRUFpQWwvNEZaL1ZwR1NRV3pwdUc2Q0ljWUdHOG4wM1ZZCmRTQnFxUlFHbWUxdnVnSWdRMXg3cnRqYXhrcDNRd3FweWhYRXJyWjhPN3lIdTF2di9pdFhWR1haZzBjd0RRWUoKS29aSWh2Y05BUUVMQlFBRGdnRUJBSnh0Zmk1NmxxZ1RFUEJ6NE82R2xZclJYOVlnL3Y5cUMwWE1DazFSWlJWRApuRldQcTBQUFRWeWR3UTRsOVZQMWhlaTZhNUY0R2xQOVFzaFk3TS9CRFA0SmgwR3pOYnBCY2h4Slc2MHBuUXEzCjI4WmovNzVhamVycTFxYnEvbXpIZHhGcGVzTkVON3NYbUpzNGsrM1pOeWs3N1lXRVhsb1BDMk9STGM2MmhWWlAKdk1sYXZycmNmYWFGNTYvZkR3QzdRd2JZa3JHQzEycFZ4STMzNlFQSGJrRVE2SDNhWGUweE9Dem4rUnZxdXRMTwpqNjh2UVExWG5LdktLc0dCTVNGM29QaGYxZHZtbi9pZHBtK1RjdFJ3ZmUzTGtrL2JpZEJ2a2pJam5jb05HR1pTCllLSFVybmRzMWpDclRVTnI0RFgwTlY5bFNVOG5jUzdMMFBFOGxuUXYrWjg9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVaVENDQTAyZ0F3SUJBZ0lRUUFGMUJJTVVwTWdoaklTcERCYk4zekFOQmdrcWhraUc5dzBCQVFzRkFEQS8KTVNRd0lnWURWUVFLRXh0RWFXZHBkR0ZzSUZOcFoyNWhkSFZ5WlNCVWNuVnpkQ0JEYnk0eEZ6QVZCZ05WQkFNVApEa1JUVkNCU2IyOTBJRU5CSUZnek1CNFhEVEl3TVRBd056RTVNakUwTUZvWERUSXhNRGt5T1RFNU1qRTBNRm93Ck1qRUxNQWtHQTFVRUJoTUNWVk14RmpBVUJnTlZCQW9URFV4bGRDZHpJRVZ1WTNKNWNIUXhDekFKQmdOVkJBTVQKQWxJek1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdXdJVktNejJvSlRURHhMcwpqVldTdy9pQzhabW1la0tJcDEwbXFyVXJ1Y1ZNc2ErT2EvbDF5S1BYRDBlVUZGVTFWNHllcUtJNUdmV0NQRUtwClRtNzFPOE11MjQzQXNGenpXVGpuN2M5cDhGb0xHNzdBbENRbGgvbzNjYk1UNXh5czRadnYyK1E3UlZKRmxxbkIKVTg0MHlGTHV0YTd0ajk1Z2NPS2xWS3UyYlE2WHBVQTBheXZUdkdiclpqUjgrbXVMajFjcG1mZ3dGMTI2Y20vNwpnY1d0MG9aWVBSZkg1d203OFN2M2h0ekIybkZkMUVianpLMGx3WWk4WUdkMVpyUHhHUGVpWE9aVC96cUl0a2VsCi94TVk2cGdKZHorZFUvblBBZVgxcG5BWEZLOWpwUCtaczVPZDNGT25CdjVJaFIyaGFhNGxkYnNUekZJRDllMVIKb1l2YkZRSURBUUFCbzRJQmFEQ0NBV1F3RWdZRFZSMFRBUUgvQkFnd0JnRUIvd0lCQURBT0JnTlZIUThCQWY4RQpCQU1DQVlZd1N3WUlLd1lCQlFVSEFRRUVQekE5TURzR0NDc0dBUVVGQnpBQ2hpOW9kSFJ3T2k4dllYQndjeTVwClpHVnVkSEoxYzNRdVkyOXRMM0p2YjNSekwyUnpkSEp2YjNSallYZ3pMbkEzWXpBZkJnTlZIU01FR0RBV2dCVEUKcDdHa2V5eHgrdHZoUzVCMS84UVZZSVdKRURCVUJnTlZIU0FFVFRCTE1BZ0dCbWVCREFFQ0FUQS9CZ3NyQmdFRQpBWUxmRXdFQkFUQXdNQzRHQ0NzR0FRVUZCd0lCRmlKb2RIUndPaTh2WTNCekxuSnZiM1F0ZURFdWJHVjBjMlZ1ClkzSjVjSFF1YjNKbk1Ed0dBMVVkSHdRMU1ETXdNYUF2b0MyR0syaDBkSEE2THk5amNtd3VhV1JsYm5SeWRYTjAKTG1OdmJTOUVVMVJTVDA5VVEwRllNME5TVEM1amNtd3dIUVlEVlIwT0JCWUVGQlF1c3hlM1dGYkxybEFKUU9ZZgpyNTJMRk1MR01CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUc5dzBCCkFRc0ZBQU9DQVFFQTJVemd5ZldFaURjeDI3c1Q0clA4aTJ0aUVteFl0MGwrUEFLM3FCOG9ZZXZPNEM1ejcwa0gKZWpXRUh4MnRhUERZL2xhQkwyMS9XS1p1TlRZUUhIUEQ1YjF0WGdIWGJuTDdLcUM0MDFkazVWdkNhZFRRc3ZkOApTOE1Yam9oeWM5ejkvRzI5NDhrTGptRTZGbGg5ZERZclZZQTl4Mk8raEVQR09hRU9hMWVlUHluQmdQYXl2VWZMCnFqQnN0ekxoV1ZRTEdBa1hYbU5zKzVablBCeHpESk9MeGhGMkpJYmVRQWNINUgwdFpyVWxvNVpZeU9xQTdzOXAKTzViODVvM0FNL09KK0NrdEZCUXRmdkJoY0pWZDl3dmx3UHNrK3V5T3kySEk3bU54S0tnc0JUdDM3NXRlQTJUdwpVZEhraFZOY3NBS1gxSDdHTk5MT0VBRGtzZDg2d3VvWHZnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRE1LQkNYWHdaL0xQbzMKZjNqTEdyL2poTUVzU2Zna09xKzhrTlBKcVc3T2xrQms0a2VrZWhLRVVVQ0MwUHdUazgrbnp0Skg3bzBEOUNaaApGblVvaUhlZ2ZEc01ERTVhaFV4eG5UNXM5Zlh2b0ZSakp5WFFEdFZYb0dVUE1ubzJlVkdYYi81Qm1LeVNJMDVpCkNweUgrTVQvWERxYXdwYVdmbEwyeTl6WStVdjRpZEFYbGRaQ1JwVUhITldXZjhPeUMvcFJiZndhYVYzRDJ6RjEKWnhyemdiSHFnd1l6ZERzZ2F1ZHZOejdKaHMrQ2hDcS9SUDVoTEhjZDc1eW01bmppTFZsVmcvYUZJS09IT2wyZwpURXZ0OFlnY013VEloMDY0a3FqVUt4OVAwZkJKWUszcFdGaHpYcGhDR2lndTdTd3EyYnpGTkZabjY1SEdtSDBJCmNUSzFZTUpuQWdNQkFBRUNnZ0VCQUxlRm1JeUtWb3ZDUWRmYjFoazJIYU1IOXFLNmg3OEJwbkpxK29lQXNPUXkKdXdZMVIxTzZqS1MzYWJkdTUvc3RWM0V4QVdTNk03ZUhKVzBIUkNCQXRORG1mQ256Y2dmN1plR0lDZExuTThMSwpMTEhKUWp1SzZndFFXeWhUSnZ1TENXYUp2VlQ0U3NFL3pibGljcDNrYWlwbm5TTDdvMlQ3ZjlidEljVkdMUjNvCklhNU1SWnZ3ZDRHZzBkakErNUIwNWhXU3lDT3k0OHJFVzVKMUdCdC90eTBlaHhEOVVUVS9nb0ViL1Q1TXY1OVYKMWY2elNjS0lHbTh3emx5UnVZbWZwTkwrYjFkdFVUb1NUdVA5R0loU3FWTFN1NUJpR2RTMk81MFhqOWVUQlFhRgpRZUtrN002dWdjanZtZHdzTW4vdHM1T2pvVjY0bk10QlNWemY1VWhJdm1rQ2dZRUE2aGQwZWFHK3J1TFhKTDQwCncreUVuUDZtTktYQkI3eVNTWkVtck1aOWxGVUFxOVdQUk9pZnQ5Tm1vc1BGWi9QMDNBcWFhb3cxTGJmdjBMMFQKQ0hyNkJZSGhtYkNVTjJ6TExrRjZSVnI4NUhtQUxjdVhyajVEM3pZd3lZVmVJOThzV0RZcGVsaWtnOUFnNUFtagpNc3ZBTnRYRElJQmlXTkFQQzJoWXhORisrTHNDZ1lFQTMwTm15ZDFzSi9UaFJvUFpoK2dMNmZ0S2RySE1EWk1zCjRHZkI5K2FDTDNtR3NwU094MTlHOHJmbG9ZU2xNTE5HdnlZcGo1SGg1aHJnQXc4aGVBS3BFRmxFVTdBcm54dVcKZmwwc2J3RkhwN05pZUZscGFPdzU2Mm9FN3c1M2pPRHBIQ1ZLSFphQ0lHZjVLSS9tQmRuVWZYZ1JzSzExdjZMTwpJaExYMFNSM3FFVUNnWUFscUpaTlJ1NzFGWHNFNXpCMzRHSEpHOUpESC9NNHVtWlNQVzZhVnVnMjU2SFBBdkVrClpjUGovN2RBTWZ4YzU4c1padjlHYXIzWFdBTFZjc1ZRRlBDSjJFWWh3bDFsdVRQS2dqQVlYalhXejVFR1RQMWUKdzVlSm5oOGxIRFp6ME9CQ1pKd3htWGNGMllLaERNZmJVUm5mK0cyR21nQzRSdWhVcm5teFYvNTBKd0tCZ0RmSAo2VWlLTDltVHp5MEZDRFp5ZlhlS04wS01qWVRldnBtYWt0WFRHN2VzejBDUzZWRmF0cWt4MVFlVDBvbm1ZTWlsClNrRDZtOHdYN3R3VXpiSGtTRVV6YUdUWVlTMnhnTm8xZ1VLQ3VWcG04VFZNY1krclpaVXh1ZVhZWVhvclAxS3UKNW1PYUZRenZyVXE3R1NkaEV6djk0YjJZdVJDV0pwWlF5dWNRQzIxWkFvR0FKbnNGeHl4ZmFXajFEVHUxcEttNQpTSHQvL0cyRGZteHhKQ05aTFZMUHJYVDJhWmdrNWQwMW5Zb3dydCtscCtiSXBLc09BS2MxamxtRVNwT2VaTEU1Cmk0UVV0eEs3SnV5dHNNZXdqUCtYdmc3VFNEN3d1bW95Vkh6RS9VOTBYcldPOVJJd1VlZFpmOFg4bjVPNCtaRisKeWpqaWNlcGY1ci9DaFNhZG1jM1RwMFk9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0Kkind: Secretmetadata:name: arcadia-wildcardtype: kubernetes.io/tls---apiVersion: k8s.nginx.org/v1kind: VirtualServermetadata:name: arcadiaspec:host: $nginx_ingress tls:secret: arcadia-wildcard # Represents the server certificateredirect:enable: true # Always redirect to https if incoming request is httpupstreams:- name: arcadia-usersservice: arcadia-usersport: 80healthCheck: # This is the most basic healthcheck config for more info follow this link https://docs.</description>
-    </item>
-    
-    <item>
-      <title>IAM Role</title>
-      <link>/010_intro/selfpaced/030_iam_role_1/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/010_intro/selfpaced/030_iam_role_1/</guid>
-      <description>  Follow this deep link to find your Cloud9 EC2 instance
-  Select the instance, then choose Actions / Instance Settings / Attach/Replace IAM Role
-  Choose eksworkshop-admin from the IAM Role drop down, and select Apply  </description>
     </item>
     
     <item>
@@ -241,15 +199,6 @@ Therefor we don&amp;rsquo;t want to allow any kind of automated tool to access t
 We are going to block not only malicious bots but also tools like curl.
  Try and access the stock microservice and get data with curl.  curl -k https://$nginx_ingress/v1/stock/ticker/allThe request will succeed.
 Apply the bot config  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: appprotect.</description>
-    </item>
-    
-    <item>
-      <title>Cloud 9</title>
-      <link>/010_intro/040_cloud9_1/</link>
-      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
-      
-      <guid>/010_intro/040_cloud9_1/</guid>
-      <description>Open the Cloud9 console, and click on Open IDE. This will open a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and a terminal. We will be using it for the rest of the workshop.  Ad blockers, javascript disablers, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted.</description>
     </item>
     
     <item>

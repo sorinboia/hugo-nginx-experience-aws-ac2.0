@@ -7,6 +7,4 @@ chapter = true
 pre = "<b>2. </b>"
 +++
 
-Deploy NGINX infrastructure using Terraform
-
-We will start by using Terraform to deploy the initial infrastructure which includes the Amazon Elastic Kubernetes Service and the EC2 instance for the Nginx Controller.
+In UDF a startup script will automatically deploy the EKS cluster and the Nginx Controller.

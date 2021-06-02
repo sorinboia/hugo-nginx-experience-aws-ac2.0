@@ -17,8 +17,10 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/020_terraform/010_terraform_apply_1/</guid>
-      <description>Go to the &amp;ldquo;terraform&amp;rdquo; directory where we can find the terraform plan.  cd terraform Run the following commands, terraform plan will show us what it is going to be deployed in AWS by Terraform:  terraform init terraform plan Now let&amp;rsquo;s deploy the environment  terraform apply --auto-approve It will take around 10 minutes for Terraform and AWS to finish the initial deployment.
-Please continue to the next page to learn about Kubernetes and Amazon EKS basics.</description>
+      <description>All configuration and management of the infrastructure will be done from the Jumphost.
+SSH into the Jumphost.
+  Watch the terraform deployment status.
+  tail -f startup/startup.logWhen the the ALL IS DONE message will appear in the logs you can continue.</description>
     </item>
     
     <item>
@@ -37,10 +39,9 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/020_terraform/030_eks_verification_1/</guid>
-      <description>Wait for Terraform to finish and verify the deployment is working as expected and we are able to control the Kubernetes environment.
- We need to save the remote access config for the Kubernetes cluster locally:  mkdir ~/.kube/ terraform output &amp;gt; ~/.kube/configCheck and see that our cluster is up an running.
+      <description> Check and see that our cluster is up an running.
 Below we should see our two K8s worker nodes:  kubectl get nodesOutput
-NAME STATUS ROLES AGE VERSIONip-10-0-3-204.</description>
+NAME STATUS ROLES AGE VERSIONip-10-0-3-204.eu-central-1.compute.internal Ready &amp;lt;none&amp;gt; 100s v1.19.6-eks-49a6c0  Go to the lab directory  cd lab</description>
     </item>
     
   </channel>
