@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx Controller on Nginx Experience</title>
+    <link>/070_controller/</link>
+    <description>Recent content in Nginx Controller on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate><atom:link href="/070_controller/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Accessing the Nginx Controller</title>
+      <link>/070_controller/010_accessing_controller/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_controller/010_accessing_controller/</guid>
+      <description>The Nginx Controller has already been deployed with the terraform declaration, we need to find the public IP address.  cd terraformexport controller_ip=$(terraform state show &amp;quot;aws_instance.controller&amp;quot; | grep &amp;quot;public_ip&amp;quot; | grep -v &amp;quot;associate_public_ip_address&amp;quot; | cut -d&#39;&amp;quot;&#39; -f2)curl -k -c cookie.txt -X POST --url &amp;quot;https://$controller_ip/api/v1/platform/login&amp;quot; --header &#39;Content-Type: application/json&#39; --data &#39;{&amp;quot;credentials&amp;quot;: {&amp;quot;type&amp;quot;: &amp;quot;BASIC&amp;quot;,&amp;quot;username&amp;quot;: &amp;quot;admin@nginx.com&amp;quot;,&amp;quot;password&amp;quot;: &amp;quot;Admin2021&amp;quot;}}&#39;export controller_apikey=$(curl -k -sb cookie.txt -c cookie.txt https://$controller_ip/api/v1/platform/global | jq .currentStatus.agentSettings.apiKey | tr -d &#39;&amp;quot;&#39;)terraform state show &amp;quot;aws_instance.</description>
+    </item>
+    
+    <item>
+      <title>Microgateway deployment</title>
+      <link>/070_controller/020_microgateway/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_controller/020_microgateway/</guid>
+      <description>Deploy the microgateway with the following configuration.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: microgatewayspec:replicas: 1selector:matchLabels:app: microgatewaytemplate:metadata:labels:app: microgatewayspec:containers:- name: microgatewayimage: sorinboia/arcadia-microgateway:v1imagePullPolicy: Alwaysenv:- name: ENV_CONTROLLER_API_URLvalue: https://$controller_ip:8443/1.4- name: ENV_CONTROLLER_API_KEYvalue: $controller_apikeyports:- containerPort: 80- containerPort: 443---apiVersion: v1kind: Servicemetadata:name: microgatewayspec:selector:app: microgatewayports:- port: 80targetPort: 80name: http- port: 443targetPort: 443name: httpsexternalTrafficPolicy: Localtype: LoadBalancerEOFFrom now on we will only use the Controller GUI do to all of our configuration.</description>
+    </item>
+    
+    <item>
+      <title>Build the configuration</title>
+      <link>/070_controller/030_configuration/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_controller/030_configuration/</guid>
+      <description>Create an environment  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;Environments&amp;rdquo; -&amp;gt; &amp;ldquo;Create Environment&amp;rdquo; In all the fields, enter the following value: prod.
+Click on &amp;ldquo;View API Request&amp;rdquo;.
+All the configuration on the Nginx Controller can be easlly automated with external orchestration systems, this view can help you in understanding how to generate the configuration API calls.
+The output will look like this: Output
+{&amp;#34;metadata&amp;#34;: {&amp;#34;name&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;displayName&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;description&amp;#34;: &amp;#34;prod&amp;#34;,&amp;#34;tags&amp;#34;: [&amp;#34;prod&amp;#34;]},&amp;#34;desiredState&amp;#34;: {}}</description>
+    </item>
+    
+    <item>
+      <title>Import the OpenApi definition</title>
+      <link>/070_controller/040_apis/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_controller/040_apis/</guid>
+      <description>Next we are going to publish the application APIs to the world.
+There are two ways of creating this configuration, the first one is manual similar to the way we performed the configuration until this point and the second one is described bellow.
+As part of their development cycle, the developers of the Arcadia application are generating an OpenApi specification to describe their APIs.
+We are going to use this API specification in order to publish the services to the world.</description>
+    </item>
+    
+    <item>
+      <title>Explore the configuration</title>
+      <link>/070_controller/050_explore/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_controller/050_explore/</guid>
+      <description>We have automatically done all our configuration. Let explore it.
+ Navigate to the imported configuration:  &amp;ldquo;N&amp;rdquo; -&amp;gt; &amp;ldquo;Services&amp;rdquo; -&amp;gt; &amp;ldquo;APIs&amp;rdquo; -&amp;gt; Click &amp;ldquo;arcadia-api&amp;rdquo; -&amp;gt; Click the edit button Inspect the published APIs  Click &amp;ldquo;Routing&amp;rdquo; You can observe the &amp;ldquo;arcadia-stocks&amp;rdquo; component. This is the only API we have published and is in charge of responding with current crypto currencies prices.
+This API is also accessed by the browser application and is not limited.</description>
+    </item>
+    
+    <item>
+      <title>Testing the APIs</title>
+      <link>/070_controller/060_test/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/070_controller/060_test/</guid>
+      <description>Our APIs are published, lets verify all works as expected.
+ Check that the authentication is failing when not providing an API key  curl -k# https://$microhost/v1/stock/ticker/allOutput
+&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;401 Authorization Required&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;center&amp;gt;&amp;lt;h1&amp;gt;401 Authorization Required&amp;lt;/h1&amp;gt;&amp;lt;/center&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx&amp;lt;/center&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; Try again but this time including the API key and the test-client value  curl -k# https://$microhost/v1/stock/ticker/all --header &amp;quot;apikey: 0123456789&amp;quot;Output
+{&amp;#34;btc&amp;#34;:{&amp;#34;ticker&amp;#34;:{&amp;#34;symbol&amp;#34;:&amp;#34;tBTCUSD&amp;#34;,&amp;#34;bid&amp;#34;:53783,&amp;#34;bidSize&amp;#34;:9.98263374,&amp;#34;ask&amp;#34;:53789,&amp;#34;askSize&amp;#34;:8.07079989,&amp;#34;dailyChange&amp;#34;:-1057,&amp;#34;dailyChangePerc&amp;#34;:-0.0193,&amp;#34;lastPrice&amp;#34;:53789,&amp;#34;volume&amp;#34;:6229.6409748,&amp;#34;high&amp;#34;:56432,&amp;#34;low&amp;#34;:53441}},&amp;#34;eth&amp;#34;:{&amp;#34;ticker&amp;#34;:{&amp;#34;symbol&amp;#34;:&amp;#34;tETHUSD&amp;#34;,&amp;#34;bid&amp;#34;:2767.1,&amp;#34;bidSize&amp;#34;:334.64948837000003,&amp;#34;ask&amp;#34;:2767.9,&amp;#34;askSize&amp;#34;:198.96622354000002,&amp;#34;dailyChange&amp;#34;:55.8,&amp;#34;dailyChangePerc&amp;#34;:0.0206,&amp;#34;lastPrice&amp;#34;:2767.3,&amp;#34;volume&amp;#34;:72050.81102921,&amp;#34;high&amp;#34;:2796.1,&amp;#34;low&amp;#34;:2661.5}},&amp;#34;ltc&amp;#34;:{&amp;#34;ticker&amp;#34;:{&amp;#34;symbol&amp;#34;:&amp;#34;tLTCUSD&amp;#34;,&amp;#34;bid&amp;#34;:256.64,&amp;#34;bidSize&amp;#34;:632.84153383,&amp;#34;ask&amp;#34;:256.82,&amp;#34;askSize&amp;#34;:1257.55131368,&amp;#34;dailyChange&amp;#34;:0.23,&amp;#34;dailyChangePerc&amp;#34;:0.0009,&amp;#34;lastPrice&amp;#34;:256.72,&amp;#34;volume&amp;#34;:36688.87741606,&amp;#34;high&amp;#34;:262.73,&amp;#34;low&amp;#34;:250.29}}} The configuration is rate limiting to 5 request per 1 minute sliding window.</description>
+    </item>
+    
+  </channel>
+</rss>

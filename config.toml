@@ -24,4 +24,4 @@ order = [".jpg$", ".gif$"]
 
 name = "AWS_S3_deployment"
 
-URL = "s3://aws2.nginx-experience.com?region=eu-central-1"
+URL = "s3://aws.nginx-experience.com?region=eu-central-1"

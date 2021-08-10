@@ -6,11 +6,7 @@
     <description>Recent content in ...on your own on Nginx Experience</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
-    
-	<atom:link href="/010_intro/selfpaced/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate><atom:link href="/010_intro/selfpaced/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cloud Formation</title>
       <link>/010_intro/selfpaced/020_cloudformation_1/</link>

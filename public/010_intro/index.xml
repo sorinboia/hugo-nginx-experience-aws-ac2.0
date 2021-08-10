@@ -6,11 +6,7 @@
     <description>Recent content in Intro to the workshop on Nginx Experience</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2020 14:11:17 +0300</lastBuildDate>
-    
-	<atom:link href="/010_intro/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Jul 2020 14:11:17 +0300</lastBuildDate><atom:link href="/010_intro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS Workshop environment</title>
       <link>/010_intro/005_workshop_path/</link>
