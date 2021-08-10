@@ -6,11 +6,7 @@
     <description>Recent content in Security on Nginx Experience</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
-    
-	<atom:link href="/060_security/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate><atom:link href="/060_security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ELK deployment</title>
       <link>/060_security/010_elk_deployment/</link>

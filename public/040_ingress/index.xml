@@ -6,11 +6,7 @@
     <description>Recent content in Increase availability, security and application performance with Kubernetes Nginx Ingress on Nginx Experience</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
-    
-	<atom:link href="/040_ingress/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate><atom:link href="/040_ingress/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nginx Kubernetes Ingress Installation</title>
       <link>/040_ingress/010_ingress_install_1/</link>
@@ -49,7 +45,7 @@ Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;
       
       <guid>/040_ingress/040_oidc_1/</guid>
       <description>Due to unsecure credentials storage of the application it has been decided to migrate to Okta which will provide user management and authentication without the need to store localy personal information.
- Redeploy the front and microservice to a new version in order to use Openid.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: arcadia-frontendspec:replicas: 2selector:matchLabels:app: arcadia-frontendtemplate:metadata:labels:app: arcadia-frontendspec:containers:- name: arcadia-frontendimage: sorinboia/arcadia-frontend:oktav0.</description>
+ Redeploy the front and microservice to a new version in order to use Openid.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: apps/v1kind: Deploymentmetadata:name: arcadia-frontendspec:replicas: 2selector:matchLabels:app: arcadia-frontendtemplate:metadata:labels:app: arcadia-frontendspec:containers:- name: arcadia-frontendimage: sorinboiaf5/arcadia-frontend:oktav0.</description>
     </item>
     
     <item>

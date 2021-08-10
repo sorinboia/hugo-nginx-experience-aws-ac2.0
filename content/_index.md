@@ -25,7 +25,7 @@ Start by using automation and use Infrastructure as Code concepts to deploy the 
 2.	Authenticate users with OpenID Connect and offload authentication processes from the application to Nginx
 3.	Zero Trust - Applying Mutual TLS authentication with NGINX 
 
- #### [Serive Mesh](/050_service_mesh/)
+ #### [Service Mesh](/050_service_mesh/)
 1.	Trace your application functions within the mesh
 2.	Secure the interservice communication
  

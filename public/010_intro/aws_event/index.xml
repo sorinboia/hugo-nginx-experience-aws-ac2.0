@@ -6,11 +6,7 @@
     <description>Recent content in ...at an AWS event on Nginx Experience</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate>
-    
-	<atom:link href="/010_intro/aws_event/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate><atom:link href="/010_intro/aws_event/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS Workshop Portal</title>
       <link>/010_intro/aws_event/010_aws_wokshop_portal_1/</link>

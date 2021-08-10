@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deploy The Arcadia Crypto application on Nginx Experience</title>
+    <link>/030_application/</link>
+    <description>Recent content in Deploy The Arcadia Crypto application on Nginx Experience</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2020 14:37:59 +0300</lastBuildDate><atom:link href="/030_application/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>App deployment</title>
+      <link>/030_application/010_app_deployment_1/</link>
+      <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
+      
+      <guid>/030_application/010_app_deployment_1/</guid>
+      <description>Deploy the app  kubectl apply -f files/4ingress/1arcadia_delpoy.yamlOutput
+deployment.apps/arcadia-db createdservice/arcadia-db createddeployment.apps/arcadia-frontend createdservice/arcadia-frontend createddeployment.apps/arcadia-login createdservice/arcadia-login createddeployment.apps/arcadia-stock-transaction createdservice/arcadia-stock-transaction createddeployment.apps/arcadia-stocks createdservice/arcadia-stocks createddeployment.apps/arcadia-users createdservice/arcadia-users created Check that all is deployed and working as expected:  kubectl get podsOutput
+NAME READY STATUS RESTARTS AGEarcadia-db-696f979799-sdzb6 1/1 Running 0 36sarcadia-frontend-57ff4f888-v4ggh 1/1 Running 0 36sarcadia-login-c995f8dcc-7gvvp 1/1 Running 0 35sarcadia-stock-transaction-b996cddb9-xzckf 1/1 Running 0 34sarcadia-stocks-dd58548f7-k7tg7 1/1 Running 0 34sarcadia-users-768dddd844-8s75q 1/1 Running 0 33s kubectl get svc -owideOutput</description>
+    </item>
+    
+  </channel>
+</rss>
