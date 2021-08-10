@@ -13,7 +13,7 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/050_service_mesh/020_nsm_deploy/</guid>
-      <description>Deploy all Nginx components in the Kubernetes environment  nginx-meshctl deploy --registry-server &amp;quot;sorinboia&amp;quot; --image-tag 0.9.0 --sample-rate 1 --disable-auto-injectOutput
+      <description>Deploy all Nginx components in the Kubernetes environment  nginx-meshctl deploy --registry-server &amp;quot;sorinboiaf5&amp;quot; --image-tag 0.9.0 --sample-rate 1 --disable-auto-injectOutput
 Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;#34;...Created namespace &amp;#34;nginx-mesh&amp;#34;.W0502 08:20:37.942849 7607 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use apiextensions.k8s.io/v1 CustomResourceDefinitionCreated SpiffeID CRD.W0502 08:20:38.076108 7607 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use admissionregistration.k8s.io/v1 ValidatingWebhookConfigurationWaiting for SPIRE to be running.</description>
     </item>
     

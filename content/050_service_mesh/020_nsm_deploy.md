@@ -9,7 +9,7 @@ weight = 20
 1. Deploy all Nginx components in the Kubernetes environment
 
 ```
-nginx-meshctl deploy --registry-server "sorinboia" --image-tag 0.9.0 --sample-rate 1 --disable-auto-inject
+nginx-meshctl deploy --registry-server "sorinboiaf5" --image-tag 0.9.0 --sample-rate 1 --disable-auto-inject
 ```
 {{< output >}}
 Deploying NGINX Service Mesh Control Plane in namespace "nginx-mesh"...
