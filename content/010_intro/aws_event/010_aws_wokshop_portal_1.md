@@ -20,4 +20,4 @@ This workshop creates an AWS account and a Cloud9 environment. You will need the
 
 ![Event Engine AWS Console](/images/ee-aws-console.png)
 
-4. Accept the defaults and make sure the region is `eu-central-1`. Click on **Open AWS Console**. This will open AWS Console in a new browser tab.
+4. Accept the defaults and make sure the region is `eu-west-1`. Click on **Open AWS Console**. This will open AWS Console in a new browser tab.
