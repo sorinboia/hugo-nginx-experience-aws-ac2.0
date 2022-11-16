@@ -34,14 +34,4 @@ Start by using automation and use Infrastructure as Code concepts to deploy the 
  1. Protect you application from fraudulent interactions and separate legitimate traffic from unwanted one 
  2. Block unwanted Bot traffic to your application
  
-
-#### [The Nginx Controller](/070_controller/)
-1.	Publish the application APIs with NGINX Micro Gateway
-Deploy and publish your API endpoints with NGINX Micro Gateway within your Kubernetes environment
-2.	Enhance APIs with JWT or Access Key token authentication
-Offload API authentication processes to your API gateway and concentrate 
-3.	Apply API rate limit and spike arrest 
-Protect your APIs from abuse and enforce monetization controls 
-4.	Monitor your application performance
-Discover your application performance, understand and react when application SLAs are impacted
  
