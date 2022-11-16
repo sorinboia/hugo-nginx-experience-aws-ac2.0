@@ -10,13 +10,15 @@ weight = 20
 
 ```
 nginx-meshctl deploy --registry-server "$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com" --image-tag 0.9.0 --sample-rate 1 --disable-auto-inject
+kubectl get svc -n nginx-mesh grafana -oyaml | sed 's/ClusterIP/LoadBalancer/g' | kubectl apply -f -
+kubectl get svc -n nginx-mesh zipkin -oyaml | sed 's/ClusterIP/LoadBalancer/g' | kubectl apply -f -
 ```
 {{< output >}}
 Deploying NGINX Service Mesh Control Plane in namespace "nginx-mesh"...
 Created namespace "nginx-mesh".
-W0502 08:20:37.942849    7607 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+W1116 07:38:27.529470    3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
 Created SpiffeID CRD.
-W0502 08:20:38.076108    7607 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16+, unavailable in v1.22+; use admissionregistration.k8s.io/v1 ValidatingWebhookConfiguration
+W1116 07:38:27.834807    3517 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16+, unavailable in v1.22+; use admissionregistration.k8s.io/v1 ValidatingWebhookConfiguration
 Waiting for SPIRE to be running...done.
 Deployed Spire.
 Deployed NATS server.
@@ -30,6 +32,12 @@ All resources created. Testing the connection to the Service Mesh API Server...
 Connected to the NGINX Service Mesh API successfully.
 Verifying that all images were pulled...done.
 NGINX Service Mesh is running.
+ubuntu@jumphost:~/lab$ kubectl get svc -n nginx-mesh grafana -oyaml | sed 's/ClusterIP/LoadBalancer/g' | kubectl apply -f -
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+service/grafana configured
+ubuntu@jumphost:~/lab$ kubectl get svc -n nginx-mesh zipkin -oyaml | sed 's/ClusterIP/LoadBalancer/g' | kubectl apply -f -
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+service/zipkin configured
 {{< /output >}}
 
 2. All components have been deployed in the "nginx-mesh" namespace, run the following command and validate that all pods are running

@@ -113,6 +113,9 @@ Please note that it might take some time for the DNS names to become available.
 
 4. Save the EXTERNAL-IPs as env variables for later use
 ```
-export dashboard_nginx_ingress=$(kubectl get svc dashboard-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
-export nginx_ingress=$(kubectl get svc nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
+dingress=$(kubectl get svc dashboard-nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
+echo "export dashboard_nginx_ingress=$dingress" >> ~/.bashrc 
+ningress=$(kubectl get svc nginx-ingress --namespace=nginx-ingress | tr -s " " | cut -d' ' -f4 | grep -v "EXTERNAL-IP")
+echo "export nginx_ingress=$ningress" >> ~/.bashrc 
+source ~/.bashrc
 ```
