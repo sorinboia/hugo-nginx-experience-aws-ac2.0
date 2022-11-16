@@ -7,4 +7,4 @@ chapter = true
 pre = "<b>2. </b>"
 +++
 
-In UDF a startup script will automatically deploy the EKS cluster and the Nginx Controller.
+The UDF a startup script will automatically deploy the EKS cluster and the Nginx Controller.
