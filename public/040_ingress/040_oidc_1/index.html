@@ -12,21 +12,21 @@
     <title>Authentication with Openid Connect and Okta :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1668587424" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1668587424" rel="stylesheet">
-    <link href="../../css/hybrid.css?1668587424" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1668587424" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1668587424" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1668587424" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1668587424" rel="stylesheet">
-    <link href="../../css/theme.css?1668587424" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1668587424" rel="stylesheet">
+    <link href="../../css/nucleus.css?1671102284" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1671102284" rel="stylesheet">
+    <link href="../../css/hybrid.css?1671102284" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1671102284" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1671102284" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1671102284" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1671102284" rel="stylesheet">
+    <link href="../../css/theme.css?1671102284" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1671102284" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1668587424" rel="stylesheet">
+    <link href="../../css/theme-green.css?1671102284" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1668587424"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1671102284"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1668587424"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1668587424"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1671102284"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1671102284"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1668587424"></script>
+<script type="text/javascript" src="../../js/search.js?1671102284"></script>
 
     
   </div>
@@ -755,7 +755,7 @@ metadata:
   name: jwk-secret
 type: nginx.org/jwk
 data:
-  jwk: eyJrZXlzIjpbeyJrdHkiOiJSU0EiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJINk8wYUlBMTNXVENickJjMzBuaV9RTllUdF9OWFRBMWZlcGdyUGdwalEiLCJ1c2UiOiJzaWciLCJlIjoiQVFBQiIsIm4iOiJoOGJyMmZYODRsVExINC1FREhfUWg2NXY5RXIwaUtlQkhST09xTmJ3dzFRYTNaVU9tMU42dE54Q3UtMU54d0x6Y25xOEszcEE1WVlVNkRFcTBhQWF4OEpxNlVhcEFrbVcxYkh3WnhTTnRHcUwyTXVlM3VFNHdnRWF6VlRrMjhqY2FxRmpZRDlVaU12UG9IZnFHUjRsVXhxbEZiNTVDdnJCZ3VnNUFkaXdoNWl4d3NSODZ0TUpFSE84cGxVSmtqd3JFNmYtSVlTNHBxelo5X2RXSGtJcmZ3dEtlZ000VzBqSm1kX3lBc0I3VVVlWGp1dzNRMjhoZWE4UXp5dVZ5YUVzcTJRM01iWjBmdTJ2U3RlMjNkakxiaXR1b2JoTzVCaEhEYkpaZUVFVjlMellsSHRSSEx6ZUV0OFdLTS1oWUNlSXpQSkt4OGtzdlJTRDE2Tk4xY19NZVEifV19
+  jwk: eyJrZXlzIjpbeyJrdHkiOiJSU0EiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJINk8wYUlBMTNXVENickJjMzBuaV9RTllUdF9OWFRBMWZlcGdyUGdwalEiLCJ1c2UiOiJzaWciLCJlIjoiQVFBQiIsIm4iOiJoOGJyMmZYODRsVExINC1FREhfUWg2NXY5RXIwaUtlQkhST09xTmJ3dzFRYTNaVU9tMU42dE54Q3UtMU54d0x6Y25xOEszcEE1WVlVNkRFcTBhQWF4OEpxNlVhcEFrbVcxYkh3WnhTTnRHcUwyTXVlM3VFNHdnRWF6VlRrMjhqY2FxRmpZRDlVaU12UG9IZnFHUjRsVXhxbEZiNTVDdnJCZ3VnNUFkaXdoNWl4d3NSODZ0TUpFSE84cGxVSmtqd3JFNmYtSVlTNHBxelo5X2RXSGtJcmZ3dEtlZ000VzBqSm1kX3lBc0I3VVVlWGp1dzNRMjhoZWE4UXp5dVZ5YUVzcTJRM01iWjBmdTJ2U3RlMjNkakxiaXR1b2JoTzVCaEhEYkpaZUVFVjlMellsSHRSSEx6ZUV0OFdLTS1oWUNlSXpQSkt4OGtzdlJTRDE2Tk4xY19NZVEifSx7Imt0eSI6IlJTQSIsImFsZyI6IlJTMjU2Iiwia2lkIjoiMnBjUjZmRURhaFZoY3oxSXlhaHBZOHFzTTN5UlJQTWJybFEzaElxelY4NCIsInVzZSI6InNpZyIsImUiOiJBUUFCIiwibiI6InRsZHQ4VThpazlMeGtSOXFwOEM3elA4ZDE1ZV9TRVFMb0NlTG0zcDVVV1lJR1ZqbjY4RzQ2dWo5bUcwRlkwTF9jR2ZYVTYyQVJyYUZIWk5HQVpyMnhacWNFU1cwVEctQzkyVk9USXpLUmlPNWZpQUNXZko2My0taWRMWmozczBOQzB3RF94bUN5a2JaRzVZS3ZDeU5uMmJHcTdxaUNuMlI2Wk9qQmx1ekthNWRQSzhETVl0b0M3VW1jZTZLdl9VYnhGVmw4RzRVLVJqQ1BlazhueTNxdTRDR2xOb29NdTNORzZoQVliNGVFbkUxalphYkx5SEJkNzBUNDJ6MHh3UEV1SXUwUWd2M2JNU0prVVRFNlB6WUdES2ttRVdBZXBNRV9SLS1iVllYc3d1RFpUbmxpM2dtbTRXeFE1SXNnVXlRSGlkV2p3R2VJdjFyZmZXLVFSRVBwUSJ9XX0=
 ---
 # Nginx Policy which will be be used in the Virtual Server to perform the JWT validation
 apiVersion: k8s.nginx.org/v1
@@ -1289,19 +1289,19 @@ Password: 1qaz!@#$</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1668587424"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1668587424"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1668587424"></script>
-    <script src="../../js/jquery.sticky.js?1668587424"></script>
-    <script src="../../js/featherlight.min.js?1668587424"></script>
-    <script src="../../js/highlight.pack.js?1668587424"></script>
+    <script src="../../js/clipboard.min.js?1671102284"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1671102284"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1671102284"></script>
+    <script src="../../js/jquery.sticky.js?1671102284"></script>
+    <script src="../../js/featherlight.min.js?1671102284"></script>
+    <script src="../../js/highlight.pack.js?1671102284"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1668587424"></script>
-    <script src="../../js/learn.js?1668587424"></script>
-    <script src="../../js/hugo-learn.js?1668587424"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1671102284"></script>
+    <script src="../../js/learn.js?1671102284"></script>
+    <script src="../../js/hugo-learn.js?1671102284"></script>
 
-    <link href="../../mermaid/mermaid.css?1668587424" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1668587424"></script>
+    <link href="../../mermaid/mermaid.css?1671102284" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1671102284"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
