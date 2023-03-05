@@ -34,9 +34,9 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEelk-web LoadBalancer 172.20.179.34 
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/040_ingress/010_ingress_install_1/</guid>
-      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared an installation script.
- Run the command bellow:  ./files/4ingress/ingress_install.shOutput
-Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;...remote: Enumerating objects: 1270, done.remote: Counting objects: 100% (1270/1270), done.remote: Compressing objects: 100% (799/799), done.remote: Total 34666 (delta 552), reused 1008 (delta 422), pack-reused 33396Receiving objects: 100% (34666/34666), 46.</description>
+      <description>We are going to use the Nginx Helm installation.
+ Run the command bellow:  kubectl create ns nginx-ingresshelm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yamlOutput
+Will put the output Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &amp;quot;tcp&amp;quot;service.beta.kubernetes.io/aws-load-balancer-type: nlbspec:type: LoadBalancerports:- port: 80targetPort: 8080protocol: TCPname: httpselector:app: nginx-ingressEOFCheck what we did so far is actually working:  kubectl get svc --namespace=nginx-ingressOutput</description>
     </item>
     
     <item>
@@ -76,8 +76,8 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/050_service_mesh/020_nsm_deploy/</guid>
-      <description>Deploy all Nginx components in the Kubernetes environment  nginx-meshctl deploy --registry-server &amp;quot;$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com&amp;quot; --image-tag 0.9.0 --sample-rate 1 --disable-auto-injectkubectl get svc -n nginx-mesh grafana -oyaml | sed &#39;s/ClusterIP/LoadBalancer/g&#39; | kubectl apply -f -kubectl get svc -n nginx-mesh zipkin -oyaml | sed &#39;s/ClusterIP/LoadBalancer/g&#39; | kubectl apply -f -Output
-Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;#34;...Created namespace &amp;#34;nginx-mesh&amp;#34;.W1116 07:38:27.529470 3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.</description>
+      <description>Deploy all Nginx components in the Kubernetes environment  kubectl apply -f files/5service_mesh/zipkin.yamlnginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;quot;zipkin&amp;quot; --tracing-address &amp;quot;zipkin.zipkin.svc.cluster.local:9411&amp;quot; --persistent-storage off --disable-auto-injectOutput
+Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;#34;...Created namespace &amp;#34;nginx-mesh&amp;#34;.W1116 07:38:27.529470 3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use apiextensions.k8s.io/v1 CustomResourceDefinitionCreated SpiffeID CRD.W1116 07:38:27.834807 3517 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use admissionregistration.</description>
     </item>
     
     <item>

@@ -9,9 +9,8 @@ weight = 20
 1. Deploy all Nginx components in the Kubernetes environment
 
 ```
-nginx-meshctl deploy --registry-server "$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com" --image-tag 0.9.0 --sample-rate 1 --disable-auto-inject
-kubectl get svc -n nginx-mesh grafana -oyaml | sed 's/ClusterIP/LoadBalancer/g' | kubectl apply -f -
-kubectl get svc -n nginx-mesh zipkin -oyaml | sed 's/ClusterIP/LoadBalancer/g' | kubectl apply -f -
+kubectl apply -f files/5service_mesh/zipkin.yaml
+nginx-meshctl deploy --sample-rate 1 --tracing-backend "zipkin" --tracing-address "zipkin.zipkin.svc.cluster.local:9411" --persistent-storage off --disable-auto-inject
 ```
 {{< output >}}
 Deploying NGINX Service Mesh Control Plane in namespace "nginx-mesh"...

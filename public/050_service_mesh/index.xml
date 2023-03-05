@@ -13,8 +13,8 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/050_service_mesh/020_nsm_deploy/</guid>
-      <description>Deploy all Nginx components in the Kubernetes environment  nginx-meshctl deploy --registry-server &amp;quot;$AWS_ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com&amp;quot; --image-tag 0.9.0 --sample-rate 1 --disable-auto-injectkubectl get svc -n nginx-mesh grafana -oyaml | sed &#39;s/ClusterIP/LoadBalancer/g&#39; | kubectl apply -f -kubectl get svc -n nginx-mesh zipkin -oyaml | sed &#39;s/ClusterIP/LoadBalancer/g&#39; | kubectl apply -f -Output
-Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;#34;...Created namespace &amp;#34;nginx-mesh&amp;#34;.W1116 07:38:27.529470 3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.</description>
+      <description>Deploy all Nginx components in the Kubernetes environment  kubectl apply -f files/5service_mesh/zipkin.yamlnginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;quot;zipkin&amp;quot; --tracing-address &amp;quot;zipkin.zipkin.svc.cluster.local:9411&amp;quot; --persistent-storage off --disable-auto-injectOutput
+Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;#34;...Created namespace &amp;#34;nginx-mesh&amp;#34;.W1116 07:38:27.529470 3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use apiextensions.k8s.io/v1 CustomResourceDefinitionCreated SpiffeID CRD.W1116 07:38:27.834807 3517 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use admissionregistration.</description>
     </item>
     
     <item>

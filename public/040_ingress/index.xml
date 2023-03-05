@@ -13,9 +13,9 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/040_ingress/010_ingress_install_1/</guid>
-      <description>We are going to use the Nginx installation manifests based on the Nginx Ingress Controller installation guide. For simplicity - we have already prepared an installation script.
- Run the command bellow:  ./files/4ingress/ingress_install.shOutput
-Starting Nginx Ingress InstallCloning into &amp;#39;kubernetes-ingress&amp;#39;...remote: Enumerating objects: 1270, done.remote: Counting objects: 100% (1270/1270), done.remote: Compressing objects: 100% (799/799), done.remote: Total 34666 (delta 552), reused 1008 (delta 422), pack-reused 33396Receiving objects: 100% (34666/34666), 46.</description>
+      <description>We are going to use the Nginx Helm installation.
+ Run the command bellow:  kubectl create ns nginx-ingresshelm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yamlOutput
+Will put the output Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &amp;quot;tcp&amp;quot;service.beta.kubernetes.io/aws-load-balancer-type: nlbspec:type: LoadBalancerports:- port: 80targetPort: 8080protocol: TCPname: httpselector:app: nginx-ingressEOFCheck what we did so far is actually working:  kubectl get svc --namespace=nginx-ingressOutput</description>
     </item>
     
     <item>
