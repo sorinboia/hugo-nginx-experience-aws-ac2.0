@@ -11,10 +11,17 @@ We are going to use the Nginx Helm installation.
 
 ```
 kubectl create ns nginx-ingress
-helm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yaml
+helm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yaml -n nginx-ingress
 ```
 {{< output >}}
-Will put the output
+NAME: nginx-ingress
+LAST DEPLOYED: Sun Mar  5 10:47:01 2023
+NAMESPACE: nginx-ingress
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+The NGINX Ingress Controller has been installed.
 {{< /output >}}
   
 2. Expose the Nginx Ingress Dashboard.
@@ -36,7 +43,7 @@ spec:
     protocol: TCP
     name: http
   selector:
-    app: nginx-ingress
+    app: nginx-ingress-nginx-ingress
 EOF
 ```
 

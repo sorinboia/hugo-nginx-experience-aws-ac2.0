@@ -12,21 +12,21 @@
     <title>Service Mesh Visibility :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1678011012" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1678011012" rel="stylesheet">
-    <link href="../../css/hybrid.css?1678011012" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1678011012" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1678011012" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1678011012" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1678011012" rel="stylesheet">
-    <link href="../../css/theme.css?1678011012" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1678011012" rel="stylesheet">
+    <link href="../../css/nucleus.css?1678017122" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1678017122" rel="stylesheet">
+    <link href="../../css/hybrid.css?1678017122" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1678017122" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1678017122" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1678017122" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1678017122" rel="stylesheet">
+    <link href="../../css/theme.css?1678017122" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1678017122" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1678011012" rel="stylesheet">
+    <link href="../../css/theme-green.css?1678017122" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1678011012"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1678017122"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1678011012"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1678011012"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1678017122"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1678017122"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1678011012"></script>
+<script type="text/javascript" src="../../js/search.js?1678017122"></script>
 
     
   </div>
@@ -722,17 +722,12 @@ if (!doNotTrack) {
 <ol>
 <li>Get the svc external ip</li>
 </ol>
-<pre><code>kubectl get svc grafana zipkin -n nginx-mesh
+<pre><code>kubectl get svc zipkin -n zipkin
 </code></pre><pre>Output<br><output class="bash">
 NAME      TYPE           CLUSTER-IP     EXTERNAL-IP                                                                 PORT(S)          AGE
-grafana   LoadBalancer   172.20.176.7   a85065a76e142478fb29cdd2f2904e82-320541984.eu-central-1.elb.amazonaws.com   3000:31309/TCP   4d23h
 zipkin    LoadBalancer   172.20.88.44   a7c02ef8a39b74da4ad41085261859f8-765188493.eu-central-1.elb.amazonaws.com   9411:31661/TCP   4d23h
 </output></pre>
 <ol start="2">
-<li>Browse to the Grafana dashboard <code>http://&lt;GRAFANA-EXTERNAL-IP&gt;:3000</code></li>
-</ol>
-<p>You can get a general look for you application status. The Grafana dashboards can be customized to your hearts desire.</p>
-<ol start="3">
 <li>
 <p>Go and buy or sell crypto coin. We will use Zipkin to trace this operation through the different services.
 <img src="../../images/050_040_2.JPG" alt=""></p>
@@ -745,11 +740,11 @@ Click on the result that looks like the first entry.
 </li>
 <li>
 <p>When buy or selling crypto the HTTP from the browser is sent to the application.<br>
-<strong>1</strong> - First it gets to the Nginx Ingress<br>
-<strong>2</strong> - The ingress forwards it to the stock transaction service<br>
-<strong>3</strong> - In order to perform the operation the stock transaction service contacts the user service to get the current account id<br>
-<strong>4 and 5</strong> - Next will again contact the users service to get the account information ( balance and crypto currencies), the stocks service to get the current buy and sell prices.<br>
-Once the operation has been validated and approved it will be recorded in the database and a success response returned to the client.</p>
+<strong>1</strong> - We see the transaction coming from the user and processed by the stock transaction service<br>
+<strong>2</strong> - The stock transaction service contacts the user service in order to translate the user email address to the account id<br>
+<strong>3 and 4</strong> - Next will again contact the users service to get the account information ( balance and crypto currencies), the stocks service to get the current buy and sell prices.<br>
+Once the operation has been validated and approved it will be recorded in the database and a success response returned to the client.<br>
+<strong>5</strong> - The stock transaction service updates the user service in order to update the users balance</p>
 </li>
 </ol>
 <p><img src="../../images/nsm_trace.png" alt=""></p>
@@ -1188,19 +1183,19 @@ Once the operation has been validated and approved it will be recorded in the da
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1678011012"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1678011012"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1678011012"></script>
-    <script src="../../js/jquery.sticky.js?1678011012"></script>
-    <script src="../../js/featherlight.min.js?1678011012"></script>
-    <script src="../../js/highlight.pack.js?1678011012"></script>
+    <script src="../../js/clipboard.min.js?1678017122"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1678017122"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1678017122"></script>
+    <script src="../../js/jquery.sticky.js?1678017122"></script>
+    <script src="../../js/featherlight.min.js?1678017122"></script>
+    <script src="../../js/highlight.pack.js?1678017122"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1678011012"></script>
-    <script src="../../js/learn.js?1678011012"></script>
-    <script src="../../js/hugo-learn.js?1678011012"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1678017122"></script>
+    <script src="../../js/learn.js?1678017122"></script>
+    <script src="../../js/hugo-learn.js?1678017122"></script>
 
-    <link href="../../mermaid/mermaid.css?1678011012" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1678011012"></script>
+    <link href="../../mermaid/mermaid.css?1678017122" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1678017122"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

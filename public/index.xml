@@ -35,8 +35,8 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEelk-web LoadBalancer 172.20.179.34 
       
       <guid>/040_ingress/010_ingress_install_1/</guid>
       <description>We are going to use the Nginx Helm installation.
- Run the command bellow:  kubectl create ns nginx-ingresshelm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yamlOutput
-Will put the output Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &amp;quot;tcp&amp;quot;service.beta.kubernetes.io/aws-load-balancer-type: nlbspec:type: LoadBalancerports:- port: 80targetPort: 8080protocol: TCPname: httpselector:app: nginx-ingressEOFCheck what we did so far is actually working:  kubectl get svc --namespace=nginx-ingressOutput</description>
+ Run the command bellow:  kubectl create ns nginx-ingresshelm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yaml -n nginx-ingressOutput
+NAME: nginx-ingressLAST DEPLOYED: Sun Mar 5 10:47:01 2023NAMESPACE: nginx-ingressSTATUS: deployedREVISION: 1TEST SUITE: NoneNOTES:The NGINX Ingress Controller has been installed. Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.</description>
     </item>
     
     <item>
@@ -77,7 +77,7 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
       
       <guid>/050_service_mesh/020_nsm_deploy/</guid>
       <description>Deploy all Nginx components in the Kubernetes environment  kubectl apply -f files/5service_mesh/zipkin.yamlnginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;quot;zipkin&amp;quot; --tracing-address &amp;quot;zipkin.zipkin.svc.cluster.local:9411&amp;quot; --persistent-storage off --disable-auto-injectOutput
-Deploying NGINX Service Mesh Control Plane in namespace &amp;#34;nginx-mesh&amp;#34;...Created namespace &amp;#34;nginx-mesh&amp;#34;.W1116 07:38:27.529470 3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use apiextensions.k8s.io/v1 CustomResourceDefinitionCreated SpiffeID CRD.W1116 07:38:27.834807 3517 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16&amp;#43;, unavailable in v1.22&amp;#43;; use admissionregistration.</description>
+virtualserver.k8s.nginx.org/arcadia configuredubuntu@jumphost:~/lab$ kubectl apply -f files/5service_mesh/zipkin.yamlnamespace/zipkin createddeployment.apps/zipkin createdservice/zipkin createdubuntu@jumphost:~/lab$ nginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;#34;zipkin&amp;#34; --tracing-address &amp;#34;zipkin.zipkin.svc.cluster.local:9411&amp;#34; --persistent-storage off --disable-auto-injectFlag --sample-rate has been deprecated, and will be removed in a future release. OpenTelemetry (--sampler-ratio and --telemetry-exporters) is the preferred way to configure tracing.</description>
     </item>
     
     <item>
@@ -163,8 +163,8 @@ Apply the bot config  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: 
       
       <guid>/050_service_mesh/040_opentracing/</guid>
       <description>In order to be able see and monitor all of our application calls we will need to connect to the Grafana and Zipkin services
- Get the svc external ip  kubectl get svc grafana zipkin -n nginx-meshOutput
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEgrafana LoadBalancer 172.20.176.7 a85065a76e142478fb29cdd2f2904e82-320541984.eu-central-1.elb.amazonaws.com 3000:31309/TCP 4d23hzipkin LoadBalancer 172.20.88.44 a7c02ef8a39b74da4ad41085261859f8-765188493.eu-central-1.elb.amazonaws.com 9411:31661/TCP 4d23h Browse to the Grafana dashboard http://&amp;lt;GRAFANA-EXTERNAL-IP&amp;gt;:3000  You can get a general look for you application status.</description>
+ Get the svc external ip  kubectl get svc zipkin -n zipkinOutput
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEzipkin LoadBalancer 172.20.88.44 a7c02ef8a39b74da4ad41085261859f8-765188493.eu-central-1.elb.amazonaws.com 9411:31661/TCP 4d23h  Go and buy or sell crypto coin. We will use Zipkin to trace this operation through the different services.</description>
     </item>
     
     <item>

@@ -106,10 +106,7 @@ spec:
         enable: true
         path: /healthz
   routes:
-    - path: /v1/user      
-      location-snippets: |
-        opentracing_propagate_context;
-        opentracing_operation_name "nginx-ingress";       
+    - path: /v1/user          
       policies:
       - name: jwt-policy
       action:
@@ -119,22 +116,13 @@ spec:
             set:
             - name: okta-user
               value: \${jwt_claim_email}
-    - path: /v1/login
-      location-snippets: |
-        opentracing_propagate_context;
-        opentracing_operation_name "nginx-ingress";      
+    - path: /v1/login   
       action:
         pass: arcadia-login
-    - path: /v1/stock
-      location-snippets: |
-        opentracing_propagate_context;
-        opentracing_operation_name "nginx-ingress";      
+    - path: /v1/stock 
       action:
         pass: arcadia-stocks
-    - path: /v1/stockt
-      location-snippets: |
-        opentracing_propagate_context;
-        opentracing_operation_name "nginx-ingress";      
+    - path: /v1/stockt    
       policies:
       - name: jwt-policy
       action:
@@ -144,10 +132,7 @@ spec:
             set:
             - name: okta-user
               value: \${jwt_claim_email}
-    - path: / 
-      location-snippets: |
-        opentracing_propagate_context;
-        opentracing_operation_name "nginx-ingress";      
+    - path: /     
       action:
         pass: arcadia-frontend
 EOF

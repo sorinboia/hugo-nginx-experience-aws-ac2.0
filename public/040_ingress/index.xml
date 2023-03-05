@@ -14,8 +14,8 @@
       
       <guid>/040_ingress/010_ingress_install_1/</guid>
       <description>We are going to use the Nginx Helm installation.
- Run the command bellow:  kubectl create ns nginx-ingresshelm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yamlOutput
-Will put the output Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &amp;quot;tcp&amp;quot;service.beta.kubernetes.io/aws-load-balancer-type: nlbspec:type: LoadBalancerports:- port: 80targetPort: 8080protocol: TCPname: httpselector:app: nginx-ingressEOFCheck what we did so far is actually working:  kubectl get svc --namespace=nginx-ingressOutput</description>
+ Run the command bellow:  kubectl create ns nginx-ingresshelm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yaml -n nginx-ingressOutput
+NAME: nginx-ingressLAST DEPLOYED: Sun Mar 5 10:47:01 2023NAMESPACE: nginx-ingressSTATUS: deployedREVISION: 1TEST SUITE: NoneNOTES:The NGINX Ingress Controller has been installed. Expose the Nginx Ingress Dashboard.  cat &amp;lt;&amp;lt; EOF | kubectl apply -f -apiVersion: v1kind: Servicemetadata:name: dashboard-nginx-ingressnamespace: nginx-ingressannotations:service.</description>
     </item>
     
     <item>

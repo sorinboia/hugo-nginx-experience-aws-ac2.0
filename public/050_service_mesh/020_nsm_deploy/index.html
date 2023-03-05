@@ -12,21 +12,21 @@
     <title>Nginx Service Mesh deployment :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1678011012" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1678011012" rel="stylesheet">
-    <link href="../../css/hybrid.css?1678011012" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1678011012" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1678011012" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1678011012" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1678011012" rel="stylesheet">
-    <link href="../../css/theme.css?1678011012" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1678011012" rel="stylesheet">
+    <link href="../../css/nucleus.css?1678017122" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1678017122" rel="stylesheet">
+    <link href="../../css/hybrid.css?1678017122" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1678017122" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1678017122" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1678017122" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1678017122" rel="stylesheet">
+    <link href="../../css/theme.css?1678017122" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1678017122" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1678011012" rel="stylesheet">
+    <link href="../../css/theme-green.css?1678017122" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1678011012"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1678017122"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1678011012"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1678011012"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1678017122"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1678017122"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1678011012"></script>
+<script type="text/javascript" src="../../js/search.js?1678017122"></script>
 
     
   </div>
@@ -724,44 +724,33 @@ if (!doNotTrack) {
 <pre><code>kubectl apply -f files/5service_mesh/zipkin.yaml
 nginx-meshctl deploy --sample-rate 1 --tracing-backend &quot;zipkin&quot; --tracing-address &quot;zipkin.zipkin.svc.cluster.local:9411&quot; --persistent-storage off --disable-auto-inject
 </code></pre><pre>Output<br><output class="bash">
-Deploying NGINX Service Mesh Control Plane in namespace &#34;nginx-mesh&#34;...
-Created namespace &#34;nginx-mesh&#34;.
-W1116 07:38:27.529470    3517 warnings.go:70] apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16&#43;, unavailable in v1.22&#43;; use apiextensions.k8s.io/v1 CustomResourceDefinition
-Created SpiffeID CRD.
-W1116 07:38:27.834807    3517 warnings.go:70] admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16&#43;, unavailable in v1.22&#43;; use admissionregistration.k8s.io/v1 ValidatingWebhookConfiguration
-Waiting for SPIRE to be running...done.
-Deployed Spire.
-Deployed NATS server.
-Created traffic policy CRDs.
-Deployed Mesh API.
-Deployed Metrics API Server.
-Deployed Prometheus Server nginx-mesh/prometheus.
-Deployed Grafana nginx-mesh/grafana.
-Deployed tracing server nginx-mesh/zipkin.
+virtualserver.k8s.nginx.org/arcadia configured
+ubuntu@jumphost:~/lab$ kubectl apply -f files/5service_mesh/zipkin.yaml
+namespace/zipkin created
+deployment.apps/zipkin created
+service/zipkin created
+ubuntu@jumphost:~/lab$ nginx-meshctl deploy --sample-rate 1 --tracing-backend &#34;zipkin&#34; --tracing-address &#34;zipkin.zipkin.svc.cluster.local:9411&#34; --persistent-storage off --disable-auto-inject
+Flag --sample-rate has been deprecated, and will be removed in a future release. OpenTelemetry (--sampler-ratio and --telemetry-exporters) is the preferred way to configure tracing.
+Flag --tracing-backend has been deprecated, and will be removed in a future release. OpenTelemetry (--telemetry-exporters) is the preferred way to configure tracing.
+Flag --tracing-address has been deprecated, and will be removed in a future release. OpenTelemetry (--telemetry-exporters) is the preferred way to configure tracing.
+Warning: Deploying without persistent storage, not suitable for production environments.
+         For production environments ensure a default StorageClass is set.
+Deploying NGINX Service Mesh...
 All resources created. Testing the connection to the Service Mesh API Server...
 Connected to the NGINX Service Mesh API successfully.
-Verifying that all images were pulled...done.
 NGINX Service Mesh is running.
-ubuntu@jumphost:~/lab$ kubectl get svc -n nginx-mesh grafana -oyaml | sed &#39;s/ClusterIP/LoadBalancer/g&#39; | kubectl apply -f -
-Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
-service/grafana configured
-ubuntu@jumphost:~/lab$ kubectl get svc -n nginx-mesh zipkin -oyaml | sed &#39;s/ClusterIP/LoadBalancer/g&#39; | kubectl apply -f -
-Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
-service/zipkin configured
 </output></pre>
 <ol start="2">
 <li>All components have been deployed in the &ldquo;nginx-mesh&rdquo; namespace, run the following command and validate that all pods are running</li>
 </ol>
 <pre><code>kubectl get pods -n nginx-mesh
 </code></pre><pre>Output<br><output class="bash">
-grafana-766d495d65-mjngv              1/1     Running   0          5m30s
-nats-server-7d457c74d9-csjt2          1/1     Running   0          5m34s
-nginx-mesh-api-575858b96b-djq7h       1/1     Running   0          5m32s
-nginx-mesh-metrics-57dd4796b8-6mtqc   1/1     Running   0          5m31s
-prometheus-67dc46b8b6-2wkgg           1/1     Running   0          5m30s
-spire-agent-nv5z2                     1/1     Running   0          6m18s
-spire-server-0                        2/2     Running   0          6m18s
-zipkin-564b9d4954-4hqdr               1/1     Running   0          5m29s
+NAME                                  READY   STATUS    RESTARTS   AGE
+nats-server-f46dfc64-5nndp            2/2     Running   0          96s
+nginx-mesh-api-7b64b4798f-8c7zz       1/1     Running   0          96s
+nginx-mesh-metrics-86489d7f94-nt6nq   1/1     Running   0          96s
+spire-agent-zv49g                     1/1     Running   0          96s
+spire-server-555d847594-hgqgv         2/2     Running   0          96s
 </output></pre>
 
 
@@ -1195,19 +1184,19 @@ zipkin-564b9d4954-4hqdr               1/1     Running   0          5m29s
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1678011012"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1678011012"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1678011012"></script>
-    <script src="../../js/jquery.sticky.js?1678011012"></script>
-    <script src="../../js/featherlight.min.js?1678011012"></script>
-    <script src="../../js/highlight.pack.js?1678011012"></script>
+    <script src="../../js/clipboard.min.js?1678017122"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1678017122"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1678017122"></script>
+    <script src="../../js/jquery.sticky.js?1678017122"></script>
+    <script src="../../js/featherlight.min.js?1678017122"></script>
+    <script src="../../js/highlight.pack.js?1678017122"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1678011012"></script>
-    <script src="../../js/learn.js?1678011012"></script>
-    <script src="../../js/hugo-learn.js?1678011012"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1678017122"></script>
+    <script src="../../js/learn.js?1678017122"></script>
+    <script src="../../js/hugo-learn.js?1678017122"></script>
 
-    <link href="../../mermaid/mermaid.css?1678011012" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1678011012"></script>
+    <link href="../../mermaid/mermaid.css?1678017122" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1678017122"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
