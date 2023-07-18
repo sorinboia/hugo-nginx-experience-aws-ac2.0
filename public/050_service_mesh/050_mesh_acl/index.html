@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.84.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="Nginx experience on AWS">
 <meta name="author" content="Sorin Boiangiu">
 
@@ -12,21 +12,21 @@
     <title>Mesh Access List :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1680081550" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/hybrid.css?1680081550" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1680081550" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1680081550" rel="stylesheet">
-    <link href="../../css/theme.css?1680081550" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1680081550" rel="stylesheet">
+    <link href="../../css/nucleus.css?1689662742" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1689662742" rel="stylesheet">
+    <link href="../../css/hybrid.css?1689662742" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1689662742" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1689662742" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1689662742" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1689662742" rel="stylesheet">
+    <link href="../../css/theme.css?1689662742" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1689662742" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1680081550" rel="stylesheet">
+    <link href="../../css/theme-green.css?1689662742" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1680081550"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1689662742"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1680081550"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1680081550"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1689662742"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1689662742"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1680081550"></script>
+<script type="text/javascript" src="../../js/search.js?1689662742"></script>
 
     
   </div>
@@ -720,12 +720,12 @@ if (!doNotTrack) {
 
 <p>The Kubernetes networking environment by default is an open network without restrictions or limitations.<br>
 This means that any pod can access any other pod or service. This introduces potential risks.<br>
-Our <code>arcadia-users</code> exposes an internal API <code>/v1/user_i/</code> which is used by the <code>arcadia-login</code> service only. This means that no other service should have access to it. 
+Our <code>arcadia-users</code> exposes an internal API <code>/v1/user_i/</code> which is used by the <code>arcadia-login</code> service only. This means that no other service should have access to it.
 Lets see what security implications this has:</p>
 <ol>
 <li>Access the <code>arcadia-stocks</code> pod. This pod is used only to get current crypto prices and nothing else. It should not be able to contact any other pod.</li>
 </ol>
-<pre><code>export arcadia_stocks_pod=$(kubectl get pods --selector=app=arcadia-stocks | grep arcadia-stocks -m 1 |  cut -d' ' -f1)
+<pre tabindex="0"><code>export arcadia_stocks_pod=$(kubectl get pods --selector=app=arcadia-stocks | grep arcadia-stocks -m 1 |  cut -d&#39; &#39; -f1)
 kubectl exec -it $arcadia_stocks_pod  -- bash
 </code></pre><pre>Output<br><output class="bash">
 Defaulting container name to arcadia-stocks.
@@ -736,7 +736,7 @@ root@arcadia-stocks-7bd6ff78c8-pb6bn:/usr/src/app#
 <li>You are now in the <code>arcadia-stocks</code> container, the bellow command will access the <code>arcadia-users</code> internal API and get specific user information.<br>
 This should not be allowed. This call must be allowed only from the <code>arcadia-login</code> pods.</li>
 </ol>
-<pre><code>curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
+<pre tabindex="0"><code>curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
 </code></pre><pre>Output<br><output class="bash">
 {&#34;_id&#34;:&#34;6072b09ce6915d87d36e66af&#34;,&#34;accountId&#34;:&#34;47808892&#34;,&#34;name&#34;:&#34;Sorin Boiangiu&#34;,&#34;email&#34;:&#34;sorin@nginx.com&#34;,&#34;cash&#34;:121973.826,&#34;password&#34;:&#34;nginx&#34;,&#34;stocks&#34;:{&#34;btc&#34;:1.1989999999999994,&#34;eth&#34;:3.5,&#34;ltc&#34;:40.1},&#34;picture&#34;:&#34;default&#34;}
 </output></pre>
@@ -744,7 +744,7 @@ This should not be allowed. This call must be allowed only from the <code>arcadi
 <ol start="3">
 <li>Improve you application security by introducing these checks and allowing access only from the <code>arcadia-login</code> pods</li>
 </ol>
-<pre><code>cat &lt;&lt; EOF | kubectl apply -f -
+<pre tabindex="0"><code>cat &lt;&lt; EOF | kubectl apply -f -
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -786,14 +786,14 @@ EOF
 </code></pre><ol start="4">
 <li>Attach the service account to the pods</li>
 </ol>
-<pre><code>kubectl set serviceaccount deployments/arcadia-users arcadia-users-sa
+<pre tabindex="0"><code>kubectl set serviceaccount deployments/arcadia-users arcadia-users-sa
 kubectl set serviceaccount deployments/arcadia-login arcadia-login-sa
 </code></pre><ol start="5">
 <li>Access the <code>arcadia-stocks</code> pod and retry getting user information from the <code>arcadia-users</code> service, this time it will be blocked.</li>
 </ol>
-<pre><code>export arcadia_stocks_pod=$(kubectl get pods --selector=app=arcadia-stocks | grep arcadia-stocks -m 1 |  cut -d' ' -f1)
+<pre tabindex="0"><code>export arcadia_stocks_pod=$(kubectl get pods --selector=app=arcadia-stocks | grep arcadia-stocks -m 1 |  cut -d&#39; &#39; -f1)
 kubectl exec -it $arcadia_stocks_pod  -- bash
-</code></pre><pre><code>curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
+</code></pre><pre tabindex="0"><code>curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
 </code></pre><pre>Output<br><output class="bash">
 &lt;html&gt;
 &lt;head&gt;&lt;title&gt;403 Forbidden&lt;/title&gt;&lt;/head&gt;
@@ -807,9 +807,9 @@ kubectl exec -it $arcadia_stocks_pod  -- bash
 <ol start="6">
 <li>Access the <code>arcadia-login</code> pod and try getting user information from the <code>arcadia-users</code> service, only this service should be allowed.</li>
 </ol>
-<pre><code>export arcadia_login_pod=$(kubectl get pods --selector=app=arcadia-login | grep arcadia-login -m 1 |  cut -d' ' -f1)
+<pre tabindex="0"><code>export arcadia_login_pod=$(kubectl get pods --selector=app=arcadia-login | grep arcadia-login -m 1 |  cut -d&#39; &#39; -f1)
 kubectl exec -it $arcadia_login_pod  -- bash
-</code></pre><pre><code>curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
+</code></pre><pre tabindex="0"><code>curl http://arcadia-users/v1/user_i/c29yaW5AbmdpbnguY29t
 </code></pre><pre>Output<br><output class="bash">
 {&#34;_id&#34;:&#34;6072b09ce6915d87d36e66af&#34;,&#34;accountId&#34;:&#34;47808892&#34;,&#34;name&#34;:&#34;Sorin Boiangiu&#34;,&#34;email&#34;:&#34;sorin@nginx.com&#34;,&#34;cash&#34;:121973.826,&#34;password&#34;:&#34;nginx&#34;,&#34;stocks&#34;:{&#34;btc&#34;:1.1989999999999994,&#34;eth&#34;:3.5,&#34;ltc&#34;:40.1},&#34;picture&#34;:&#34;default&#34;}
 </output></pre>
@@ -1249,19 +1249,19 @@ kubectl exec -it $arcadia_login_pod  -- bash
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1680081550"></script>
-    <script src="../../js/jquery.sticky.js?1680081550"></script>
-    <script src="../../js/featherlight.min.js?1680081550"></script>
-    <script src="../../js/highlight.pack.js?1680081550"></script>
+    <script src="../../js/clipboard.min.js?1689662742"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1689662742"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1689662742"></script>
+    <script src="../../js/jquery.sticky.js?1689662742"></script>
+    <script src="../../js/featherlight.min.js?1689662742"></script>
+    <script src="../../js/highlight.pack.js?1689662742"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1680081550"></script>
-    <script src="../../js/learn.js?1680081550"></script>
-    <script src="../../js/hugo-learn.js?1680081550"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1689662742"></script>
+    <script src="../../js/learn.js?1689662742"></script>
+    <script src="../../js/hugo-learn.js?1689662742"></script>
 
-    <link href="../../mermaid/mermaid.css?1680081550" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1680081550"></script>
+    <link href="../../mermaid/mermaid.css?1689662742" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1689662742"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

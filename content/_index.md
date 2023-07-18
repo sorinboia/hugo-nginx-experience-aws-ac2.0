@@ -24,10 +24,6 @@ Start by using automation and use Infrastructure as Code concepts to deploy the 
 1.	Monitor the application performance, discover issues and improve performance
 2.	Authenticate users with OpenID Connect and offload authentication processes from the application to Nginx
 3.	Zero Trust - Applying Mutual TLS authentication with NGINX 
-
- #### [Service Mesh](/050_service_mesh/)
-1.	Trace your application functions within the mesh
-2.	Secure the interservice communication
  
  #### [Security](/060_security/)
  Secure you application with Nginx App Protect Web Application Firewall.           

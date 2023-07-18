@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.84.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="Nginx experience on AWS">
 <meta name="author" content="Sorin Boiangiu">
 
@@ -12,21 +12,21 @@
     <title>Nginx App Protect deployment :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1680081550" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/hybrid.css?1680081550" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1680081550" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1680081550" rel="stylesheet">
-    <link href="../../css/theme.css?1680081550" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1680081550" rel="stylesheet">
+    <link href="../../css/nucleus.css?1689663023" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/hybrid.css?1689663023" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1689663023" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1689663023" rel="stylesheet">
+    <link href="../../css/theme.css?1689663023" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1689663023" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1680081550" rel="stylesheet">
+    <link href="../../css/theme-green.css?1689663023" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1680081550"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1689663023"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1680081550"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1680081550"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1689663023"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1689663023"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1680081550"></script>
+<script type="text/javascript" src="../../js/search.js?1689663023"></script>
 
     
   </div>
@@ -407,131 +407,13 @@ if (!doNotTrack) {
  
   
     
-    <li data-nav-id="/050_service_mesh/" title="Nginx Service Mesh" class="dd-item 
-        
-        
-        
-        ">
-      <a href="../../050_service_mesh/">
-          <b>5. </b>Nginx Service Mesh
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/020_nsm_deploy/" title="Nginx Service Mesh deployment" class="dd-item ">
-        <a href="../../050_service_mesh/020_nsm_deploy/">
-        Nginx Service Mesh deployment
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/030_side_car_injection/" title="Side Car Injection" class="dd-item ">
-        <a href="../../050_service_mesh/030_side_car_injection/">
-        Side Car Injection
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/040_opentracing/" title="Service Mesh Visibility" class="dd-item ">
-        <a href="../../050_service_mesh/040_opentracing/">
-        Service Mesh Visibility
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/050_mesh_acl/" title="Mesh Access List" class="dd-item ">
-        <a href="../../050_service_mesh/050_mesh_acl/">
-        Mesh Access List
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
     <li data-nav-id="/060_security/" title="Security" class="dd-item 
         parent
         
         
         ">
       <a href="../../060_security/">
-          <b>6. </b>Security
+          <b>5. </b>Security
           
       </a>
       
@@ -721,7 +603,7 @@ if (!doNotTrack) {
 <ol>
 <li>Prepare the Nginx App Protect config</li>
 </ol>
-<pre><code>export elk_log=$(kubectl get svc elk-log | tr -s &quot; &quot; | cut -d' ' -f3 | grep -v &quot;CLUSTER-IP&quot;)
+<pre tabindex="0"><code>export elk_log=$(kubectl get svc elk-log | tr -s &#34; &#34; | cut -d&#39; &#39; -f3 | grep -v &#34;CLUSTER-IP&#34;)
 cat &lt;&lt; EOF | kubectl apply -f -
 # APPolicy is the policy configuration. Here we are enabling signature check of known attacks
 apiVersion: appprotect.f5.com/v1beta1
@@ -762,16 +644,16 @@ metadata:
 spec:
   waf:
     enable: true
-    apPolicy: &quot;default/attacksigs&quot;
+    apPolicy: &#34;default/attacksigs&#34;
     securityLog:
       enable: true
-      apLogConf: &quot;default/logconf&quot;
-      logDest: &quot;syslog:server=$elk_log:5144&quot;
+      apLogConf: &#34;default/logconf&#34;
+      logDest: &#34;syslog:server=$elk_log:5144&#34;
 EOF
 </code></pre><ol start="2">
 <li>Enable Nginx App Protect on the VS</li>
 </ol>
-<pre><code>cat &lt;&lt; EOF | kubectl apply -f -
+<pre tabindex="0"><code>cat &lt;&lt; EOF | kubectl apply -f -
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
@@ -1095,86 +977,6 @@ EOF
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                     
                 
                 
@@ -1282,19 +1084,19 @@ EOF
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1680081550"></script>
-    <script src="../../js/jquery.sticky.js?1680081550"></script>
-    <script src="../../js/featherlight.min.js?1680081550"></script>
-    <script src="../../js/highlight.pack.js?1680081550"></script>
+    <script src="../../js/clipboard.min.js?1689663023"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1689663023"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1689663023"></script>
+    <script src="../../js/jquery.sticky.js?1689663023"></script>
+    <script src="../../js/featherlight.min.js?1689663023"></script>
+    <script src="../../js/highlight.pack.js?1689663023"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1680081550"></script>
-    <script src="../../js/learn.js?1680081550"></script>
-    <script src="../../js/hugo-learn.js?1680081550"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1689663023"></script>
+    <script src="../../js/learn.js?1689663023"></script>
+    <script src="../../js/hugo-learn.js?1689663023"></script>
 
-    <link href="../../mermaid/mermaid.css?1680081550" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1680081550"></script>
+    <link href="../../mermaid/mermaid.css?1689663023" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1689663023"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.84.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="Nginx experience on AWS">
 <meta name="author" content="Sorin Boiangiu">
 
@@ -12,21 +12,21 @@
     <title>Nginx Kubernetes Ingress Installation :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1680081550" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/hybrid.css?1680081550" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1680081550" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1680081550" rel="stylesheet">
-    <link href="../../css/theme.css?1680081550" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1680081550" rel="stylesheet">
+    <link href="../../css/nucleus.css?1689663023" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/hybrid.css?1689663023" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1689663023" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1689663023" rel="stylesheet">
+    <link href="../../css/theme.css?1689663023" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1689663023" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1680081550" rel="stylesheet">
+    <link href="../../css/theme-green.css?1689663023" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1680081550"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1689663023"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1680081550"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1680081550"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1689663023"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1689663023"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1680081550"></script>
+<script type="text/javascript" src="../../js/search.js?1689663023"></script>
 
     
   </div>
@@ -407,131 +407,13 @@ if (!doNotTrack) {
  
   
     
-    <li data-nav-id="/050_service_mesh/" title="Nginx Service Mesh" class="dd-item 
-        
-        
-        
-        ">
-      <a href="../../050_service_mesh/">
-          <b>5. </b>Nginx Service Mesh
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/020_nsm_deploy/" title="Nginx Service Mesh deployment" class="dd-item ">
-        <a href="../../050_service_mesh/020_nsm_deploy/">
-        Nginx Service Mesh deployment
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/030_side_car_injection/" title="Side Car Injection" class="dd-item ">
-        <a href="../../050_service_mesh/030_side_car_injection/">
-        Side Car Injection
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/040_opentracing/" title="Service Mesh Visibility" class="dd-item ">
-        <a href="../../050_service_mesh/040_opentracing/">
-        Service Mesh Visibility
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/050_mesh_acl/" title="Mesh Access List" class="dd-item ">
-        <a href="../../050_service_mesh/050_mesh_acl/">
-        Mesh Access List
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
     <li data-nav-id="/060_security/" title="Security" class="dd-item 
         
         
         
         ">
       <a href="../../060_security/">
-          <b>6. </b>Security
+          <b>5. </b>Security
           
       </a>
       
@@ -722,7 +604,7 @@ if (!doNotTrack) {
 <ol>
 <li>Run the command bellow:</li>
 </ol>
-<pre><code>kubectl create ns nginx-ingress
+<pre tabindex="0"><code>kubectl create ns nginx-ingress
 helm install nginx-ingress nginx-stable/nginx-ingress -f /home/ubuntu/lab/files/4ingress/helm_ingress_values.yaml -n nginx-ingress
 </code></pre><pre>Output<br><output class="bash">
 NAME: nginx-ingress
@@ -737,14 +619,14 @@ The NGINX Ingress Controller has been installed.
 <ol start="2">
 <li>Expose the Nginx Ingress Dashboard.</li>
 </ol>
-<pre><code>cat &lt;&lt; EOF | kubectl apply -f -
+<pre tabindex="0"><code>cat &lt;&lt; EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
   name: dashboard-nginx-ingress
   namespace: nginx-ingress
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &quot;tcp&quot;
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: &#34;tcp&#34;
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   type: LoadBalancer
@@ -759,7 +641,7 @@ EOF
 </code></pre><ol start="3">
 <li>Check what we did so far is actually working:</li>
 </ol>
-<pre><code>kubectl get svc --namespace=nginx-ingress
+<pre tabindex="0"><code>kubectl get svc --namespace=nginx-ingress
 </code></pre><pre>Output<br><output class="bash">
 NAME                      TYPE           CLUSTER-IP      EXTERNAL-IP                                                                 PORT(S)                      AGE
 dashboard-nginx-ingress   LoadBalancer   172.20.36.60    aeb592ad4011544219c0bc49581baa13-421891138.eu-central-1.elb.amazonaws.com   80:32044/TCP                 11m
@@ -776,10 +658,10 @@ Browse to the following location and verify that you receive a 404 status code: 
 <ol start="4">
 <li>Save the EXTERNAL-IPs as env variables for later use</li>
 </ol>
-<pre><code>dingress=$(kubectl get svc dashboard-nginx-ingress --namespace=nginx-ingress | tr -s &quot; &quot; | cut -d' ' -f4 | grep -v &quot;EXTERNAL-IP&quot;)
-echo &quot;export dashboard_nginx_ingress=$dingress&quot; &gt;&gt; ~/.bashrc 
-ningress=$(kubectl get svc nginx-ingress-nginx-ingress --namespace=nginx-ingress | tr -s &quot; &quot; | cut -d' ' -f4 | grep -v &quot;EXTERNAL-IP&quot;)
-echo &quot;export nginx_ingress=$ningress&quot; &gt;&gt; ~/.bashrc 
+<pre tabindex="0"><code>dingress=$(kubectl get svc dashboard-nginx-ingress --namespace=nginx-ingress | tr -s &#34; &#34; | cut -d&#39; &#39; -f4 | grep -v &#34;EXTERNAL-IP&#34;)
+echo &#34;export dashboard_nginx_ingress=$dingress&#34; &gt;&gt; ~/.bashrc 
+ningress=$(kubectl get svc nginx-ingress-nginx-ingress --namespace=nginx-ingress | tr -s &#34; &#34; | cut -d&#39; &#39; -f4 | grep -v &#34;EXTERNAL-IP&#34;)
+echo &#34;export nginx_ingress=$ningress&#34; &gt;&gt; ~/.bashrc 
 source ~/.bashrc
 </code></pre>
 
@@ -1109,86 +991,6 @@ source ~/.bashrc
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
             
         
 
@@ -1213,19 +1015,19 @@ source ~/.bashrc
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1680081550"></script>
-    <script src="../../js/jquery.sticky.js?1680081550"></script>
-    <script src="../../js/featherlight.min.js?1680081550"></script>
-    <script src="../../js/highlight.pack.js?1680081550"></script>
+    <script src="../../js/clipboard.min.js?1689663023"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1689663023"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1689663023"></script>
+    <script src="../../js/jquery.sticky.js?1689663023"></script>
+    <script src="../../js/featherlight.min.js?1689663023"></script>
+    <script src="../../js/highlight.pack.js?1689663023"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1680081550"></script>
-    <script src="../../js/learn.js?1680081550"></script>
-    <script src="../../js/hugo-learn.js?1680081550"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1689663023"></script>
+    <script src="../../js/learn.js?1689663023"></script>
+    <script src="../../js/hugo-learn.js?1689663023"></script>
 
-    <link href="../../mermaid/mermaid.css?1680081550" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1680081550"></script>
+    <link href="../../mermaid/mermaid.css?1689663023" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1689663023"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

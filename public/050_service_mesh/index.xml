@@ -13,7 +13,7 @@
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/050_service_mesh/020_nsm_deploy/</guid>
-      <description>Deploy all Nginx components in the Kubernetes environment  kubectl apply -f files/5service_mesh/zipkin.yamlnginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;quot;zipkin&amp;quot; --tracing-address &amp;quot;zipkin.zipkin.svc.cluster.local:9411&amp;quot; --persistent-storage off --disable-auto-injectOutput
+      <description>Deploy all Nginx components in the Kubernetes environment kubectl apply -f files/5service_mesh/zipkin.yamlnginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;#34;zipkin&amp;#34; --tracing-address &amp;#34;zipkin.zipkin.svc.cluster.local:9411&amp;#34; --persistent-storage off --disable-auto-inject Output
 virtualserver.k8s.nginx.org/arcadia configuredubuntu@jumphost:~/lab$ kubectl apply -f files/5service_mesh/zipkin.yamlnamespace/zipkin createddeployment.apps/zipkin createdservice/zipkin createdubuntu@jumphost:~/lab$ nginx-meshctl deploy --sample-rate 1 --tracing-backend &amp;#34;zipkin&amp;#34; --tracing-address &amp;#34;zipkin.zipkin.svc.cluster.local:9411&amp;#34; --persistent-storage off --disable-auto-injectFlag --sample-rate has been deprecated, and will be removed in a future release. OpenTelemetry (--sampler-ratio and --telemetry-exporters) is the preferred way to configure tracing.</description>
     </item>
     
@@ -23,7 +23,7 @@ virtualserver.k8s.nginx.org/arcadia configuredubuntu@jumphost:~/lab$ kubectl ap
       <pubDate>Wed, 08 Jul 2020 14:37:59 +0300</pubDate>
       
       <guid>/050_service_mesh/030_side_car_injection/</guid>
-      <description>Inject the sidecar into the application pods  kubectl get deployment arcadia-frontend -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-login -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-stock-transaction -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-stocks -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-users -oyaml | nginx-meshctl inject | kubectl apply -f -Wait for the sidecar to be injected in all pods and verify that the pods have 2 containers  kubectl get podsOutput</description>
+      <description>Inject the sidecar into the application pods kubectl get deployment arcadia-frontend -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-login -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-stock-transaction -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-stocks -oyaml | nginx-meshctl inject | kubectl apply -f -kubectl get deployment arcadia-users -oyaml | nginx-meshctl inject | kubectl apply -f - Wait for the sidecar to be injected in all pods and verify that the pods have 2 containers kubectl get pods Output</description>
     </item>
     
     <item>
@@ -33,8 +33,8 @@ virtualserver.k8s.nginx.org/arcadia configuredubuntu@jumphost:~/lab$ kubectl ap
       
       <guid>/050_service_mesh/040_opentracing/</guid>
       <description>In order to be able see and monitor all of our application calls we will need to connect to the Grafana and Zipkin services
- Get the svc external ip  kubectl get svc zipkin -n zipkinOutput
-NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEzipkin LoadBalancer 172.20.88.44 a7c02ef8a39b74da4ad41085261859f8-765188493.eu-central-1.elb.amazonaws.com 9411:31661/TCP 4d23h  Go and buy or sell crypto coin. We will use Zipkin to trace this operation through the different services.</description>
+Get the svc external ip kubectl get svc zipkin -n zipkin Output
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEzipkin LoadBalancer 172.20.88.44 a7c02ef8a39b74da4ad41085261859f8-765188493.eu-central-1.elb.amazonaws.com 9411:31661/TCP 4d23hGo and buy or sell crypto coin. We will use Zipkin to trace this operation through the different services. Browse to the Zipkin dashboard http://&amp;lt;ZIPKIN-EXTERNAL-IP&amp;gt;:9411 Create a filter as in the bellow image.</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGEzipkin LoadBalancer 172.20.88.44 a7
       <description>The Kubernetes networking environment by default is an open network without restrictions or limitations.
 This means that any pod can access any other pod or service. This introduces potential risks.
 Our arcadia-users exposes an internal API /v1/user_i/ which is used by the arcadia-login service only. This means that no other service should have access to it. Lets see what security implications this has:
- Access the arcadia-stocks pod. This pod is used only to get current crypto prices and nothing else.</description>
+Access the arcadia-stocks pod. This pod is used only to get current crypto prices and nothing else.</description>
     </item>
     
   </channel>

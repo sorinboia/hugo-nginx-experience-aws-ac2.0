@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.84.0" />
+    <meta name="generator" content="Hugo 0.111.3">
     <meta name="description" content="Nginx experience on AWS">
 <meta name="author" content="Sorin Boiangiu">
 
@@ -12,21 +12,21 @@
     <title>Enable https and monitoring :: Nginx Experience</title>
 
     
-    <link href="../../css/nucleus.css?1680081550" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/hybrid.css?1680081550" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1680081550" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1680081550" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1680081550" rel="stylesheet">
-    <link href="../../css/theme.css?1680081550" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1680081550" rel="stylesheet">
+    <link href="../../css/nucleus.css?1689663023" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/hybrid.css?1689663023" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1689663023" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1689663023" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1689663023" rel="stylesheet">
+    <link href="../../css/theme.css?1689663023" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1689663023" rel="stylesheet">
     
-    <link href="../../css/theme-green.css?1680081550" rel="stylesheet">
+    <link href="../../css/theme-green.css?1689663023" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1680081550"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1689663023"></script>
 
     <style>
     :root #header + #content > #left > #rlblock_left{
@@ -67,14 +67,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1680081550"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1680081550"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1689663023"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1689663023"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1680081550"></script>
+<script type="text/javascript" src="../../js/search.js?1689663023"></script>
 
     
   </div>
@@ -407,131 +407,13 @@ if (!doNotTrack) {
  
   
     
-    <li data-nav-id="/050_service_mesh/" title="Nginx Service Mesh" class="dd-item 
-        
-        
-        
-        ">
-      <a href="../../050_service_mesh/">
-          <b>5. </b>Nginx Service Mesh
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/020_nsm_deploy/" title="Nginx Service Mesh deployment" class="dd-item ">
-        <a href="../../050_service_mesh/020_nsm_deploy/">
-        Nginx Service Mesh deployment
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/030_side_car_injection/" title="Side Car Injection" class="dd-item ">
-        <a href="../../050_service_mesh/030_side_car_injection/">
-        Side Car Injection
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/040_opentracing/" title="Service Mesh Visibility" class="dd-item ">
-        <a href="../../050_service_mesh/040_opentracing/">
-        Service Mesh Visibility
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-      <li data-nav-id="/050_service_mesh/050_mesh_acl/" title="Mesh Access List" class="dd-item ">
-        <a href="../../050_service_mesh/050_mesh_acl/">
-        Mesh Access List
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
     <li data-nav-id="/060_security/" title="Security" class="dd-item 
         
         
         
         ">
       <a href="../../060_security/">
-          <b>6. </b>Security
+          <b>5. </b>Security
           
       </a>
       
@@ -726,7 +608,7 @@ if (!doNotTrack) {
 <ol>
 <li>Apply the configuration.</li>
 </ol>
-<pre><code>cat &lt;&lt; EOF | kubectl apply -f -
+<pre tabindex="0"><code>cat &lt;&lt; EOF | kubectl apply -f -
 apiVersion: v1
 data:
   tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZMRENDQkJTZ0F3SUJBZ0lTQTUrVmpoQmN3NUJKNWk0QXU2VGl0L3h0TUEwR0NTcUdTSWIzRFFFQkN3VUEKTURJeEN6QUpCZ05WQkFZVEFsVlRNUll3RkFZRFZRUUtFdzFNWlhRbmN5QkZibU55ZVhCME1Rc3dDUVlEVlFRRApFd0pTTXpBZUZ3MHlNVEF4TVRjeE1USXpNek5hRncweU1UQTBNVGN4TVRJek16TmFNQjR4SERBYUJnTlZCQU1NCkV5b3VZWEpqWVdScFlXTnllWEIwYnk1dVpYUXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUsKQW9JQkFRRE1LQkNYWHdaL0xQbzNmM2pMR3IvamhNRXNTZmdrT3ErOGtOUEpxVzdPbGtCazRrZWtlaEtFVVVDQwowUHdUazgrbnp0Skg3bzBEOUNaaEZuVW9pSGVnZkRzTURFNWFoVXh4blQ1czlmWHZvRlJqSnlYUUR0VlhvR1VQCk1ubzJlVkdYYi81Qm1LeVNJMDVpQ3B5SCtNVC9YRHFhd3BhV2ZsTDJ5OXpZK1V2NGlkQVhsZFpDUnBVSEhOV1cKZjhPeUMvcFJiZndhYVYzRDJ6RjFaeHJ6Z2JIcWd3WXpkRHNnYXVkdk56N0pocytDaENxL1JQNWhMSGNkNzV5bQo1bmppTFZsVmcvYUZJS09IT2wyZ1RFdnQ4WWdjTXdUSWgwNjRrcWpVS3g5UDBmQkpZSzNwV0ZoelhwaENHaWd1CjdTd3EyYnpGTkZabjY1SEdtSDBJY1RLMVlNSm5BZ01CQUFHamdnSk9NSUlDU2pBT0JnTlZIUThCQWY4RUJBTUMKQmFBd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQXdHQTFVZEV3RUIvd1FDTUFBdwpIUVlEVlIwT0JCWUVGSXhRMk9EMjhFWjVaVkNTRmNBTlVLbEdqcTFVTUI4R0ExVWRJd1FZTUJhQUZCUXVzeGUzCldGYkxybEFKUU9ZZnI1MkxGTUxHTUZVR0NDc0dBUVVGQndFQkJFa3dSekFoQmdnckJnRUZCUWN3QVlZVmFIUjAKY0RvdkwzSXpMbTh1YkdWdVkzSXViM0puTUNJR0NDc0dBUVVGQnpBQ2hoWm9kSFJ3T2k4dmNqTXVhUzVzWlc1agpjaTV2Y21jdk1CNEdBMVVkRVFRWE1CV0NFeW91WVhKallXUnBZV055ZVhCMGJ5NXVaWFF3VEFZRFZSMGdCRVV3ClF6QUlCZ1puZ1F3QkFnRXdOd1lMS3dZQkJBR0MzeE1CQVFFd0tEQW1CZ2dyQmdFRkJRY0NBUllhYUhSMGNEb3YKTDJOd2N5NXNaWFJ6Wlc1amNubHdkQzV2Y21jd2dnRUVCZ29yQmdFRUFkWjVBZ1FDQklIMUJJSHlBUEFBZHdCRQpsR1V1c083T3I4UkFCOWlvL2lqQTJ1YUN2dGpMTWJVLzB6T1d0YmFCcUFBQUFYY1FUTzdSQUFBRUF3QklNRVlDCklRQ3hMK0hhdnVOY1kzRU0yNllwN0JEeTA1TW8yTUxreHYrdE5nMHA0QmRVQlFJaEFOT1dIWmR1Z056UHl4MEkKOU5VWHVOL09JaGlnS2RGMjhlMmM0TWV3dVRmVEFIVUE5bHlVTDlGM01DSVVWQmdJTUpSV2p1Tk5FeGt6djk4TQpMeUFMekU3eFpPTUFBQUYzRUV6d3V3QUFCQU1BUmpCRUFpQWwvNEZaL1ZwR1NRV3pwdUc2Q0ljWUdHOG4wM1ZZCmRTQnFxUlFHbWUxdnVnSWdRMXg3cnRqYXhrcDNRd3FweWhYRXJyWjhPN3lIdTF2di9pdFhWR1haZzBjd0RRWUoKS29aSWh2Y05BUUVMQlFBRGdnRUJBSnh0Zmk1NmxxZ1RFUEJ6NE82R2xZclJYOVlnL3Y5cUMwWE1DazFSWlJWRApuRldQcTBQUFRWeWR3UTRsOVZQMWhlaTZhNUY0R2xQOVFzaFk3TS9CRFA0SmgwR3pOYnBCY2h4Slc2MHBuUXEzCjI4WmovNzVhamVycTFxYnEvbXpIZHhGcGVzTkVON3NYbUpzNGsrM1pOeWs3N1lXRVhsb1BDMk9STGM2MmhWWlAKdk1sYXZycmNmYWFGNTYvZkR3QzdRd2JZa3JHQzEycFZ4STMzNlFQSGJrRVE2SDNhWGUweE9Dem4rUnZxdXRMTwpqNjh2UVExWG5LdktLc0dCTVNGM29QaGYxZHZtbi9pZHBtK1RjdFJ3ZmUzTGtrL2JpZEJ2a2pJam5jb05HR1pTCllLSFVybmRzMWpDclRVTnI0RFgwTlY5bFNVOG5jUzdMMFBFOGxuUXYrWjg9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVaVENDQTAyZ0F3SUJBZ0lRUUFGMUJJTVVwTWdoaklTcERCYk4zekFOQmdrcWhraUc5dzBCQVFzRkFEQS8KTVNRd0lnWURWUVFLRXh0RWFXZHBkR0ZzSUZOcFoyNWhkSFZ5WlNCVWNuVnpkQ0JEYnk0eEZ6QVZCZ05WQkFNVApEa1JUVkNCU2IyOTBJRU5CSUZnek1CNFhEVEl3TVRBd056RTVNakUwTUZvWERUSXhNRGt5T1RFNU1qRTBNRm93Ck1qRUxNQWtHQTFVRUJoTUNWVk14RmpBVUJnTlZCQW9URFV4bGRDZHpJRVZ1WTNKNWNIUXhDekFKQmdOVkJBTVQKQWxJek1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdXdJVktNejJvSlRURHhMcwpqVldTdy9pQzhabW1la0tJcDEwbXFyVXJ1Y1ZNc2ErT2EvbDF5S1BYRDBlVUZGVTFWNHllcUtJNUdmV0NQRUtwClRtNzFPOE11MjQzQXNGenpXVGpuN2M5cDhGb0xHNzdBbENRbGgvbzNjYk1UNXh5czRadnYyK1E3UlZKRmxxbkIKVTg0MHlGTHV0YTd0ajk1Z2NPS2xWS3UyYlE2WHBVQTBheXZUdkdiclpqUjgrbXVMajFjcG1mZ3dGMTI2Y20vNwpnY1d0MG9aWVBSZkg1d203OFN2M2h0ekIybkZkMUVianpLMGx3WWk4WUdkMVpyUHhHUGVpWE9aVC96cUl0a2VsCi94TVk2cGdKZHorZFUvblBBZVgxcG5BWEZLOWpwUCtaczVPZDNGT25CdjVJaFIyaGFhNGxkYnNUekZJRDllMVIKb1l2YkZRSURBUUFCbzRJQmFEQ0NBV1F3RWdZRFZSMFRBUUgvQkFnd0JnRUIvd0lCQURBT0JnTlZIUThCQWY4RQpCQU1DQVlZd1N3WUlLd1lCQlFVSEFRRUVQekE5TURzR0NDc0dBUVVGQnpBQ2hpOW9kSFJ3T2k4dllYQndjeTVwClpHVnVkSEoxYzNRdVkyOXRMM0p2YjNSekwyUnpkSEp2YjNSallYZ3pMbkEzWXpBZkJnTlZIU01FR0RBV2dCVEUKcDdHa2V5eHgrdHZoUzVCMS84UVZZSVdKRURCVUJnTlZIU0FFVFRCTE1BZ0dCbWVCREFFQ0FUQS9CZ3NyQmdFRQpBWUxmRXdFQkFUQXdNQzRHQ0NzR0FRVUZCd0lCRmlKb2RIUndPaTh2WTNCekxuSnZiM1F0ZURFdWJHVjBjMlZ1ClkzSjVjSFF1YjNKbk1Ed0dBMVVkSHdRMU1ETXdNYUF2b0MyR0syaDBkSEE2THk5amNtd3VhV1JsYm5SeWRYTjAKTG1OdmJTOUVVMVJTVDA5VVEwRllNME5TVEM1amNtd3dIUVlEVlIwT0JCWUVGQlF1c3hlM1dGYkxybEFKUU9ZZgpyNTJMRk1MR01CMEdBMVVkSlFRV01CUUdDQ3NHQVFVRkJ3TUJCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUc5dzBCCkFRc0ZBQU9DQVFFQTJVemd5ZldFaURjeDI3c1Q0clA4aTJ0aUVteFl0MGwrUEFLM3FCOG9ZZXZPNEM1ejcwa0gKZWpXRUh4MnRhUERZL2xhQkwyMS9XS1p1TlRZUUhIUEQ1YjF0WGdIWGJuTDdLcUM0MDFkazVWdkNhZFRRc3ZkOApTOE1Yam9oeWM5ejkvRzI5NDhrTGptRTZGbGg5ZERZclZZQTl4Mk8raEVQR09hRU9hMWVlUHluQmdQYXl2VWZMCnFqQnN0ekxoV1ZRTEdBa1hYbU5zKzVablBCeHpESk9MeGhGMkpJYmVRQWNINUgwdFpyVWxvNVpZeU9xQTdzOXAKTzViODVvM0FNL09KK0NrdEZCUXRmdkJoY0pWZDl3dmx3UHNrK3V5T3kySEk3bU54S0tnc0JUdDM3NXRlQTJUdwpVZEhraFZOY3NBS1gxSDdHTk5MT0VBRGtzZDg2d3VvWHZnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
@@ -1131,86 +1013,6 @@ Look at the Nginx dashboard and observe that Nginx has started monitoring the po
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
             
         
 
@@ -1235,19 +1037,19 @@ Look at the Nginx dashboard and observe that Nginx has started monitoring the po
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1680081550"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1680081550"></script>
-    <script src="../../js/jquery.sticky.js?1680081550"></script>
-    <script src="../../js/featherlight.min.js?1680081550"></script>
-    <script src="../../js/highlight.pack.js?1680081550"></script>
+    <script src="../../js/clipboard.min.js?1689663023"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1689663023"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1689663023"></script>
+    <script src="../../js/jquery.sticky.js?1689663023"></script>
+    <script src="../../js/featherlight.min.js?1689663023"></script>
+    <script src="../../js/highlight.pack.js?1689663023"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1680081550"></script>
-    <script src="../../js/learn.js?1680081550"></script>
-    <script src="../../js/hugo-learn.js?1680081550"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1689663023"></script>
+    <script src="../../js/learn.js?1689663023"></script>
+    <script src="../../js/hugo-learn.js?1689663023"></script>
 
-    <link href="../../mermaid/mermaid.css?1680081550" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1680081550"></script>
+    <link href="../../mermaid/mermaid.css?1689663023" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1689663023"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

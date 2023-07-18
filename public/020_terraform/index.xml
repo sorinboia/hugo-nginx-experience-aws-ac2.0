@@ -15,8 +15,8 @@
       <guid>/020_terraform/010_terraform_apply_1/</guid>
       <description>All configuration and management of the infrastructure will be done from the Jumphost.
 SSH into the Jumphost.
-  Watch the terraform deployment status.
-  tail -f startup/startup.logWhen the the ALL IS DONE message will appear in the logs you can continue.</description>
+Watch the terraform deployment status.
+tail -f startup/startup.log When the the ALL IS DONE message will appear in the logs you can continue.</description>
     </item>
     
     <item>
@@ -36,8 +36,8 @@ Managed control plane Amazon EKS provides a scalable and highly-available contro
       
       <guid>/020_terraform/030_eks_verification_1/</guid>
       <description> Check and see that our cluster is up an running.
-Below we should see our two K8s worker nodes:  kubectl get nodesOutput
-NAME STATUS ROLES AGE VERSIONip-10-0-3-204.eu-central-1.compute.internal Ready &amp;lt;none&amp;gt; 100s v1.19.6-eks-49a6c0  Go to the lab directory  cd lab</description>
+Below we should see our two K8s worker nodes: kubectl get nodes Output
+NAME STATUS ROLES AGE VERSIONip-10-0-3-204.eu-central-1.compute.internal Ready &amp;lt;none&amp;gt; 100s v1.19.6-eks-49a6c0 Go to the lab directory cd lab </description>
     </item>
     
   </channel>
